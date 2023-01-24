@@ -1,5 +1,7 @@
+import Layout from '~/layout';
+
 const IndexPage = () => {
-  return <h1 className="text-3xl">Hello!</h1>;
+  return <Layout>PostList...</Layout>;
 };
 
 export default IndexPage;
