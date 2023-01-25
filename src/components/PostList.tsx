@@ -7,7 +7,7 @@ type PostListProps = {
 
 const PostList = ({ posts }: PostListProps) => {
   return (
-    <div className="flex flex-col space-y-6">
+    <div className="flex flex-col space-y-6 my-4">
       {posts.map(
         ({
           node: {

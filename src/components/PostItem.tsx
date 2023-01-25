@@ -1,4 +1,5 @@
 import type { Frontmatter } from '~/types/graphql.types';
+import TagList from './TagList';
 
 type PostItemProps = Frontmatter & {
   link: string;
@@ -7,18 +8,11 @@ type PostItemProps = Frontmatter & {
 const PostItem = ({ title, date, tags, summary, link }: PostItemProps) => {
   return (
     <a href={link}>
-      <div className="flex flex-col">
-        <div className="flex items-center gap-4 p-2">
-          <div>
-            <h2 className="text-3xl">{title}</h2>
-            <p className="text-lg">{summary}</p>
-            <ul className="flex gap-2">
-              {tags.map((tag) => (
-                <li key={tag}>{tag}</li>
-              ))}
-            </ul>
-          </div>
-        </div>
+      <div className="flex flex-col gap-2">
+        <h2 className="text-2xl font-semibold">{title}</h2>
+        <div className="text-base text-slate-500">{date}</div>
+        <p className="text-base">{summary}</p>
+        <TagList tags={tags} />
       </div>
     </a>
   );
