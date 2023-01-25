@@ -8,9 +8,17 @@ type PostListProps = {
 const PostList = ({ posts }: PostListProps) => {
   return (
     <div className="flex flex-col space-y-6">
-      {posts.map(({ node: { id, frontmatter } }) => (
-        <PostItem key={id} link="https://google.com" {...frontmatter} />
-      ))}
+      {posts.map(
+        ({
+          node: {
+            id,
+            fields: { slug },
+            frontmatter,
+          },
+        }) => (
+          <PostItem key={id} link={slug} {...frontmatter} />
+        )
+      )}
     </div>
   );
 };
