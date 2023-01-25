@@ -8,7 +8,7 @@ const TagList = ({ tags }: TagListProps) => {
   return (
     <ul className="flex gap-2">
       {tags.map((tag) => (
-        <TagItem tag={tag} />
+        <TagItem tag={tag} key={tag} />
       ))}
     </ul>
   );
