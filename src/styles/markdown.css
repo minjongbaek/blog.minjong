@@ -1,5 +1,5 @@
 .markdown {
-  /* min-height: 200px; */
+  @apply break-all;
 
   & > *:first-child {
     @apply mt-0 !important;

@@ -1,8 +1,8 @@
-import path from 'path';
 import type { GatsbyConfig } from 'gatsby';
 
 const config: GatsbyConfig = {
   jsxRuntime: 'automatic',
+  trailingSlash: 'never',
   siteMetadata: {
     title: `Blog.minjongdev`,
     description: `minjong's dev blog`,
@@ -37,7 +37,7 @@ const config: GatsbyConfig = {
           {
             resolve: `gatsby-remark-vscode`,
             options: {
-              theme: `Default Dark+`,
+              theme: `Monokai`,
             },
           },
           {
@@ -49,7 +49,6 @@ const config: GatsbyConfig = {
           },
           {
             resolve: 'gatsby-remark-copy-linked-files',
-            options: {},
           },
           {
             resolve: 'gatsby-remark-external-links',

@@ -15,7 +15,7 @@ const PostTemplate = ({
   return (
     <Layout>
       <PostHeader {...frontmatter} />
-      <PostDetail html={html} />;
+      <PostDetail html={html} />
     </Layout>
   );
 };
