@@ -1,6 +1,8 @@
 import { graphql } from 'gatsby';
 import PostDetail from '~/components/PostDetail';
-import { PostDetailQueryResult } from '~/types/graphql.types';
+import PostHeader from '~/components/PostHeader';
+import Layout from '~/layout';
+import type { PostDetailQueryResult } from '~/types/graphql.types';
 
 const PostTemplate = ({
   data: {
@@ -8,9 +10,14 @@ const PostTemplate = ({
   },
 }: PostDetailQueryResult) => {
   const {
-    node: { html },
+    node: { html, frontmatter },
   } = edges[0];
-  return <PostDetail html={html} />;
+  return (
+    <Layout>
+      <PostHeader {...frontmatter} />
+      <PostDetail html={html} />;
+    </Layout>
+  );
 };
 
 export default PostTemplate;
@@ -26,11 +33,6 @@ export const queryMarkdownDataBySlug = graphql`
             summary
             date(formatString: "YYYY.MM.DD.")
             tags
-            thumbnail {
-              childImageSharp {
-                gatsbyImageData
-              }
-            }
           }
         }
       }

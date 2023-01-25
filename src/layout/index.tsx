@@ -6,7 +6,7 @@ const Layout = ({ children }: PropsWithChildren) => {
   return (
     <div className="min-h-screen">
       <Header />
-      <main className="container mx-auto px-4">{children}</main>
+      <main className="container mx-auto px-4 max-w-5xl">{children}</main>
       <Footer />
     </div>
   );

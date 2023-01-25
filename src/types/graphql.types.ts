@@ -1,15 +1,8 @@
-import type { IGatsbyImageData } from 'gatsby-plugin-image';
-
 export type Frontmatter = {
   title: string;
   summary: string;
   date: string;
   tags: string[];
-  thumbnail: {
-    childImageSharp: {
-      gatsbyImageData: IGatsbyImageData;
-    };
-  };
 };
 
 export type PostListQueryResult = {

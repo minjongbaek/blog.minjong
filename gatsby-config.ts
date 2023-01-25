@@ -1,3 +1,4 @@
+import path from 'path';
 import type { GatsbyConfig } from 'gatsby';
 
 const config: GatsbyConfig = {
@@ -9,6 +10,7 @@ const config: GatsbyConfig = {
     siteUrl: `https://blog.minjongdev.com`,
   },
   plugins: [
+    `gatsby-plugin-postcss`,
     `gatsby-plugin-image`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -22,7 +24,7 @@ const config: GatsbyConfig = {
       resolve: `gatsby-plugin-sharp`,
       options: {
         defaults: {
-          formats: ['auto', 'webp'],
+          formats: ['auto'],
           quality: 100,
           placeholder: 'blurred',
         },
@@ -33,22 +35,15 @@ const config: GatsbyConfig = {
       options: {
         plugins: [
           {
-            resolve: 'gatsby-remark-smartypants',
+            resolve: `gatsby-remark-vscode`,
             options: {
-              dashes: 'oldschool',
-            },
-          },
-          {
-            resolve: 'gatsby-remark-prismjs',
-            options: {
-              classPrefix: 'language-',
+              theme: `Default Dark+`,
             },
           },
           {
             resolve: 'gatsby-remark-images',
             options: {
               maxWidth: 768,
-              quality: 100,
               withWebp: true,
             },
           },

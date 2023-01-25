@@ -3,7 +3,9 @@ type PostDetailProps = {
 };
 
 const PostDetail = ({ html }: PostDetailProps) => {
-  return <div dangerouslySetInnerHTML={{ __html: html }} />;
+  return (
+    <div className="markdown" dangerouslySetInnerHTML={{ __html: html }} />
+  );
 };
 
 export default PostDetail;

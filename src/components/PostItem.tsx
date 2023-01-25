@@ -1,27 +1,14 @@
-import { GatsbyImage } from 'gatsby-plugin-image';
-import type { Post } from '~/types/post.types';
+import type { Frontmatter } from '~/types/graphql.types';
 
-type PostItemProps = Post['node']['frontmatter'] & {
+type PostItemProps = Frontmatter & {
   link: string;
 };
 
-const PostItem = ({
-  title,
-  date,
-  tags,
-  summary,
-  thumbnail: {
-    childImageSharp: { gatsbyImageData },
-  },
-  link,
-}: PostItemProps) => {
+const PostItem = ({ title, date, tags, summary, link }: PostItemProps) => {
   return (
     <a href={link}>
       <div className="flex flex-col">
         <div className="flex items-center gap-4 p-2">
-          <div className="w-48">
-            <GatsbyImage image={gatsbyImageData} alt="Post Thumbnail" />
-          </div>
           <div>
             <h2 className="text-3xl">{title}</h2>
             <p className="text-lg">{summary}</p>
