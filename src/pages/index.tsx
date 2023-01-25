@@ -1,21 +1,13 @@
 import { graphql } from 'gatsby';
 import PostList from '~/components/PostList';
 import Layout from '~/layout';
-import { Post } from '~/types/post.types';
-
-type IndexPageProps = {
-  data: {
-    allMarkdownRemark: {
-      edges: Post[];
-    };
-  };
-};
+import { PostListQueryResult } from '~/types/graphql.types';
 
 const IndexPage = ({
   data: {
     allMarkdownRemark: { edges },
   },
-}: IndexPageProps) => {
+}: PostListQueryResult) => {
   return (
     <Layout>
       <PostList posts={edges} />

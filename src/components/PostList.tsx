@@ -1,8 +1,8 @@
 import PostItem from '~/components/PostItem';
-import type { Post } from '~/types/post.types';
+import type { PostListQueryResult } from '~/types/graphql.types';
 
 type PostListProps = {
-  posts: Post[];
+  posts: PostListQueryResult['data']['allMarkdownRemark']['edges'];
 };
 
 const PostList = ({ posts }: PostListProps) => {
