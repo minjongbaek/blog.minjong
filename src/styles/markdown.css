@@ -44,7 +44,9 @@
   p,
   blockquote,
   ol,
-  ul {
+  ul,
+  table,
+  summary {
     @apply mb-4 break-all;
   }
 
@@ -56,7 +58,10 @@
   }
 
   a {
-    @apply text-sky-500 hover:text-sky-300;
+    @apply text-sky-500 !cursor-pointer hover:text-sky-300;
+    code {
+      @apply hover:!text-sky-300;
+    }
   }
 
   ol,
@@ -91,6 +96,33 @@
   h6 {
     & > code {
       @apply bg-slate-100 text-sky-500 px-1 mx-0.5 rounded-md;
+    }
+  }
+
+  p {
+    img {
+      @apply my-0 mx-auto;
+    }
+  }
+
+  table {
+    @apply border-collapse border border-slate-400 table-fixed w-full break-keep;
+
+    tr {
+      th,
+      td {
+        @apply border border-slate-300 p-2;
+      }
+    }
+  }
+
+  details {
+    summary {
+      @apply cursor-pointer;
+    }
+    p,
+    ul {
+      @apply mt-2 ml-8;
     }
   }
 
