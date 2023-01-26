@@ -5,11 +5,14 @@ import { PostListQueryResult } from '~/types/graphql.types';
 
 const IndexPage = ({
   data: {
+    site: {
+      siteMetadata: { title, description, siteUrl },
+    },
     allMarkdownRemark: { edges },
   },
 }: PostListQueryResult) => {
   return (
-    <Layout>
+    <Layout title={title} description={description} url={siteUrl}>
       <PostList posts={edges} />
     </Layout>
   );
@@ -19,6 +22,13 @@ export default IndexPage;
 
 export const getPostList = graphql`
   query getPostList {
+    site {
+      siteMetadata {
+        title
+        description
+        siteUrl
+      }
+    }
     allMarkdownRemark(
       sort: [{ frontmatter: { date: DESC } }, { frontmatter: { title: ASC } }]
     ) {

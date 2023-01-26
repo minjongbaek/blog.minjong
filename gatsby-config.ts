@@ -1,5 +1,7 @@
 import type { GatsbyConfig } from 'gatsby';
 
+const siteUrl = 'https://blog.minjongdev.com';
+
 const config: GatsbyConfig = {
   jsxRuntime: 'automatic',
   trailingSlash: 'never',
@@ -7,11 +9,18 @@ const config: GatsbyConfig = {
     title: `Blog.minjongdev`,
     description: `minjong's dev blog`,
     author: `minjong`,
-    siteUrl: `https://blog.minjongdev.com`,
+    siteUrl,
   },
   plugins: [
     `gatsby-plugin-postcss`,
     `gatsby-plugin-image`,
+    {
+      resolve: 'gatsby-plugin-canonical-urls',
+      options: {
+        siteUrl,
+        stripQueryString: true,
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
