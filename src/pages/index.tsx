@@ -1,5 +1,6 @@
-import { graphql } from 'gatsby';
+import { graphql, HeadProps } from 'gatsby';
 import PostList from '~/components/PostList';
+import Seo from '~/components/seo';
 import Layout from '~/layout';
 import { PostListQueryResult } from '~/types/graphql.types';
 
@@ -12,7 +13,7 @@ const IndexPage = ({
   },
 }: PostListQueryResult) => {
   return (
-    <Layout title={title} description={description} url={siteUrl}>
+    <Layout>
       <PostList posts={edges} />
     </Layout>
   );
@@ -49,3 +50,13 @@ export const getPostList = graphql`
     }
   }
 `;
+
+export const Head = ({
+  data: {
+    site: {
+      siteMetadata: { title, description, siteUrl },
+    },
+  },
+}: PostListQueryResult) => {
+  return <Seo title={title} description={description} url={siteUrl} />;
+};

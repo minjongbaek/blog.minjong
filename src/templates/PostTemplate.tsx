@@ -1,31 +1,21 @@
 import { graphql } from 'gatsby';
 import PostDetail from '~/components/PostDetail';
 import PostHeader from '~/components/PostHeader';
+import Seo from '~/components/seo';
 import Layout from '~/layout';
 import type { PostDetailQueryResult } from '~/types/graphql.types';
-
-type PostTemplateProps = {
-  location: { href: string };
-};
 
 const PostTemplate = ({
   data: {
     allMarkdownRemark: { edges },
-    site: {
-      siteMetadata: { siteUrl },
-    },
   },
-  location: { href },
-}: PostTemplateProps & PostDetailQueryResult) => {
+}: PostDetailQueryResult) => {
   const {
-    node: {
-      html,
-      frontmatter: { title, summary, date, tags },
-    },
+    node: { html, frontmatter },
   } = edges[0];
   return (
-    <Layout title={title} description={summary} url={href}>
-      <PostHeader title={title} date={date} tags={tags} />
+    <Layout>
+      <PostHeader {...frontmatter} />
       <PostDetail html={html} />
     </Layout>
   );
@@ -55,3 +45,21 @@ export const queryMarkdownDataBySlug = graphql`
     }
   }
 `;
+
+type HeadProps = {
+  location: { href: string };
+};
+
+export const Head = ({
+  data: {
+    allMarkdownRemark: { edges },
+  },
+  location: { href },
+}: HeadProps & PostDetailQueryResult) => {
+  const {
+    node: {
+      frontmatter: { title, summary },
+    },
+  } = edges[0];
+  return <Seo title={title} description={summary} url={href} />;
+};
