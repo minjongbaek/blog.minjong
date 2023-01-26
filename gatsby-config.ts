@@ -30,6 +30,7 @@ const config: GatsbyConfig = {
         },
       },
     },
+    `gatsby-plugin-twitter`,
     {
       resolve: `gatsby-transformer-remark`,
       options: {
@@ -56,6 +57,9 @@ const config: GatsbyConfig = {
               target: '_blank',
               rel: 'nofollow',
             },
+          },
+          {
+            resolve: 'gatsby-remark-embedder',
           },
         ],
       },

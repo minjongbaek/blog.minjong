@@ -137,3 +137,7 @@
     @apply w-4 h-4;
   }
 }
+
+.twitter-tweet {
+  @apply m-0;
+}

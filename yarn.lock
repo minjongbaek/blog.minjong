@@ -1024,7 +1024,7 @@
     "@babel/helper-validator-option" "^7.18.6"
     "@babel/plugin-transform-typescript" "^7.18.6"
 
-"@babel/runtime@^7.0.0", "@babel/runtime@^7.12.5", "@babel/runtime@^7.16.3", "@babel/runtime@^7.20.7", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
+"@babel/runtime@^7.0.0", "@babel/runtime@^7.12.5", "@babel/runtime@^7.16.3", "@babel/runtime@^7.18.3", "@babel/runtime@^7.20.7", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
   version "7.20.13"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.20.13.tgz#7055ab8a7cff2b8f6058bf6ae45ff84ad2aded4b"
   integrity sha512-gt3PKXs0DBoL9xCvOIIZ2NEqAGZqHjAnmVbfQtB620V0uReIQutpel14KcneZuer7UioY8ALKZ7iocavvzTNFA==
@@ -5184,6 +5184,11 @@ fd@~0.0.2:
   resolved "https://registry.yarnpkg.com/fd/-/fd-0.0.3.tgz#b3240de86dbf5a345baae7382a07d4713566ff0c"
   integrity sha512-iAHrIslQb3U68OcMSP0kkNWabp7sSN6d2TBSb2JO3gcLJVDd4owr/hKM4SFJovFOUeeXeItjYgouEDTMWiVAnA==
 
+fetch-retry@^5.0.2:
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/fetch-retry/-/fetch-retry-5.0.3.tgz#edfa3641892995f9afee94f25b168827aa97fe3d"
+  integrity sha512-uJQyMrX5IJZkhoEUBQ3EjxkeiZkppBd5jS/fMTJmfZxLSiaQjv2zD0kTvuvkSH89uFvgSlB6ueGpjD3HWN7Bxw==
+
 figures@^3.0.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/figures/-/figures-3.2.0.tgz#625c18bd293c604dc4a8ddb2febf0c88341746af"
@@ -5646,6 +5651,13 @@ gatsby-plugin-sharp@^5.5.0:
     semver "^7.3.8"
     sharp "^0.31.3"
 
+gatsby-plugin-twitter@^5.5.0:
+  version "5.5.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-twitter/-/gatsby-plugin-twitter-5.5.0.tgz#229a6904f2c8fc45276a348a7f880831a81e8ac1"
+  integrity sha512-WMq83am4pRyopmHkaLeYOD6D2FogQT8UHmz81QqtM9Kc9v97hWenzjpkM46nB92aeEkUeX26pZyaDooTLkYsfg==
+  dependencies:
+    "@babel/runtime" "^7.20.7"
+
 gatsby-plugin-typescript@^5.5.0:
   version "5.5.0"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-typescript/-/gatsby-plugin-typescript-5.5.0.tgz#807f95d2420b44e37942de52b6dff665a57911b6"
@@ -5694,6 +5706,18 @@ gatsby-remark-copy-linked-files@^6.5.0:
     lodash "^4.17.21"
     path-is-inside "^1.0.2"
     probe-image-size "^7.2.3"
+    unist-util-visit "^2.0.3"
+
+gatsby-remark-embedder@^6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/gatsby-remark-embedder/-/gatsby-remark-embedder-6.0.1.tgz#6d577d4b7915d3efab0c7a03af22c5c1e436c0fe"
+  integrity sha512-bzhlc6cMeBkdyZ2XGQbNw/OVXxA0ETL7cqltUxmixCe+z1ziEXw83SHL62ETjQGg/vPOTqlv8vp14mUjENbbHw==
+  dependencies:
+    "@babel/runtime" "^7.18.3"
+    fetch-retry "^5.0.2"
+    hast-util-from-parse5 "^6.0.1"
+    node-fetch "^2.6.7"
+    parse5 "^6.0.1"
     unist-util-visit "^2.0.3"
 
 gatsby-remark-external-links@^0.0.4:
@@ -6329,7 +6353,7 @@ hast-to-hyperscript@^9.0.0:
     unist-util-is "^4.0.0"
     web-namespaces "^1.0.0"
 
-hast-util-from-parse5@^6.0.0:
+hast-util-from-parse5@^6.0.0, hast-util-from-parse5@^6.0.1:
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/hast-util-from-parse5/-/hast-util-from-parse5-6.0.1.tgz#554e34abdeea25ac76f5bd950a1f0180e0b3bc2a"
   integrity sha512-jeJUWiN5pSxW12Rh01smtVkZgZr33wBokLzKLwinYOUfSzm1Nl/c3GUGebDyOKjdsRgMvoVbV0VpAcpjF4NrJA==
@@ -8401,7 +8425,7 @@ parse5-htmlparser2-tree-adapter@^7.0.0:
     domhandler "^5.0.2"
     parse5 "^7.0.0"
 
-parse5@^6.0.0:
+parse5@^6.0.0, parse5@^6.0.1:
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/parse5/-/parse5-6.0.1.tgz#e1a1c085c569b3dc08321184f19a39cc27f7c30b"
   integrity sha512-Ofn/CTFzRGTTxwpNEs9PP93gXShHcTq255nzRYSKe8AkVpZY7e1fpmTfOyoIvjP5HG7Z2ZM7VS9PPhQGW2pOpw==
