@@ -1,6 +1,6 @@
-import { graphql, HeadProps } from 'gatsby';
+import { graphql } from 'gatsby';
 import PostList from '~/components/PostList';
-import Seo from '~/components/seo';
+import Seo from '~/components/Seo';
 import Layout from '~/layout';
 import { PostListQueryResult } from '~/types/graphql.types';
 

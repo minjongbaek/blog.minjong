@@ -1,7 +1,7 @@
 import { graphql } from 'gatsby';
 import PostDetail from '~/components/PostDetail';
 import PostHeader from '~/components/PostHeader';
-import Seo from '~/components/seo';
+import Seo from '~/components/Seo';
 import Layout from '~/layout';
 import type { PostDetailQueryResult } from '~/types/graphql.types';
 
