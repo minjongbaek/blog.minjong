@@ -15,7 +15,7 @@ const Layout = ({
   url,
   children,
 }: LayoutProps & PropsWithChildren) => {
-  const image = 'https://blog.minjongdev.com/oepn-graph.png';
+  const image = 'https://blog.minjongdev.com/open-graph.png';
 
   return (
     <div className="min-h-screen">
