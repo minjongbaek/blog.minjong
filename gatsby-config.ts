@@ -12,6 +12,7 @@ const config: GatsbyConfig = {
     siteUrl,
   },
   plugins: [
+    `gatsby-plugin-sitemap`,
     `gatsby-plugin-postcss`,
     `gatsby-plugin-image`,
     {
