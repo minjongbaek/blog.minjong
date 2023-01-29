@@ -1,0 +1,40 @@
+---
+import BaseHead from "@/components/BaseHead.astro";
+import Layout from "@/layouts/Layout";
+import TagItem from "@/components/TagItem";
+import { SITE_TITLE, SITE_DESCRIPTION } from "@/consts";
+import { getCollection } from "astro:content";
+
+const tagCount: { [key: string]: number } = {};
+
+const tags = [
+  ...new Set(
+    (await getCollection("post")).flatMap((post) => {
+      post.data.tags.forEach((tag) => {
+        if (Object.hasOwn(tagCount, tag)) {
+          tagCount[tag] += 1;
+        } else {
+          tagCount[tag] = 1;
+        }
+      });
+      return post.data.tags;
+    })
+  ),
+];
+---
+
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Layout>
+      <div class="h-96 min-h-full">
+        <div class="my-4 flex gap-2 text-2xl flex-wrap">
+          {tags.map((tag) => <TagItem tag={tag} count={tagCount[tag]} />)}
+        </div>
+      </div>
+    </Layout>
+  </body>
+</html>

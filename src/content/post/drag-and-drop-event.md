@@ -1,7 +1,7 @@
 ---
 date: "2022-08-26"
 title: "드래그 앤 드롭 이벤트"
-tags: ["JavaScript", "web"]
+tags: ["JavaScript", "Web"]
 description: "Element를 끌어다 놓아보자"
 ---
 

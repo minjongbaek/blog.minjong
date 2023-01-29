@@ -1,12 +1,15 @@
 type TagItemProps = {
   tag: string;
+  count?: number;
 };
 
-const TagItem = ({ tag }: TagItemProps) => {
+const TagItem = ({ tag, count }: TagItemProps) => {
   return (
-    <li className="bg-slate-100 text-sky-500 px-3 mx-0.5 rounded-xl hover:text-sky-400">
-      {tag}
-    </li>
+    <span className="bg-slate-100 text-sky-500 px-3 rounded-xl hover:text-sky-400">
+      <a href={`/tags/${tag}`}>
+        {tag} {count && `(${count})`}
+      </a>
+    </span>
   );
 };
 
