@@ -1,4 +1,5 @@
 import { graphql } from 'gatsby';
+import Comment from '~/components/Comment';
 import PostDetail from '~/components/PostDetail';
 import PostHeader from '~/components/PostHeader';
 import Seo from '~/components/Seo';
@@ -17,6 +18,7 @@ const PostTemplate = ({
     <Layout>
       <PostHeader {...frontmatter} />
       <PostDetail html={html} />
+      <Comment />
     </Layout>
   );
 };
