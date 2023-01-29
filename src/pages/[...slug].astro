@@ -26,7 +26,11 @@ const { Content } = await post.render();
   </head>
   <body>
     <Layout>
-      <PostHeader title={title} date={date} tags={tags} />
+      <PostHeader
+        title={title}
+        date={date.toLocaleDateString("ko-KR")}
+        tags={tags}
+      />
       <div class="markdown">
         <Content />
       </div>

@@ -6,7 +6,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import { getCollection } from "astro:content";
 
 const posts = (await getCollection("post")).sort(
-  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
 );
 ---
 
