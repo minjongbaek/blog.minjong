@@ -1,17 +1,21 @@
-import type { Frontmatter } from '~/types/graphql.types';
-import TagList from './TagList';
+import type { CollectionEntry } from "astro:content";
+import TagList from "./TagList";
 
-type PostItemProps = Frontmatter & {
-  link: string;
+type PostItemProps = {
+  slug: string;
+  post: CollectionEntry<"post">["data"];
 };
 
-const PostItem = ({ title, date, tags, summary, link }: PostItemProps) => {
+const PostItem = ({
+  slug,
+  post: { title, date, tags, description },
+}: PostItemProps) => {
   return (
-    <a href={link}>
+    <a href={slug}>
       <div className="flex flex-col gap-2">
         <h2 className="text-2xl font-semibold">{title}</h2>
         <div className="text-base text-slate-500">{date}</div>
-        <p className="text-base">{summary}</p>
+        <p className="text-base">{description}</p>
         <TagList tags={tags} />
       </div>
     </a>

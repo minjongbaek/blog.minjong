@@ -1,4 +1,4 @@
-import TagList from './TagList';
+import TagList from "./TagList";
 
 type PostHeaderProps = {
   title: string;

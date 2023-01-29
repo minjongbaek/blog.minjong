@@ -1,63 +1,28 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "@example/blog",
+  "type": "module",
+  "version": "0.0.1",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
-  "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
-  "dependencies": {
-    "gatsby": "^5.4.2",
-    "gatsby-plugin-canonical-urls": "^5.5.0",
-    "gatsby-plugin-image": "^3.5.0",
-    "gatsby-plugin-manifest": "^5.4.0",
-    "gatsby-plugin-postcss": "^6.5.0",
-    "gatsby-plugin-robots-txt": "^1.8.0",
-    "gatsby-plugin-sharp": "^5.5.0",
-    "gatsby-plugin-sitemap": "^6.5.0",
-    "gatsby-plugin-twitter": "^5.5.0",
-    "gatsby-plugin-typescript": "^5.5.0",
-    "gatsby-remark-copy-linked-files": "^6.5.0",
-    "gatsby-remark-embedder": "^6.0.1",
-    "gatsby-remark-external-links": "^0.0.4",
-    "gatsby-remark-images": "^7.5.0",
-    "gatsby-remark-vscode": "^3.3.1",
-    "gatsby-source-filesystem": "^5.4.0",
-    "gatsby-transformer-remark": "^6.5.0",
-    "gatsby-transformer-sharp": "^5.5.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
-  "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.49.0",
-    "@typescript-eslint/parser": "^5.49.0",
-    "autoprefixer": "^10.4.13",
-    "eslint": "^8.32.0",
-    "eslint-config-prettier": "^8.6.0",
-    "eslint-config-react-app": "^7.0.1",
-    "eslint-plugin-prettier": "^4.2.1",
-    "postcss": "^8.4.21",
-    "prettier": "^2.8.3",
-    "tailwindcss": "^3.2.4",
-    "tsconfig-paths-webpack-plugin": "^4.0.0",
-    "typescript": "^4.9.4"
-  },
-  "keywords": [
-    "gatsby"
-  ],
-  "license": "0BSD",
   "scripts": {
-    "build": "gatsby build",
-    "dev": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,css}\"",
-    "start": "gatsby develop",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
-  },
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+  "dependencies": {
+    "@astrojs/mdx": "^0.15.1",
+    "@astrojs/react": "^2.0.1",
+    "@astrojs/rss": "^2.1.0",
+    "@astrojs/sitemap": "^1.0.0",
+    "@astrojs/tailwind": "^3.0.0",
+    "@tailwindcss/nesting": "^0.0.0-insiders.565cd3e",
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.10",
+    "astro": "^2.0.2",
+    "postcss-nesting": "^11.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tailwindcss": "^3.2.4"
   }
 }

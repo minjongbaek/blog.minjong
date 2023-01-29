@@ -46,7 +46,8 @@
   ol,
   ul,
   table,
-  summary {
+  summary,
+  pre {
     @apply mb-4 break-all;
   }
 
@@ -101,6 +102,7 @@
 
   p {
     img {
+      max-height: 600px;
       @apply my-0 mx-auto;
     }
   }
@@ -133,40 +135,18 @@
   :not(pre, h1, h2, h3, h4, h5, h6) > code:not(.one-dark-pro) {
     @apply text-sky-500 bg-slate-100;
   }
+
+  pre.astro-code {
+    @apply px-6 py-4 leading-3 rounded-md border-2;
+    code {
+      @apply text-sm;
+    }
+  }
 }
 
 .excerpt-markdown {
   code {
     @apply text-sky-500 bg-slate-100 break-all text-sm px-1 py-0.5 mx-0.5 rounded-md whitespace-normal;
-  }
-}
-
-/* grvsc setting */
-.grvsc-container {
-  @apply mb-4;
-}
-
-.grvsc-code {
-  @apply min-w-full;
-}
-
-.grvsc-gutter-pad {
-  @apply pl-0;
-}
-
-.grvsc-gutter + .grvsc-source {
-  @apply pl-4;
-  padding-left: calc(
-    var(--grvsc-padding-left, var(--grvsc-padding-h, 1.5rem)) * 2 / 3
-  );
-}
-
-/* auto link */
-.anchor.after {
-  @apply pl-2 inline-flex !important;
-  @apply items-center h-4;
-  svg {
-    @apply w-4 h-4;
   }
 }
 

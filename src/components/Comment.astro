@@ -1,0 +1,27 @@
+<script>
+  const script = document.createElement("script");
+  const containerElement = document.querySelector("#comments-container");
+
+  Object.entries({
+    src: "https://giscus.app/client.js",
+    "data-repo": "minjongbaek/blog.minjongdev",
+    "data-repo-id": "R_kgDOIr11EQ",
+    "data-category": "Comments",
+    "data-category-id": "DIC_kwDOIr11Ec4CT368",
+    "data-mapping": "title",
+    "data-strict": "0",
+    "data-reactions-enabled": "0",
+    "data-emit-metadata": "0",
+    "data-input-position": "bottom",
+    "data-theme": "preferred_color_scheme",
+    "data-lang": "ko",
+    crossorigin: "anonymous",
+    async: "true",
+  }).forEach(([key, value]) => {
+    script.setAttribute(key, value);
+  });
+
+  containerElement?.appendChild(script);
+</script>
+
+<div id="comments-container"></div>
