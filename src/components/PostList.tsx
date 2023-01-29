@@ -1,24 +1,17 @@
-import PostItem from '~/components/PostItem';
-import type { PostListQueryResult } from '~/types/graphql.types';
+import PostItem from "./PostItem";
+import type { CollectionEntry } from "astro:content";
+import "../styles/markdown.css";
 
-type PostListProps = {
-  posts: PostListQueryResult['data']['allMarkdownRemark']['edges'];
+type PostListType = {
+  posts: CollectionEntry<"post">[];
 };
 
-const PostList = ({ posts }: PostListProps) => {
+const PostList = ({ posts }: PostListType) => {
   return (
     <div className="flex flex-col gap-y-10 my-4">
-      {posts.map(
-        ({
-          node: {
-            id,
-            fields: { slug },
-            frontmatter,
-          },
-        }) => (
-          <PostItem key={id} link={slug} {...frontmatter} />
-        )
-      )}
+      {posts.map((post) => (
+        <PostItem key={post.id} slug={post.slug} post={post.data} />
+      ))}
     </div>
   );
 };

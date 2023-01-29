@@ -1,9 +1,9 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect } from "react";
 
 type UtterancesAttributesType = {
   src: string;
   repo: string;
-  'issue-term': string;
+  "issue-term": string;
   label: string;
   theme: string;
   crossorigin: string;
@@ -16,16 +16,16 @@ const Comment = () => {
   useEffect(() => {
     if (divElement.current === null) return;
 
-    const utterances: HTMLScriptElement = document.createElement('script');
+    const utterances: HTMLScriptElement = document.createElement("script");
 
     const attributes: UtterancesAttributesType = {
-      src: 'https://utteranc.es/client.js',
-      repo: 'minjongbaek/blog.minjongdev',
-      'issue-term': 'title',
-      label: 'comment',
+      src: "https://utteranc.es/client.js",
+      repo: "minjongbaek/blog.minjongdev",
+      "issue-term": "title",
+      label: "comment",
       theme: `github-light`,
-      crossorigin: 'anonymous',
-      async: 'true',
+      crossorigin: "anonymous",
+      async: "true",
     };
 
     Object.entries(attributes).forEach(([key, value]) => {
