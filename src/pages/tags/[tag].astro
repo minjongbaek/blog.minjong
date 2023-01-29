@@ -1,0 +1,38 @@
+---
+import BaseHead from "@/components/BaseHead.astro";
+import Layout from "@/layouts/Layout";
+import PostList from "@/components/PostList";
+import TagItem from "@/components/TagItem";
+import { SITE_TITLE, SITE_DESCRIPTION } from "@/consts";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  return (await getCollection("post"))
+    .flatMap((post) => post.data.tags)
+    .map((tag) => ({
+      params: { tag },
+    }));
+}
+
+const { tag } = Astro.params;
+if (!tag) return Astro.redirect("/");
+
+const posts = (await getCollection("post"))
+  .filter((post) => post.data.tags.includes(tag))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Layout>
+      <div class="text-2xl mt-4">
+        Tag: <TagItem tag={tag} count={posts.length} />
+      </div>
+      <PostList posts={posts} />
+    </Layout>
+  </body>
+</html>
