@@ -2,6 +2,8 @@
 
 [Astro](https://astro.build/)를 이용하여 개발한 블로그입니다.
 
+[블로그 프레임워크를 Astro로 전환한 후기](https://blog.minjongdev.com/migrate-gatsby-to-astro)
+
 ## Stack
 
 - Astro
