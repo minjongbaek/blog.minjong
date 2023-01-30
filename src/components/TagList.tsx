@@ -6,11 +6,11 @@ type TagListProps = {
 
 const TagList = ({ tags }: TagListProps) => {
   return (
-    <ul className="flex gap-2">
+    <div className="flex gap-2">
       {tags.map((tag) => (
         <TagItem tag={tag} key={tag} />
       ))}
-    </ul>
+    </div>
   );
 };
 
