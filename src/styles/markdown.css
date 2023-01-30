@@ -4,9 +4,6 @@
   & > *:first-child {
     @apply mt-0 !important;
   }
-  & > *:last-child {
-    @apply mb-0 !important;
-  }
 
   h1,
   h2,
