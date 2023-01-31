@@ -8,7 +8,7 @@ type PostListType = {
 
 const PostList = ({ posts }: PostListType) => {
   return (
-    <div className="flex flex-col gap-y-10 my-4">
+    <div className="flex flex-col gap-y-6 my-4">
       {posts.map((post) => (
         <PostItem key={post.id} slug={post.slug} post={post.data} />
       ))}
