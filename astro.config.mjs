@@ -14,7 +14,7 @@ export default defineConfig({
   integrations: [mdx(), sitemap(), react(), tailwind()],
   markdown: {
     shikiConfig: {
-      theme: "github-light",
+      theme: "monokai",
     },
   },
 });

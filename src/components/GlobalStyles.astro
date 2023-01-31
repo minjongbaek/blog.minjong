@@ -1,0 +1,154 @@
+<style is:global>
+  body {
+    @apply bg-white dark:bg-gray-900 dark:text-gray-300;
+  }
+
+  .markdown {
+    @apply break-all;
+
+    & > *:first-child {
+      @apply mt-0 !important;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      @apply mt-8 mb-4 font-semibold;
+    }
+
+    h1 {
+      @apply text-3xl pb-2 border-b border-slate-200 dark:border-gray-700;
+    }
+
+    h2 {
+      @apply text-2xl pb-2 border-b border-slate-200 dark:border-gray-700;
+    }
+
+    h3 {
+      @apply text-xl;
+    }
+
+    h4 {
+      @apply text-base;
+    }
+
+    h5 {
+      @apply text-sm;
+    }
+
+    h6 {
+      @apply text-sm text-slate-500;
+    }
+
+    p,
+    blockquote,
+    ol,
+    ul,
+    table,
+    summary,
+    pre {
+      @apply mb-4 break-all;
+    }
+
+    blockquote {
+      @apply border-l-4 p-4 border-gray-100 italic dark:border-gray-700;
+      > *:last-child {
+        @apply mb-0;
+      }
+    }
+
+    a {
+      @apply text-magenta !cursor-pointer hover:text-rose-500;
+      code {
+        @apply hover:!text-rose-500;
+      }
+    }
+
+    ol,
+    ul {
+      @apply pl-4;
+      li + li {
+        @apply mt-1;
+      }
+      ol,
+      ul {
+        @apply mt-1 mb-0;
+      }
+    }
+
+    ol {
+      @apply list-decimal;
+    }
+
+    ul {
+      @apply list-disc;
+    }
+
+    iframe {
+      @apply mb-4 max-w-full;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      & > code {
+        @apply bg-rose-100 text-magenta px-1 mx-0.5 rounded-md;
+      }
+    }
+
+    p {
+      img {
+        max-height: 600px;
+        @apply my-0 mx-auto dark:bg-white;
+      }
+    }
+
+    table {
+      @apply border-collapse border border-slate-200 table-fixed w-full break-keep;
+
+      tr {
+        th,
+        td {
+          @apply border border-slate-200 p-2;
+        }
+      }
+    }
+
+    details {
+      summary {
+        @apply cursor-pointer;
+      }
+      p,
+      ul {
+        @apply mt-2 ml-8;
+      }
+    }
+
+    :not(pre, h1, h2, h3, h4, h5, h6) > code {
+      @apply break-keep text-sm px-1 py-0.5 mx-0.5 rounded-md whitespace-normal text-magenta bg-gray-100 dark:bg-gray-700;
+    }
+
+    pre.astro-code {
+      @apply px-6 py-4 leading-3 rounded-md border;
+      code {
+        @apply text-sm;
+      }
+    }
+  }
+
+  .excerpt-markdown {
+    code {
+      @apply text-magenta bg-slate-100 break-all text-sm px-1 py-0.5 mx-0.5 rounded-md whitespace-normal;
+    }
+  }
+
+  .twitter-tweet {
+    @apply m-0;
+  }
+</style>

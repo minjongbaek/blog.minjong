@@ -1,6 +1,5 @@
 import PostItem from "./PostItem";
 import type { CollectionEntry } from "astro:content";
-import "../styles/markdown.css";
 
 type PostListType = {
   posts: CollectionEntry<"post">[];

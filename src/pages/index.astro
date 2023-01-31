@@ -17,7 +17,7 @@ const posts = (await getCollection("post")).sort(
   </head>
   <body>
     <Layout>
-      <img class="rounded-lg" src="/logo.png " alt="logo" />
+      <img class="rounded-lg pointer-events-none" src="/logo.png " alt="logo" />
       <PostList posts={posts} />
     </Layout>
   </body>
