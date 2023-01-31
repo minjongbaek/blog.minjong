@@ -105,12 +105,12 @@
   }
 
   table {
-    @apply border-collapse border border-slate-400 table-fixed w-full break-keep;
+    @apply border-collapse border border-slate-200 table-fixed w-full break-keep;
 
     tr {
       th,
       td {
-        @apply border border-slate-300 p-2;
+        @apply border border-slate-200 p-2;
       }
     }
   }

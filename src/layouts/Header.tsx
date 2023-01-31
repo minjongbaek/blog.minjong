@@ -1,7 +1,7 @@
 const Header = () => {
   return (
     <header className="sticky top-0 bg-white z-20 border-b-2 mb-2">
-      <div className="px-6 py-3 flex justify-between">
+      <div className="py-3 flex justify-between items-center">
         <a href="/">
           <h1 className="font-semibold text-xl cursor-pointer select-none">
             Blog.minjongdev
