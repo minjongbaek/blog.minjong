@@ -30,7 +30,7 @@ const posts = (await getCollection("post"))
   <body>
     <Layout>
       <div class="text-2xl mt-4">
-        Tag: <TagItem tag={tag} count={posts.length} />
+        <TagItem tag={tag} count={posts.length} />
       </div>
       <PostList posts={posts} />
     </Layout>
