@@ -1,11 +1,10 @@
 <script>
-  import { getCurrentTheme } from "@/utils/theme";
-
   const script = document.createElement("script");
   const containerElement = document.querySelector("#comments-container");
 
-  const theme = getCurrentTheme();
-
+  const theme = document.documentElement.classList.contains("dark")
+    ? "dark"
+    : "light";
   Object.entries({
     src: "https://giscus.app/client.js",
     "data-repo": "minjongbaek/blog.minjongdev",
