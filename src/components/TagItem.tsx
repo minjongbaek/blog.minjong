@@ -5,7 +5,7 @@ type TagItemProps = {
 
 const TagItem = ({ tag, count }: TagItemProps) => {
   return (
-    <span className="text-magenta rounded-xl hover:text-rose-400">
+    <span className="text-magenta rounded-xl hover:text-rose-600">
       <a href={`/tags/${tag}`}>
         #{tag} {count && `(${count})`}
       </a>

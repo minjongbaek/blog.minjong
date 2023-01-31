@@ -11,14 +11,14 @@ const PostItem = ({
   post: { title, date, tags, description },
 }: PostItemProps) => {
   return (
-    <div className="flex flex-col gap-2">
-      <a href={`/${slug}`}>
-        <h2 className="text-2xl font-semibold">{title}</h2>
-        <div className="text-base text-slate-500">
-          {date.toLocaleDateString("ko-KR")}
-        </div>
-        <p className="text-base">{description}</p>
+    <div className="flex flex-col">
+      <div className="text-base text-slate-500 text-sm">
+        {date.toLocaleDateString("ko-KR")}
+      </div>
+      <a href={`/${slug}`} className="mb-1 inline-block">
+        <h2 className="text-2xl font-semibold inline-block">{title}</h2>
       </a>
+      <p className="text-base mb-1">{description}</p>
       <TagList tags={tags} />
     </div>
   );

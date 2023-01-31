@@ -1,6 +1,6 @@
 <style is:global>
   body {
-    @apply bg-white dark:bg-gray-900 dark:text-gray-300;
+    @apply bg-white dark:bg-stone-900 dark:text-gray-300;
   }
 
   .markdown {
@@ -61,9 +61,9 @@
     }
 
     a {
-      @apply text-magenta !cursor-pointer hover:text-rose-500;
+      @apply text-magenta !cursor-pointer hover:text-rose-600;
       code {
-        @apply hover:!text-rose-500;
+        @apply hover:!text-rose-600;
       }
     }
 
@@ -115,7 +115,7 @@
       tr {
         th,
         td {
-          @apply border border-slate-200 p-2;
+          @apply border border-slate-200 p-2 dark:border-gray-700;
         }
       }
     }
@@ -131,11 +131,11 @@
     }
 
     :not(pre, h1, h2, h3, h4, h5, h6) > code {
-      @apply break-keep text-sm px-1 py-0.5 mx-0.5 rounded-md whitespace-normal text-magenta bg-gray-100 dark:bg-gray-700;
+      @apply break-keep text-sm px-1 py-0.5 mx-0.5 rounded-md whitespace-normal text-magenta bg-gray-100 dark:bg-gray-800;
     }
 
     pre.astro-code {
-      @apply px-6 py-4 leading-3 rounded-md border;
+      @apply px-6 py-4 leading-3 rounded-md border dark:border-gray-700;
       code {
         @apply text-sm;
       }
@@ -144,7 +144,7 @@
 
   .excerpt-markdown {
     code {
-      @apply text-magenta bg-slate-100 break-all text-sm px-1 py-0.5 mx-0.5 rounded-md whitespace-normal;
+      @apply text-magenta bg-gray-100 break-all text-sm px-1 py-0.5 mx-0.5 rounded-md whitespace-normal;
     }
   }
 
