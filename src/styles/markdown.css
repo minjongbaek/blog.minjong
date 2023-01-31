@@ -49,16 +49,16 @@
   }
 
   blockquote {
-    @apply border-l-8 p-4 border-sky-400 bg-slate-50;
+    @apply border-l-4 p-4 border-gray-100 italic;
     > *:last-child {
       @apply mb-0;
     }
   }
 
   a {
-    @apply text-sky-500 !cursor-pointer hover:text-sky-300;
+    @apply text-magenta !cursor-pointer hover:text-rose-500;
     code {
-      @apply hover:!text-sky-300;
+      @apply hover:!text-rose-500;
     }
   }
 
@@ -93,7 +93,7 @@
   h5,
   h6 {
     & > code {
-      @apply bg-slate-100 text-sky-500 px-1 mx-0.5 rounded-md;
+      @apply bg-rose-100 text-magenta px-1 mx-0.5 rounded-md;
     }
   }
 
@@ -126,11 +126,7 @@
   }
 
   :not(pre, h1, h2, h3, h4, h5, h6) > code {
-    @apply break-all text-sm px-1 py-0.5 mx-0.5 rounded-md whitespace-normal;
-  }
-
-  :not(pre, h1, h2, h3, h4, h5, h6) > code:not(.one-dark-pro) {
-    @apply text-sky-500 bg-slate-100;
+    @apply break-keep text-sm px-1 py-0.5 mx-0.5 rounded-md whitespace-normal text-magenta bg-gray-100;
   }
 
   pre.astro-code {
@@ -143,7 +139,7 @@
 
 .excerpt-markdown {
   code {
-    @apply text-sky-500 bg-slate-100 break-all text-sm px-1 py-0.5 mx-0.5 rounded-md whitespace-normal;
+    @apply text-magenta bg-slate-100 break-all text-sm px-1 py-0.5 mx-0.5 rounded-md whitespace-normal;
   }
 }
 
