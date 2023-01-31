@@ -33,8 +33,17 @@
   }
 </style>
 
-<script>
-  import { getCurrentTheme } from "@/utils/theme";
+<script is:inline>
+  const getCurrentTheme = () => {
+    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+      const theme = localStorage.getItem("theme");
+      if (theme === "light" || theme === "dark") return theme;
+    }
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      return "dark";
+    }
+    return "light";
+  };
 
   const currentTheme = getCurrentTheme();
 
@@ -52,19 +61,16 @@
     const theme = isDark ? "dark" : "light";
     localStorage.setItem("theme", theme);
 
-    const iframe = document.querySelector<HTMLIFrameElement>(
-      "iframe.giscus-frame"
-    );
-
+    const iframe = document.querySelector("iframe.giscus-frame");
     if (!iframe || !iframe.contentWindow) return;
-    console.log(iframe);
     iframe.contentWindow.postMessage(
       { giscus: { setConfig: { theme } } },
       "https://giscus.app"
     );
   };
 
-  const toggleElement = document.getElementById("theme-toggle");
-
-  toggleElement && toggleElement.addEventListener("click", onToggleClick);
+  window.addEventListener("load", () => {
+    const toggleElement = document.getElementById("theme-toggle");
+    toggleElement && toggleElement.addEventListener("click", onToggleClick);
+  });
 </script>
