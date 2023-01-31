@@ -1,6 +1,6 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
-import Layout from "../layouts/Layout";
+import Layout from "@/layouts/Layout.astro";
 import PostList from "../components/PostList";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import { getCollection } from "astro:content";
@@ -17,7 +17,7 @@ const posts = (await getCollection("post")).sort(
   </head>
   <body>
     <Layout>
-      <img class="rounded-lg" src="/logo.png " alt="logo" />
+      <img class="rounded-lg pointer-events-none" src="/logo.png " alt="logo" />
       <PostList posts={posts} />
     </Layout>
   </body>

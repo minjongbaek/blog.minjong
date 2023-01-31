@@ -1,6 +1,10 @@
 <script>
+  import { getCurrentTheme } from "@/utils/theme";
+
   const script = document.createElement("script");
   const containerElement = document.querySelector("#comments-container");
+
+  const theme = getCurrentTheme();
 
   Object.entries({
     src: "https://giscus.app/client.js",
@@ -13,7 +17,7 @@
     "data-reactions-enabled": "1",
     "data-emit-metadata": "0",
     "data-input-position": "bottom",
-    "data-theme": "light",
+    "data-theme": theme,
     "data-lang": "ko",
     crossorigin: "anonymous",
     async: "true",
