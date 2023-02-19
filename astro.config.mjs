@@ -11,7 +11,15 @@ import tailwind from "@astrojs/tailwind";
 // https://astro.build/config
 export default defineConfig({
   site: "https://blog.minjongdev.com",
-  integrations: [mdx(), sitemap(), react(), tailwind()],
+  integrations: [
+    mdx(),
+    react(),
+    tailwind(),
+    sitemap({
+      changefreq: "weekly",
+      priority: 0.7,
+    }),
+  ],
   markdown: {
     shikiConfig: {
       theme: "monokai",
