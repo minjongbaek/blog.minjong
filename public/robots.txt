@@ -1,2 +1,11 @@
 User-agent: *
-Disallow: /
+
+Disallow: /_next/*
+Disallow: /2022/01/use-effect-hook
+Disallow: /브라우저는-어떻게-동작할까
+Disallow: /2장--타입스크립트의-타입-시스템
+Disallow: /1장--타입스크립트-알아보기
+Disallow: /[프로그래머스]-괄호-회전하기
+Disallow: /[프로그래머스]-2개-이하로-다른-비트
+
+Sitemap: https://blog.minjongdev.com/sitemap-index.xml
