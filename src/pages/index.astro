@@ -17,7 +17,13 @@ const posts = (await getCollection("post")).sort(
   </head>
   <body>
     <Layout>
-      <img class="rounded-lg pointer-events-none" src="/logo.png " alt="logo" />
+      <div class="aspect-video w-full">
+        <picture class="rounded-lg pointer-events-none">
+          <source srcset="/logo.avif" type="image/avif" />
+          <source srcset="/logo.webp" type="image/webp" />
+          <img class="w-full rounded-lg" src="/logo.png" alt="logo" />
+        </picture>
+      </div>
       <PostList posts={posts} />
     </Layout>
   </body>
