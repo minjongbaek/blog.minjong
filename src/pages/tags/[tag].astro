@@ -1,9 +1,7 @@
 ---
-import BaseHead from "@/components/BaseHead.astro";
 import Layout from "@/layouts/Layout.astro";
 import PostList from "@/components/PostList";
 import TagItem from "@/components/TagItem";
-import { SITE_TITLE, SITE_DESCRIPTION } from "@/consts";
 import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
@@ -22,17 +20,9 @@ const posts = (await getCollection("post"))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
 
-<!DOCTYPE html>
-<html lang="ko">
-  <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-  </head>
-  <body>
-    <Layout>
-      <div class="text-2xl mt-4">
-        <TagItem tag={tag} count={posts.length} />
-      </div>
-      <PostList posts={posts} />
-    </Layout>
-  </body>
-</html>
+<Layout>
+  <div class="text-2xl mt-4">
+    <TagItem tag={tag} count={posts.length} />
+  </div>
+  <PostList posts={posts} />
+</Layout>

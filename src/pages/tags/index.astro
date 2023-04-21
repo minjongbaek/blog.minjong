@@ -1,8 +1,6 @@
 ---
-import BaseHead from "@/components/BaseHead.astro";
 import Layout from "@/layouts/Layout.astro";
 import TagItem from "@/components/TagItem";
-import { SITE_TITLE, SITE_DESCRIPTION } from "@/consts";
 import { getCollection } from "astro:content";
 
 const tagCount: { [key: string]: number } = {};
@@ -23,18 +21,10 @@ const tags = [
 ];
 ---
 
-<!DOCTYPE html>
-<html lang="ko">
-  <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-  </head>
-  <body>
-    <Layout>
-      <div class="">
-        <div class="my-4 flex gap-2 text-2xl flex-wrap">
-          {tags.map((tag) => <TagItem tag={tag} count={tagCount[tag]} />)}
-        </div>
-      </div>
-    </Layout>
-  </body>
-</html>
+<Layout>
+  <div>
+    <div class="my-4 flex gap-2 text-2xl flex-wrap">
+      {tags.map((tag) => <TagItem tag={tag} count={tagCount[tag]} />)}
+    </div>
+  </div>
+</Layout>

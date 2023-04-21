@@ -2,11 +2,21 @@
 import GlobalStyles from "@/components/GlobalStyles.astro";
 import Footer from "./Footer";
 import Header from "./Header.astro";
+import { SITE_DESCRIPTION, SITE_TITLE } from "@/consts";
+import BaseHead from "@/components/BaseHead.astro";
 ---
 
-<GlobalStyles />
-<div class="container mx-auto px-4 max-w-3xl min-h-screen">
-  <Header />
-  <slot />
-  <Footer />
-</div>
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <GlobalStyles />
+    <div class="container mx-auto px-4 max-w-3xl min-h-screen">
+      <Header />
+      <slot />
+      <Footer />
+    </div>
+  </body>
+</html>

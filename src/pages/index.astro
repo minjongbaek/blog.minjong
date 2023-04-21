@@ -1,8 +1,6 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
 import Layout from "@/layouts/Layout.astro";
 import PostList from "../components/PostList";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import { getCollection } from "astro:content";
 
 const posts = (await getCollection("post")).sort(
@@ -10,21 +8,13 @@ const posts = (await getCollection("post")).sort(
 );
 ---
 
-<!DOCTYPE html>
-<html lang="ko">
-  <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-  </head>
-  <body>
-    <Layout>
-      <div class="aspect-video w-full">
-        <picture class="rounded-lg pointer-events-none">
-          <source srcset="/logo.avif" type="image/avif" />
-          <source srcset="/logo.webp" type="image/webp" />
-          <img class="w-full rounded-lg" src="/logo.png" alt="logo" />
-        </picture>
-      </div>
-      <PostList posts={posts} />
-    </Layout>
-  </body>
-</html>
+<Layout>
+  <div class="aspect-video w-full">
+    <picture class="rounded-lg pointer-events-none">
+      <source srcset="/logo.avif" type="image/avif" />
+      <source srcset="/logo.webp" type="image/webp" />
+      <img class="w-full rounded-lg" src="/logo.png" alt="logo" />
+    </picture>
+  </div>
+  <PostList posts={posts} />
+</Layout>

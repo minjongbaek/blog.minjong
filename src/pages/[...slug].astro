@@ -1,6 +1,5 @@
 ---
 import { CollectionEntry, getCollection } from "astro:content";
-import BaseHead from "../components/BaseHead.astro";
 import Comment from "../components/Comment.astro";
 import PostHeader from "../components/PostHeader";
 import Layout from "@/layouts/Layout.astro";
@@ -19,21 +18,14 @@ const { title, date, tags, description } = post.data;
 const { Content } = await post.render();
 ---
 
-<html lang="ko">
-  <head>
-    <BaseHead title={title} description={description} />
-  </head>
-  <body>
-    <Layout>
-      <PostHeader
-        title={title}
-        date={date.toLocaleDateString("ko-KR")}
-        tags={tags}
-      />
-      <div class="markdown">
-        <Content />
-      </div>
-      <Comment />
-    </Layout>
-  </body>
-</html>
+<Layout>
+  <PostHeader
+    title={title}
+    date={date.toLocaleDateString("ko-KR")}
+    tags={tags}
+  />
+  <div class="markdown">
+    <Content />
+  </div>
+  <Comment />
+</Layout>
