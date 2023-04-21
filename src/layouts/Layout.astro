@@ -4,12 +4,22 @@ import Footer from "./Footer";
 import Header from "./Header.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "@/consts";
 import BaseHead from "@/components/BaseHead.astro";
+
+export interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
 ---
 
 <!DOCTYPE html>
 <html lang="ko">
   <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <BaseHead
+      title={title || SITE_TITLE}
+      description={description || SITE_DESCRIPTION}
+    />
   </head>
   <body>
     <GlobalStyles />
