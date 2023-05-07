@@ -8,9 +8,10 @@ import BaseHead from "@/components/BaseHead.astro";
 export interface Props {
   title?: string;
   description?: string;
+  keywords?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, keywords } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -19,6 +20,7 @@ const { title, description } = Astro.props;
     <BaseHead
       title={title || SITE_TITLE}
       description={description || SITE_DESCRIPTION}
+      keywords={keywords || "blog.minjongdev.com"}
     />
   </head>
   <body>

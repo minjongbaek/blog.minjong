@@ -2,12 +2,13 @@
 export interface Props {
   title: string;
   description: string;
+  keywords?: string;
   image?: string;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const { title, description } = Astro.props;
+const { title, description, keywords } = Astro.props;
 const image = "/images/logo.png";
 ---
 
@@ -22,9 +23,12 @@ const image = "/images/logo.png";
 
 <link rel="canonical" href={canonicalURL} />
 
+<link rel="sitemap" href="/sitemap-index.xml" />
+
 <title>{title}</title>
 <meta name="title" content={title} />
 <meta name="description" content={description} />
+{keywords && <meta name="keywords" content={keywords} />}
 
 <meta property="og:type" content="website" />
 <meta property="og:url" content={Astro.url} />
