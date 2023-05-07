@@ -11,6 +11,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/image": "^0.16.7",
     "@astrojs/mdx": "^0.19.0",
     "@astrojs/react": "^2.0.1",
     "@astrojs/rss": "^2.1.0",
@@ -23,6 +24,10 @@
     "postcss-nesting": "^11.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "sharp": "^0.32.1",
     "tailwindcss": "^3.2.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.9"
   }
 }

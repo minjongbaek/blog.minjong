@@ -1,5 +1,6 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import { Picture } from "@astrojs/image/components";
 import PostList from "../components/PostList";
 import { getCollection } from "astro:content";
 
@@ -10,11 +11,13 @@ const posts = (await getCollection("post")).sort(
 
 <Layout>
   <div class="aspect-video w-full">
-    <picture class="rounded-lg pointer-events-none">
-      <source srcset="/logo.avif" type="image/avif" />
-      <source srcset="/logo.webp" type="image/webp" />
-      <img class="w-full rounded-lg" src="/logo.png" alt="logo" />
-    </picture>
+    <Picture
+      src="/images/logo.png"
+      widths={[800, 1000, 1200, 1400]}
+      aspectRatio="16:9"
+      sizes="(max-width: 736px) 100vw, 736px"
+      alt="logo"
+    />
   </div>
   <PostList posts={posts} />
 </Layout>

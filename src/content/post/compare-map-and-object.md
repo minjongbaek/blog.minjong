@@ -3,6 +3,7 @@ date: "2022-10-30"
 title: "Map과 Object의 차이"
 tags: ["JavaScript"]
 description: "key를 이용해 값을 저장하고, 탐색하고 삭제하는 것은 같다."
+thumbnail: "Map VS Object"
 ---
 
 자바스크립트에서 `Object` 와 `Map` 은 상당히 유사하다. 둘 다 `key` 를 이용해 값을 저장하고, 탐색하고, 삭제할 수 있다. 그동안 `get` `set` 메서드를 제공하는 `Map` 보다 프로퍼티에 직접 접근 가능한 `Object` 가 편하다고 생각하여 `Object` 만 사용했었다. 이번에 과제를 진행 하면서 이 둘의 차이점이 궁금해져서 알아보고 정리하고자 한다.
@@ -160,7 +161,7 @@ for (let i = 0; i < n; i++) {
 console.timeEnd("Map");
 ```
 
-![테스트 결과. Object가 훨씬 빠르다.](/images/compare-map-and-object/result.png)
+![테스트 결과. Object가 훨씬 빠르다.](/images/posts/compare-map-and-object/result.png)
 
 테스트 결과. Object가 훨씬 빠르다.
 
