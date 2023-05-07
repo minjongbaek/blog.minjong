@@ -83,7 +83,7 @@ const searchInput = new SearchInput({
 
 아래 사진은 결과물로, 짧은 시간 내에 키 입력이 연속적으로 발생해도 처음 이벤트 하나만 실행된다.
 
-![debounce 결과](/images/posts/when-to-use-closures/result.gif)
+![debounce 결과](/images/post/when-to-use-closures/result.gif)
 
 ## throttle
 

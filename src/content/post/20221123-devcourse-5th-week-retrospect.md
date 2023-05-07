@@ -37,15 +37,15 @@ thumbnail: "데브코스"
 
 요구사항은 트리와 트라이 자료구조를 이용해 간단한 기능을 구현하는 것이었고, 첫 과제를 하면서 **꼭 코드 리뷰를 하는 회사를 가야겠다**고 생각했다.
 
-![김나영 멘토님의 코드 리뷰](/images/posts/devcourse-5th-week-retrospect/code-review.png)
+![김나영 멘토님의 코드 리뷰](/images/post/devcourse-5th-week-retrospect/code-review.png)
 
 학습을 진행하면서 궁금한 내용이 있는 경우에는 강사님과 멘토님께서 친절하게 지식을 공유해주셨다. [Map과 Object의 성능을 비교](/compare-map-and-object)하면서 왜 나는 테스트 결과가 이상하지? 라고 생각했는데 명쾌하게 해결해주셨다.
 
-![이선협 강사님, 나유리 멘토님의 답변](/images/posts/devcourse-5th-week-retrospect/question.png)
+![이선협 강사님, 나유리 멘토님의 답변](/images/post/devcourse-5th-week-retrospect/question.png)
 
 <details>
     <summary><s>심지어 이런 이상한 질문에도..</s></summary>
-    <img src="/images/posts/devcourse-5th-week-retrospect/weird-question1.png" alt='이상한 질문'>
+    <img src="/images/post/devcourse-5th-week-retrospect/weird-question1.png" alt='이상한 질문'>
 </details>
 
 # 3주 차 - **VanillaJS를 통한 자바스크립트 기본역량 강화 Ⅰ**
@@ -61,7 +61,7 @@ thumbnail: "데브코스"
 
 **당연히, 과제는 있었다.**
 
-![코멘트가 41개나 달린 과제 PR. 멘토님과 팀원들이 꼼꼼하게 리뷰해주셨다 👍](/images/posts/devcourse-5th-week-retrospect/review-comment.png)
+![코멘트가 41개나 달린 과제 PR. 멘토님과 팀원들이 꼼꼼하게 리뷰해주셨다 👍](/images/post/devcourse-5th-week-retrospect/review-comment.png)
 
 코멘트가 41개나 달린 과제 PR. 멘토님과 팀원들이 꼼꼼하게 리뷰해주셨다 👍
 
@@ -85,20 +85,20 @@ thumbnail: "데브코스"
 - 처음에는 Editor 컴포넌트에 콜백 함수로 DocumentList.setState 함수를 넘겼는데 독립적인 컴포넌트와는 거리가 멀다고 판단했다.
 - 최상단 컴포넌트인 App에서 state를 관리하는 방식으로 해결할 수 있었다.
 
-![state-management](/images/posts/devcourse-5th-week-retrospect/state-management.png)
+![state-management](/images/post/devcourse-5th-week-retrospect/state-management.png)
 
 ### 렌더링시 아이콘 깜빡임
 
 - 처음에는 img 태그의 src 속성에 이미지 url을 넣었는데, 새롭게 요소가 렌더링 되면 이미지가 렌더링 되는 것 보다 늦게 로드 되어 깜빡이는 현상이 발생했다.
 
-![렌더링시 아이콘 깜빡임](/images/posts/devcourse-5th-week-retrospect/rendering-blink.gif)
+![렌더링시 아이콘 깜빡임](/images/post/devcourse-5th-week-retrospect/rendering-blink.gif)
 
 - 이미지를 preload 하여 쓸 수 있는 여러 방법을 고민하고 시도했다. (onload 콜백함수를 이용한 처리, Image 컴포넌트 작성 등)
 - span 태그에 background-image 속성으로 해결할 수 있었다.
 
 ### 사이드바 요소 수평 정렬
 
-![예제](/images/posts/devcourse-5th-week-retrospect/rendering-example.png)
+![예제](/images/post/devcourse-5th-week-retrospect/rendering-example.png)
 
 문서들을 위 그림과 같이 렌더링 하고 싶었다. 조건은 두가지 정도였다.
 
@@ -121,7 +121,7 @@ thumbnail: "데브코스"
 
 ### 사이드바 height 고정
 
-![움직이는 사이드바 콘텐츠](/images/posts/devcourse-5th-week-retrospect/sidebar-layout-shift.gif)
+![움직이는 사이드바 콘텐츠](/images/post/devcourse-5th-week-retrospect/sidebar-layout-shift.gif)
 
 사이드바를 구현했는데 문제가 있었다. 제일 아래쪽 요소에 hover 이벤트가 발생하여 숨겨진 버튼 (삭제, 추가)이 나올 때 스크롤이 계속 변하는 것이었다. 이유가 뭔지 계속 찾아봤고 아래와 같은 패턴을 발견할 수 있었다.
 
@@ -156,7 +156,7 @@ thumbnail: "데브코스"
 
 이번 과제를 중요하면서 테스트 코드의 중요성을 깨달았다. 특히 기존 기능을 개선했다고 생각했는데 원래의 기능이 제대로 작동하지 않아서 문제가 생기는 경우가 잦았다.
 
-![테스트 코드의 중요성](/images/posts/devcourse-5th-week-retrospect/importance-testing.png)
+![테스트 코드의 중요성](/images/post/devcourse-5th-week-retrospect/importance-testing.png)
 
 # 마무리
 
@@ -168,5 +168,5 @@ thumbnail: "데브코스"
 
 <details>
     <summary>과제 제출 마감일 새벽 내 정신상태</summary>
-    <img src="/images/posts/devcourse-5th-week-retrospect/weird-question2.png" alt='내 정신상태'>
+    <img src="/images/post/devcourse-5th-week-retrospect/weird-question2.png" alt='내 정신상태'>
 </details>

@@ -18,7 +18,7 @@ const { title, date, tags, description } = post.data;
 const { Content } = await post.render();
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} keywords={tags.join(",")}>
   <PostHeader
     title={title}
     date={date.toLocaleDateString("ko-KR")}
