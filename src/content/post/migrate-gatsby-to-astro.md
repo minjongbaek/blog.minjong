@@ -11,7 +11,7 @@ description: "느린 빌드시간, 이제는 안녕~"
 
 **속도 문제가 제일 컸다.** `Gatsby`는 웹팩을 번들러로 사용하고 있다. `vite`를 한 번 사용해 봤던 나는 웹팩의 개발 속도를 띄우는 속도가 답답하게 느껴졌다. [gatsby-starter-ts](https://github.com/jpedroschmitz/gatsby-starter-ts)에서 처음 개발 서버를 띄울 때 M1 pro를 기준으로 약 4초 정도 소요됐다.
 
-![gatsby-dev-server-time](/images/migrate-gatsby-to-astro/gatsby-dev-server-time.gif)
+![gatsby-dev-server-time](/images/posts/migrate-gatsby-to-astro/gatsby-dev-server-time.gif)
 
 배포할 때는 거의 1분 후반대가 나왔고, 플러그인을 추가하면 2분을 넘기는 일도 잦았다. 작성한 포스트에 오타가 있어서 이를 수정하면 수정된 결과를 보기 위해 거의 2분을 기다려야 했다.
 
@@ -36,7 +36,7 @@ Astro에서 강조하는 기술이다. 웹 페이지를 바다로 보고, 동적
 
 기존 리액트로 작성된 컴포넌트를 지원하고, 많은 설정을 해줄 필요도 없어서 빨리 마이그레이션 할 수 있었다. `vite`를 사용하기 때문에 개발 서버를 띄우는 속도도, 배포하는 속도도 매우 빨라졌다.
 
-![deploy-time](/images/migrate-gatsby-to-astro/deploy-time.png)
+![deploy-time](/images/posts/migrate-gatsby-to-astro/deploy-time.png)
 
 프론트엔드 기술이 급격하게 발전하면서 단순한 정적 웹사이트를 만들기 위해서도 필요로 하는 지식과 여러 기술이 많아졌다고 생각한다. `Astro`는 상호작용 가능한 동적인 웹사이트를 만드는 데는 적합하지 않을 수 있지만 콘텐츠 중심의 정적인 페이지를 만드는 데는 아주 적합하다고 생각했다.
 

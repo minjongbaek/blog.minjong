@@ -35,7 +35,7 @@ description: "단순히 '짠!' 하고 나오는 것이 아니었다."
 
 💡 `visibility: hidden` 는 요소를 보이지 않게 만들지만 레이아웃에 공간을 차지한다.
 
-![렌더트리](/images/how-browsers-work/render-tree.png)
+![렌더트리](/images/posts/how-browsers-work/render-tree.png)
 
 ## **레이아웃**
 
