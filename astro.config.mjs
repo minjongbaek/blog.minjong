@@ -1,6 +1,7 @@
 import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
+import image from "@astrojs/image";
 
 // https://astro.build/config
 import react from "@astrojs/react";
@@ -15,6 +16,9 @@ export default defineConfig({
     mdx(),
     react(),
     tailwind(),
+    image({
+      serviceEntryPoint: "@astrojs/image/sharp",
+    }),
     sitemap({
       changefreq: "weekly",
       priority: 0.7,
@@ -22,7 +26,7 @@ export default defineConfig({
   ],
   markdown: {
     shikiConfig: {
-      theme: "monokai",
+      theme: "dark-plus",
     },
   },
 });
