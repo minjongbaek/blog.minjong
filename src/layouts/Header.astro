@@ -4,14 +4,21 @@ import ThemeIcon from "@/components/ThemeToggle.astro";
 
 <header class="sticky top-0 bg-white z-20 border-b-2 mb-2 dark:bg-stone-900">
   <div class="py-3 flex justify-between items-center">
-    <a href="/">
+    <a href="/" class="hover:text-blue-500 transition-colors duration-300">
       <h1 class="font-semibold text-xl select-none">Blog.minjongdev</h1>
     </a>
     <div class="flex font-semibold items-center gap-3">
-      <a href="/tags">
+      <a
+        href="/tags"
+        class="hover:text-blue-500 transition-colors duration-300"
+      >
         <h1 class="select-none">Tags</h1>
       </a>
-      <a href="https://about.minjongdev.com" target="_blank">
+      <a
+        href="https://about.minjongdev.com"
+        target="_blank"
+        class="hover:text-blue-500 transition-colors duration-300"
+      >
         <h1 class="select-none">Resume</h1>
       </a>
       <ThemeIcon />

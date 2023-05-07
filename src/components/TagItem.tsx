@@ -1,16 +1,9 @@
 type TagItemProps = {
   tag: string;
-  count?: number;
 };
 
-const TagItem = ({ tag, count }: TagItemProps) => {
-  return (
-    <span>
-      <a className="" href={`/tags/${tag}`}>
-        #{tag} {count && `(${count})`}
-      </a>
-    </span>
-  );
+const TagItem = ({ tag }: TagItemProps) => {
+  return <span className="text-blue-600 dark:text-blue-500">#{tag}</span>;
 };
 
 export default TagItem;

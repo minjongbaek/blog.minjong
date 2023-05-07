@@ -3,6 +3,7 @@ date: "2023-04-21"
 title: "avif, webp 포맷을 이용한 웹 이미지 최적화"
 tags: ["Web"]
 description: "이미지 페이로드를 줄여보자"
+thumbnail: "<picture>"
 ---
 
 최근 <a href="/devcourse-final-project-retrospect" target="_blank">디그디그딥 프로젝트</a>의 Lighthouse Performance를 100점으로 개선했다. 이 블로그는 많은 기능을 포함하고 있지 않으니 당연히 100점이 나올거라 예상했지만 95점이 나왔다.
