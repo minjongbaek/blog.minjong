@@ -4,13 +4,11 @@ import { Picture } from "@astrojs/image/components";
 import PostList from "../components/PostList";
 import { getCollection } from "astro:content";
 
-const posts = (await getCollection("post")).sort(
-  (a, b) => b.data.date.getTime() - a.data.date.getTime()
-);
+const posts = (await getCollection("post")).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
 
 <Layout>
-  <div class="aspect-video w-full">
+  <div class="aspect-video w-full select-none">
     <Picture
       src="/images/logo.png"
       widths={[800, 1000, 1200, 1400]}

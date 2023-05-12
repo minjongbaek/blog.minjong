@@ -19,12 +19,8 @@ const { Content } = await post.render();
 ---
 
 <Layout title={title} description={description} keywords={tags.join(",")}>
-  <PostHeader
-    title={title}
-    date={date.toLocaleDateString("ko-KR")}
-    tags={tags}
-  />
-  <div class="markdown">
+  <PostHeader title={title} date={date.toLocaleDateString("ko-KR")} tags={tags} />
+  <div class="markdown space-y-8 mb-8">
     <Content />
   </div>
   <Comment />
