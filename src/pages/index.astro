@@ -8,7 +8,7 @@ const posts = (await getCollection("post")).sort((a, b) => b.data.date.getTime()
 ---
 
 <Layout>
-  <div class="aspect-video w-full select-none">
+  <div class="aspect-video w-full select-none sm:block hidden">
     <Picture
       src="/images/logo.png"
       widths={[800, 1000, 1200, 1400]}
