@@ -5,6 +5,8 @@ import image from "@astrojs/image";
 import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
 
+import vercel from "@astrojs/vercel/serverless";
+
 // https://astro.build/config
 export default defineConfig({
   site: import.meta.env.DEV
@@ -27,4 +29,6 @@ export default defineConfig({
       theme: "dark-plus",
     },
   },
+  output: "server",
+  adapter: vercel(),
 });
