@@ -1,0 +1,11 @@
+---
+const { origin, pathname } = Astro.url;
+
+const response = await fetch(`${origin}/post${pathname}`, { method: "HEAD" });
+console.log(`${origin}/post${pathname}`, response.status);
+
+if (response.status === 200)
+  return Astro.redirect(`${origin}/post${pathname}`, 301);
+
+return Astro.redirect("/404");
+---
