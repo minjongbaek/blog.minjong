@@ -1,11 +1,23 @@
 ---
-const { origin, pathname } = Astro.url;
+const previousUrls: { [index: string]: string } = {
+  "drag-and-drop-event": "20220826",
+  "imperative-and-declarative-programming": "20220913",
+  "how-browsers-work": "20220915",
+  "appearance-background-of-hoisting": "20220919",
+  "when-to-use-closures": "20221018",
+  "compare-map-and-object": "20221030",
+  "devcourse-5th-week-retrospect": "20221123",
+  "devcourse-middle-project-retrospect": "20230127",
+  "migrate-gatsby-to-astro": "20230130",
+  "devcourse-final-project-retrospect": "20230322",
+  "fetching-data-declartively": "20230419",
+  "image-optimization": "20230421",
+};
 
-const response = await fetch(`${origin}/post${pathname}`, { method: "HEAD" });
-console.log(`${origin}/post${pathname}`, response.status);
+const pathname = Astro.url.pathname.slice(1);
+const date = previousUrls[pathname];
 
-if (response.status === 200)
-  return Astro.redirect(`${origin}/post${pathname}`, 301);
+if (date) return Astro.redirect(`/post/${date}-${pathname}`);
 
-return Astro.redirect("/404");
+return Astro.redirect("/");
 ---
