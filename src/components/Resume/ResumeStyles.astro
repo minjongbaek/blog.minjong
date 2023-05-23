@@ -6,12 +6,16 @@
     }
   }
 
+  a {
+    @apply text-gray-600 underline;
+  }
+
   @media print {
     html {
       @apply p-4;
     }
     main.container {
-      @apply p-0;
+      @apply p-0 text-sm;
     }
     ul {
       @apply space-y-1;
@@ -20,7 +24,7 @@
       }
     }
     .print-break {
-      @apply break-before-page;
+      @apply break-inside-avoid;
     }
   }
 </style>

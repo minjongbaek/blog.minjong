@@ -1,6 +1,7 @@
 ---
 import Experience from "@/components/Resume/Experience.astro";
 import ResumeStyles from "@/components/Resume/ResumeStyles.astro";
+import Icon from "astro-icon";
 import { getCollection } from "astro:content";
 
 const dateFormat = (date: Date) => {
@@ -63,13 +64,10 @@ console.log(experiences);
   </head>
   <body>
     <ResumeStyles />
-    <main class="container mx-auto p-12 max-w-3xl print space-y-4 break-keep">
+    <main class="container mx-auto p-12 max-w-3xl print space-y-6 break-keep">
       <div class="space-y-4">
         <h1 class="text-3xl font-bold">백민종</h1>
         <div class="space-y-2">
-          <p>
-            안녕하세요, 웹 프론트엔드 개발자로 커리어를 전환 중인 백민종입니다.
-          </p>
           <p>
             더 좋은 결과물을 만들기 위해 팀원들이 효율적으로 작업할 수 있는
             방법과 개발 과정에서 발생할 수 있는 문제를 최소화할 수 있는 방법을
@@ -84,35 +82,81 @@ console.log(experiences);
             기능 구현을 잘하고 서비스를 잘 만드는 것을 넘어서, 메이커로서 함께
             서비스를 성공시키고 싶습니다.
           </p>
+          <div class="flex gap-1">
+            <Icon name="github" class="w-4" />
+            <a href="https://github.com/minjongbaek" target="_blank">
+              https://github.com/minjongbaek
+            </a>
+          </div>
+          <div class="flex gap-1">
+            <Icon name="link" class="w-4" />
+            <a href="https://blog.minjongdev.com" target="_blank">
+              https://blog.minjongdev.com
+            </a>
+          </div>
         </div>
       </div>
-      <div class="space-y-4">
-        <h2 class="text-2xl font-semibold pb-1 border-b">경력</h2>
-        <div class="space-y-8">
-          {
-            experiences
-              .filter((experience) => experience.type === "carrer")
-              .map((experience) => <Experience {...experience} />)
-          }
-        </div>
+      <div class="space-y-8">
+        {
+          experiences
+            .filter((experience) => experience.type === "carrer")
+            .map((experience, index) => {
+              if (index === 0) {
+                return (
+                  <div class="space-y-4 print-break">
+                    <h2 class="text-2xl font-semibold pb-1 border-b">경력</h2>
+                    <Experience {...experience} />
+                  </div>
+                );
+              }
+              return <Experience {...experience} />;
+            })
+        }
       </div>
-      <div class="space-y-4">
-        <h2 class="text-2xl font-semibold pb-1 border-b">프로젝트</h2>
-        <div class="space-y-8">
-          {
-            experiences
-              .filter((experience) => experience.type === "project")
-              .map((experience) => <Experience {...experience} />)
-          }
-        </div>
+      <div class="space-y-8">
+        {
+          experiences
+            .filter((experience) => experience.type === "project")
+            .map((experience, index) => {
+              if (index === 0) {
+                return (
+                  <div class="space-y-4 print-break">
+                    <h2 class="text-2xl font-semibold pb-1 border-b">
+                      프로젝트
+                    </h2>
+                    <Experience {...experience} />
+                  </div>
+                );
+              }
+              return (
+                <div class="print-break">
+                  <Experience {...experience} />
+                </div>
+              );
+            })
+        }
       </div>
+
       <div class="space-y-4">
-        <h2 class="text-2xl font-semibold pb-1 border-b print-break">활동</h2>
         <div class="space-y-8">
           {
             experiences
               .filter((experience) => experience.type === "activity")
-              .map((experience) => <Experience {...experience} />)
+              .map((experience, index) => {
+                if (index === 0) {
+                  return (
+                    <div class="space-y-4 print-break">
+                      <h2 class="text-2xl font-semibold pb-1 border-b">활동</h2>
+                      <Experience {...experience} />
+                    </div>
+                  );
+                }
+                return (
+                  <div class="print-break">
+                    <Experience {...experience} />
+                  </div>
+                );
+              })
           }
         </div>
       </div>
