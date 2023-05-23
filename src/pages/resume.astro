@@ -1,6 +1,6 @@
 ---
 import Experience from "@/components/Resume/Experience.astro";
-import ResumeStyles from "@/components/ResumeStyles.astro";
+import ResumeStyles from "@/components/Resume/ResumeStyles.astro";
 import { getCollection } from "astro:content";
 
 const dateFormat = (date: Date) => {
@@ -107,7 +107,7 @@ console.log(experiences);
         </div>
       </div>
       <div class="space-y-4">
-        <h2 class="text-2xl font-semibold pb-1 border-b">활동</h2>
+        <h2 class="text-2xl font-semibold pb-1 border-b print-break">활동</h2>
         <div class="space-y-8">
           {
             experiences
