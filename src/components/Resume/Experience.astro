@@ -1,0 +1,71 @@
+---
+import type { AstroComponentFactory } from "astro/dist/runtime/server";
+
+interface Props {
+  startDate: string;
+  endDate?: string;
+  period: string;
+  type: string;
+  Content: AstroComponentFactory;
+  title: string;
+  description: string;
+  skills?: string[];
+  github?: string;
+  link?: string;
+}
+
+const {
+  title,
+  startDate,
+  endDate,
+  period,
+  description,
+  skills,
+  Content,
+  github,
+  link,
+} = Astro.props;
+---
+
+<div class="flex gap-4">
+  <div class="w-40 flex-shrink-0 text-md text-gray-600 space-y-1">
+    <div>
+      {startDate} ~ {endDate && endDate}
+    </div>
+    <div>{period}</div>
+    {
+      github && (
+        <div>
+          <a class="underline" href={github} target="_blank">
+            GitHub 링크
+          </a>
+        </div>
+      )
+    }
+    {
+      link && (
+        <div>
+          <a class="block underline" href={link} target="_blank">
+            배포 링크
+          </a>
+        </div>
+      )
+    }
+  </div>
+  <div class="space-y-2">
+    <h3 class="text-xl font-semibold">{title}</h3>
+    <p>{description}</p>
+    <Content />
+    {
+      skills && (
+        <div class="flex gap-1">
+          {skills.map((skill) => (
+            <span class="px-1 py-0.5 text-xs border border-slate-300 rounded-lg">
+              {skill}
+            </span>
+          ))}
+        </div>
+      )
+    }
+  </div>
+</div>

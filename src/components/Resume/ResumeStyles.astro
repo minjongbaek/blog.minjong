@@ -1,0 +1,26 @@
+<style is:global>
+  ul {
+    @apply list-disc space-y-2 ml-4;
+    & li {
+      @apply first:mt-2;
+    }
+  }
+
+  @media print {
+    html {
+      @apply p-4;
+    }
+    main.container {
+      @apply p-0;
+    }
+    ul {
+      @apply space-y-1;
+      & li {
+        @apply first:mt-1;
+      }
+    }
+    .print-break {
+      @apply break-before-page;
+    }
+  }
+</style>
