@@ -1,0 +1,121 @@
+---
+import Experience from "@/components/Resume/Experience.astro";
+import ResumeStyles from "@/components/ResumeStyles.astro";
+import { getCollection } from "astro:content";
+
+const dateFormat = (date: Date) => {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  return `${year}.${month}`;
+};
+
+const getPreiod = (startDate: Date, endDate?: Date) => {
+  if (!endDate) return "진행 중";
+  const years =
+    (Number(endDate.getFullYear()) - Number(startDate.getFullYear())) * 12;
+  const months = Math.abs(
+    Number(endDate.getMonth()) - Number(startDate.getMonth())
+  );
+
+  const periodMonth = Math.abs(years - months) % 12;
+  const periodYear = Math.floor(Math.abs(years - months) / 12);
+
+  if (periodYear === 0) return `${periodMonth}개월`;
+  if (periodMonth === 0) return `${periodYear}년`;
+
+  return `${periodYear}년 ${periodMonth}개월`;
+};
+
+const experiences = await Promise.all(
+  (
+    await getCollection("experience")
+  )
+    .sort((a, b) => b.data.startDate.valueOf() - a.data.startDate.valueOf())
+    .map(async ({ data, slug, render }) => ({
+      ...data,
+      startDate: dateFormat(data.startDate),
+      endDate: data.endDate ? dateFormat(data.endDate) : data.endDate,
+      period: getPreiod(data.startDate, data.endDate),
+      type: slug.split("/")[0],
+      Content: await render().then(({ Content }) => Content),
+    }))
+);
+console.log(experiences);
+---
+
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="title" content="백민종 | 이력서" />
+    <meta
+      name="description"
+      content="안녕하세요, 웹 프론트엔드 개발자로 커리어를 전환 중인 백민종입니다."
+    />
+    <style>
+      @media print {
+        main {
+          @apply p-0 m-0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <ResumeStyles />
+    <main class="container mx-auto p-12 max-w-3xl print space-y-4 break-keep">
+      <div class="space-y-4">
+        <h1 class="text-3xl font-bold">백민종</h1>
+        <div class="space-y-2">
+          <p>
+            안녕하세요, 웹 프론트엔드 개발자로 커리어를 전환 중인 백민종입니다.
+          </p>
+          <p>
+            더 좋은 결과물을 만들기 위해 팀원들이 효율적으로 작업할 수 있는
+            방법과 개발 과정에서 발생할 수 있는 문제를 최소화할 수 있는 방법을
+            찾는 것을 좋아합니다.
+          </p>
+          <p>
+            시각적으로 빠른 피드백을 보고 접할 수 있는 프론트엔드 개발에 흥미를
+            느꼈고, 재미를 느끼면 더욱 몰두하고 집중하는 제 성격과 맞물려
+            프론트엔드 개발자로 커리어를 전환 중입니다.
+          </p>
+          <p>
+            기능 구현을 잘하고 서비스를 잘 만드는 것을 넘어서, 메이커로서 함께
+            서비스를 성공시키고 싶습니다.
+          </p>
+        </div>
+      </div>
+      <div class="space-y-4">
+        <h2 class="text-2xl font-semibold pb-1 border-b">경력</h2>
+        <div class="space-y-8">
+          {
+            experiences
+              .filter((experience) => experience.type === "carrer")
+              .map((experience) => <Experience {...experience} />)
+          }
+        </div>
+      </div>
+      <div class="space-y-4">
+        <h2 class="text-2xl font-semibold pb-1 border-b">프로젝트</h2>
+        <div class="space-y-8">
+          {
+            experiences
+              .filter((experience) => experience.type === "project")
+              .map((experience) => <Experience {...experience} />)
+          }
+        </div>
+      </div>
+      <div class="space-y-4">
+        <h2 class="text-2xl font-semibold pb-1 border-b">활동</h2>
+        <div class="space-y-8">
+          {
+            experiences
+              .filter((experience) => experience.type === "activity")
+              .map((experience) => <Experience {...experience} />)
+          }
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

@@ -10,4 +10,16 @@ const post = defineCollection({
   }),
 });
 
-export const collections = { post };
+const experience = defineCollection({
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    startDate: z.date(),
+    endDate: z.date().optional(),
+    skills: z.array(z.string()).optional(),
+    github: z.string().optional(),
+    link: z.string().optional(),
+  }),
+});
+
+export const collections = { post, experience };
