@@ -1,31 +1,10 @@
 ---
+import BaseHead from "@/components/Base/BaseHead.astro";
 import Experience from "@/components/Resume/Experience.astro";
-import ResumeStyles from "@/components/Resume/ResumeStyles.astro";
+import ResumeStyles from "@/components/ResumeStyles.astro";
+import { dateFormat, getPreiod } from "@/utils/date";
 import Icon from "astro-icon";
 import { getCollection } from "astro:content";
-
-const dateFormat = (date: Date) => {
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  return `${year}.${month}`;
-};
-
-const getPreiod = (startDate: Date, endDate?: Date) => {
-  if (!endDate) return "진행 중";
-  const years =
-    (Number(endDate.getFullYear()) - Number(startDate.getFullYear())) * 12;
-  const months = Math.abs(
-    Number(endDate.getMonth()) - Number(startDate.getMonth())
-  );
-
-  const periodMonth = Math.abs(years - months) % 12;
-  const periodYear = Math.floor(Math.abs(years - months) / 12);
-
-  if (periodYear === 0) return `${periodMonth}개월`;
-  if (periodMonth === 0) return `${periodYear}년`;
-
-  return `${periodYear}년 ${periodMonth}개월`;
-};
 
 const experiences = await Promise.all(
   (
@@ -37,30 +16,19 @@ const experiences = await Promise.all(
       startDate: dateFormat(data.startDate),
       endDate: data.endDate ? dateFormat(data.endDate) : data.endDate,
       period: getPreiod(data.startDate, data.endDate),
-      type: slug.split("/")[0],
+      type: slug.split("/")[0] as "carrer" | "project" | "activity",
       Content: await render().then(({ Content }) => Content),
     }))
 );
-console.log(experiences);
 ---
 
 <!DOCTYPE html>
 <html lang="ko">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="title" content="백민종 | 이력서" />
-    <meta
-      name="description"
-      content="안녕하세요, 웹 프론트엔드 개발자로 커리어를 전환 중인 백민종입니다."
+    <BaseHead
+      title="백민종 | 이력서"
+      description="안녕하세요, 웹 프론트엔드 개발자로 커리어를 전환 중인 백민종입니다."
     />
-    <style>
-      @media print {
-        main {
-          @apply p-0 m-0;
-        }
-      }
-    </style>
   </head>
   <body>
     <ResumeStyles />
@@ -100,65 +68,28 @@ console.log(experiences);
         {
           experiences
             .filter((experience) => experience.type === "carrer")
-            .map((experience, index) => {
-              if (index === 0) {
-                return (
-                  <div class="space-y-4 print-break">
-                    <h2 class="text-2xl font-semibold pb-1 border-b">경력</h2>
-                    <Experience {...experience} />
-                  </div>
-                );
-              }
-              return <Experience {...experience} />;
-            })
+            .map((experience, index) => (
+              <Experience isFirst={index === 0} {...experience} />
+            ))
         }
       </div>
       <div class="space-y-8">
         {
           experiences
             .filter((experience) => experience.type === "project")
-            .map((experience, index) => {
-              if (index === 0) {
-                return (
-                  <div class="space-y-4 print-break">
-                    <h2 class="text-2xl font-semibold pb-1 border-b">
-                      프로젝트
-                    </h2>
-                    <Experience {...experience} />
-                  </div>
-                );
-              }
-              return (
-                <div class="print-break">
-                  <Experience {...experience} />
-                </div>
-              );
-            })
+            .map((experience, index) => (
+              <Experience isFirst={index === 0} {...experience} />
+            ))
         }
       </div>
-
-      <div class="space-y-4">
-        <div class="space-y-8">
-          {
-            experiences
-              .filter((experience) => experience.type === "activity")
-              .map((experience, index) => {
-                if (index === 0) {
-                  return (
-                    <div class="space-y-4 print-break">
-                      <h2 class="text-2xl font-semibold pb-1 border-b">활동</h2>
-                      <Experience {...experience} />
-                    </div>
-                  );
-                }
-                return (
-                  <div class="print-break">
-                    <Experience {...experience} />
-                  </div>
-                );
-              })
-          }
-        </div>
+      <div class="space-y-8">
+        {
+          experiences
+            .filter((experience) => experience.type === "activity")
+            .map((experience, index) => (
+              <Experience isFirst={index === 0} {...experience} />
+            ))
+        }
       </div>
     </main>
   </body>
