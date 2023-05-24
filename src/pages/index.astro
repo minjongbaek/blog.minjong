@@ -1,10 +1,12 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import { Picture } from "@astrojs/image/components";
-import PostList from "../components/PostList";
+import PostList from "../components/Post/PostList";
 import { getCollection } from "astro:content";
 
-const posts = (await getCollection("post")).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const posts = (await getCollection("post")).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
 ---
 
 <Layout>
@@ -15,6 +17,7 @@ const posts = (await getCollection("post")).sort((a, b) => b.data.date.getTime()
       aspectRatio="16:9"
       sizes="(max-width: 736px) 100vw, 736px"
       alt="logo"
+      class="rounded-lg"
     />
   </div>
   <PostList posts={posts} />

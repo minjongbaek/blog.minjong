@@ -1,4 +1,5 @@
 ---
+import { Icon } from "astro-icon";
 import ThemeIcon from "./ThemeToggle.astro";
 ---
 
@@ -11,11 +12,8 @@ import ThemeIcon from "./ThemeToggle.astro";
       Blog.minjongdev
     </a>
     <div class="flex font-semibold items-center gap-3">
-      <a
-        href="/about"
-        class="select-none hover:text-blue-500 transition-colors duration-300"
-      >
-        About
+      <a href="https://github.com/minjongbaek">
+        <Icon name="github" class="w-5 dark:fill-gray-100" />
       </a>
       <ThemeIcon />
     </div>
