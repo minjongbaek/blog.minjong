@@ -3,8 +3,12 @@ import BaseHead from "@/components/Base/BaseHead.astro";
 import Experience from "@/components/Resume/Experience.astro";
 import ResumeStyles from "@/components/ResumeStyles.astro";
 import { dateFormat, getPreiod } from "@/utils/date";
+import { Picture } from "@astrojs/image/components";
 import Icon from "astro-icon";
 import { getCollection } from "astro:content";
+
+const { searchParams } = Astro.url;
+const isShowProfileImage = searchParams.get("profile") === "y" ? true : false;
 
 const experiences = await Promise.all(
   (
@@ -35,32 +39,47 @@ const experiences = await Promise.all(
     <main class="container mx-auto p-12 max-w-3xl print space-y-6 break-keep">
       <div class="space-y-4">
         <h1 class="text-3xl font-bold">백민종</h1>
-        <div class="space-y-2">
-          <p>
-            더 좋은 결과물을 만들기 위해 팀원들이 효율적으로 작업할 수 있는
-            방법과 개발 과정에서 발생할 수 있는 문제를 최소화할 수 있는 방법을
-            찾는 것을 좋아합니다.
-          </p>
-          <p>
-            시각적으로 빠른 피드백을 보고 접할 수 있는 프론트엔드 개발에 흥미를
-            느꼈고, 재미를 느끼면 더욱 몰두하고 집중하는 제 성격과 맞물려
-            프론트엔드 개발자로 커리어를 전환 중입니다.
-          </p>
-          <p>
-            기능 구현을 잘하고 서비스를 잘 만드는 것을 넘어서, 메이커로서 함께
-            서비스를 성공시키고 싶습니다.
-          </p>
-          <div class="flex gap-1">
-            <Icon name="github" class="w-4" />
-            <a href="https://github.com/minjongbaek" target="_blank">
-              https://github.com/minjongbaek
-            </a>
-          </div>
-          <div class="flex gap-1">
-            <Icon name="link" class="w-4" />
-            <a href="https://blog.minjongdev.com" target="_blank">
-              https://blog.minjongdev.com
-            </a>
+        <div class="flex justify-between items-top gap-4">
+          {
+            isShowProfileImage && (
+              <div class="w-80">
+                <Picture
+                  src="/images/profile.png"
+                  widths={[600]}
+                  aspectRatio="3:4"
+                  alt="logo"
+                  class="border"
+                />
+              </div>
+            )
+          }
+          <div class="space-y-2">
+            <p>
+              더 좋은 결과물을 만들기 위해 팀원들이 효율적으로 작업할 수 있는
+              방법과 개발 과정에서 발생할 수 있는 문제를 최소화할 수 있는 방법을
+              찾는 것을 좋아합니다.
+            </p>
+            <p>
+              시각적으로 빠른 피드백을 보고 접할 수 있는 프론트엔드 개발에
+              흥미를 느꼈고, 재미를 느끼면 더욱 몰두하고 집중하는 제 성격과
+              맞물려 프론트엔드 개발자로 커리어를 전환 중입니다.
+            </p>
+            <p>
+              기능 구현을 잘하고 서비스를 잘 만드는 것을 넘어서, 메이커로서 함께
+              서비스를 성공시키고 싶습니다.
+            </p>
+            <div class="flex gap-1">
+              <Icon name="github" class="w-4" />
+              <a href="https://github.com/minjongbaek" target="_blank">
+                https://github.com/minjongbaek
+              </a>
+            </div>
+            <div class="flex gap-1">
+              <Icon name="link" class="w-4" />
+              <a href="https://blog.minjongdev.com" target="_blank">
+                https://blog.minjongdev.com
+              </a>
+            </div>
           </div>
         </div>
       </div>
