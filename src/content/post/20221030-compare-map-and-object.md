@@ -161,7 +161,7 @@ for (let i = 0; i < n; i++) {
 console.timeEnd("Map");
 ```
 
-![테스트 결과. Object가 훨씬 빠르다.](/public/images/post/20221030-compare-map-and-object/result.png)
+![테스트 결과. Object가 훨씬 빠르다.](/images/post/20221030-compare-map-and-object/result.png)
 
 테스트 결과. Object가 훨씬 빠르다.
 

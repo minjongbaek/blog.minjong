@@ -83,6 +83,8 @@ const Contents = () => {
 
 - [https://suspensive.org](<[suspensive](https://suspensive.org)>)
 <div>
-<img src="/public/images/post/20230526-suspense-usequery-always-return-data/suspensive.png" width=500 />
+
+<img src="/images/post/20230526-suspense-usequery-always-return-data/suspensive.png" width=500 />
+
 <div class="text-center text-slate-500 italic text-sm">데브코스에는 대단하고 멋진 사람들이 많다...!</div>
 </div>
