@@ -75,5 +75,19 @@
         @apply content-none;
       }
     }
+
+    table {
+      @apply border-collapse border border-slate-300 w-full;
+      & td,
+      & th {
+        @apply p-2 border border-slate-300;
+      }
+    }
+
+    details {
+      :not(summary) {
+        @apply ml-4;
+      }
+    }
   }
 </style>
