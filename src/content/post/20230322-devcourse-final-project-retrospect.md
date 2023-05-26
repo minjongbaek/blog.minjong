@@ -10,7 +10,7 @@ thumbnail: "다독다독"
 
 # 프로젝트 소개
 
-![프로젝트 소개](/public/images/post/20230322-devcourse-final-project-retrospect/project-introduction.png)
+![프로젝트 소개](/images/post/20230322-devcourse-final-project-retrospect/project-introduction.png)
 
 다독다독은 **책에 대한 인사이트를 공유하고 소통하는 독서 소셜 플랫폼**이다.
 
@@ -36,7 +36,7 @@ thumbnail: "다독다독"
 
 # 기술 스택
 
-![기술 스택](/public/images/post/20230322-devcourse-final-project-retrospect/stack.png)
+![기술 스택](/images/post/20230322-devcourse-final-project-retrospect/stack.png)
 
 ## Next.js
 
@@ -76,17 +76,17 @@ Next.js 13의 `app` 디렉터리는 기본적으로 서버 컴포넌트를 사�
 
 그리고, 페이지 전환시에 애니메이션 효과를 주기 위해 `framer-motion`을 사용했는데 exit 애니메이션이 이상하게 작동하는 문제가 있었다.
 
-![페이지 전환시 애니메이션 두 번 발생](/public/images/post/20230322-devcourse-final-project-retrospect/animation-twice.gif)
+![페이지 전환시 애니메이션 두 번 발생](/images/post/20230322-devcourse-final-project-retrospect/animation-twice.gif)
 
 동일한 증상의 [issue](https://github.com/framer/motion/issues/1850#issuecomment-1445239322)를 몇가지 찾을 수 있었는데 크게 도움되는 것들은 없었다.
 
 이것 외에도 `Hydrate` 과정에서 몇몇 에러가 발생하는 등의 이슈가 있었다. 이대로는 좋은 퀄리티를 낼 수 없다는 판단을 하고 프로젝트 기한 1주일 전에 새벽까지 팀원들과 `pages` 디렉터리로 마이그레이션 작업을 진행했다.
 
-![편-안](/public/images/post/20230322-devcourse-final-project-retrospect/animation-once.gif)
+![편-안](/images/post/20230322-devcourse-final-project-retrospect/animation-once.gif)
 
 ## Kakao Image CORS
 
-![책 표지의 색상을 추출](/public/images/post/20230322-devcourse-final-project-retrospect/next-api-1.png)
+![책 표지의 색상을 추출](/images/post/20230322-devcourse-final-project-retrospect/next-api-1.png)
 
 다독다독은 책을 3d 형태로 보여주고 있는데 이때 책 앞면 표지에서 가장 많이 사용된 색상을 추출하여 책의 옆면 색상을 채우고 있다.
 
@@ -98,7 +98,7 @@ Next.js 13의 `app` 디렉터리는 기본적으로 서버 컴포넌트를 사�
 
 백엔드에서 전달받은 표지 url로 이미지를 받아오는데는 문제가 없었는데, 브라우저의 `canvas` 에서 카카오 이미지 소스를 사용하려고 하면 `CORS` 에러가 발생했다.
 
-![NEXT API](/public/images/post/20230322-devcourse-final-project-retrospect/next-api-2.png)
+![NEXT API](/images/post/20230322-devcourse-final-project-retrospect/next-api-2.png)
 
 이를 해결하기 위해 Next.js API를 만들고 `node-vibrant` 라이브러리를 이용해서 지배적인 색상을 추출하고 클라이언트에 색상 코드만 반환하는 형식으로 구현했다. 하지만, 이렇게 만들어진 API에는 2가지 문제점이 있었다.
 
@@ -107,7 +107,7 @@ Next.js 13의 `app` 디렉터리는 기본적으로 서버 컴포넌트를 사�
 
 그래서, 백엔드로 부터 전달받은 카카오 이미지 URL을 Next API로 전달하여 스트림 형태로 내려 받게끔 API를 구현하여 색상을 추출하는 로직을 `color-thief`를 이용해서 전부 클라이언트에서 수행할 수 있도록 했다.
 
-![bookshelf](/public/images/post/20230322-devcourse-final-project-retrospect/bookshelf.gif)
+![bookshelf](/images/post/20230322-devcourse-final-project-retrospect/bookshelf.gif)
 
 # 아쉬운 점
 
