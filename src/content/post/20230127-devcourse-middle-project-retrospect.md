@@ -10,7 +10,7 @@ thumbnail: "디그디그딥"
 
 # 프로젝트 소개
 
-![프로젝트 소개](/images/post/devcourse-middle-project-retrospect/project-introduction.png)
+![프로젝트 소개](/public/images/post/20230127-devcourse-middle-project-retrospect/project-introduction.png)
 
 **디그디그딥은 하나의 주제, 개념, 지식에 대해 깊게 이야기 할 수 있는 장소를 제공한다.** 깊게 땅을 파는 두더지로 부터 영감을 받았다.
 
@@ -27,13 +27,13 @@ thumbnail: "디그디그딥"
 
 다들 무언가를 계속 배우고 있어서 그런지 `스터디` 키워드가 공통으로 나왔고, 이 키워드를 중심으로 브레인스토밍을 했다.
 
-![브레인스토밍](/images/post/devcourse-middle-project-retrospect/brainstorming.png)
+![브레인스토밍](/public/images/post/20230127-devcourse-middle-project-retrospect/brainstorming.png)
 
 많은 의견을 나누고 합의점을 찾아가며, 결국 커뮤니케이션을 통한 학습을 제공하는 개발자 전용 SNS로 주제를 선정했다.
 
 # 기술 스택
 
-![기술 스택](/images/post/devcourse-middle-project-retrospect/stack.png)
+![기술 스택](/public/images/post/20230127-devcourse-middle-project-retrospect/stack.png)
 
 **타입스크립트는 내가 강력하게 어필했다.**
 
@@ -127,7 +127,7 @@ export default useAxiosInterceptor;
 
 아이콘 추가, 리셋 버튼 구현, 유효성 검사 룰 작성, 상황에 맞는 스타일을 작성 했으며 크게 어려운 부분은 없었다.
 
-![회원가입](/images/post/devcourse-middle-project-retrospect/signup.gif)
+![회원가입](/public/images/post/20230127-devcourse-middle-project-retrospect/signup.gif)
 
 ## 사용자 프로필 편집
 
@@ -153,7 +153,7 @@ return (
 );
 ```
 
-![프로필 편집](/images/post/devcourse-middle-project-retrospect/profile-edit.gif)
+![프로필 편집](/public/images/post/20230127-devcourse-middle-project-retrospect/profile-edit.gif)
 
 ## 사용자 프로필 - 팔로워, 팔로잉 목록
 
@@ -187,7 +187,7 @@ Promise
   });
 ```
 
-![팔로잉, 팔로우 목록](/images/post/devcourse-middle-project-retrospect/profile-follow.gif)
+![팔로잉, 팔로우 목록](/public/images/post/20230127-devcourse-middle-project-retrospect/profile-follow.gif)
 
 ## 모달 컴포넌트
 
@@ -261,13 +261,13 @@ showModal({
 });
 ```
 
-![모달](/images/post/devcourse-middle-project-retrospect/modal.gif)
+![모달](/public/images/post/20230127-devcourse-middle-project-retrospect/modal.gif)
 
 ## 토스트 컴포넌트
 
 토스트 컴포넌트도 모달 컴포넌트 처럼 훅과 `recoil` 을 이용해서 글로벌한 컴포넌트로 작성했다.
 
-![토스트](/images/post/devcourse-middle-project-retrospect/toast.gif)
+![토스트](/public/images/post/20230127-devcourse-middle-project-retrospect/toast.gif)
 
 ## 이미지 컴포넌트
 
@@ -275,11 +275,11 @@ showModal({
 
 사용자 경험을 개선하기 위해 이미지가 로드되지 않았다면 스켈레톤을 제공하는 형태로 개선했다. `<img />` 의 `load` 이벤트로 쉽게 구현이 가능했는데 한 가지 문제가 있었다. 메모리에 캐싱된 이미지는 `load` 이벤트가 트리거 되지 않아서 계속 스켈레톤을 보여주는 버그가 있었다.
 
-![이미지 로딩](/images/post/devcourse-middle-project-retrospect/image-loading.gif)
+![이미지 로딩](/public/images/post/20230127-devcourse-middle-project-retrospect/image-loading.gif)
 
 `<img />` 의 `complete` 속성을 이용하면 이미지가 로드 됐는지 확인할 수 있다는 것을 알게 됐고 렌더링 되는 시점에 `complete` 됐다면 바로 이미지를 보여주도록 처리했다.
 
-![이미지 컴포넌트](/images/post/devcourse-middle-project-retrospect/image-component.gif)
+![이미지 컴포넌트](/public/images/post/20230127-devcourse-middle-project-retrospect/image-component.gif)
 
 # 배포
 
@@ -349,7 +349,7 @@ jobs:
 
 정상적으로 배포가 되는 것을 확인한 뒤에, PR이 올라가면 preview 링크를 제공하고, build 테스트를 하면 좋을 것 같아 workflow를 추가로 작성했다.
 
-![github-action](/images/post/devcourse-middle-project-retrospect/github-action.png)
+![github-action](/public/images/post/20230127-devcourse-middle-project-retrospect/github-action.png)
 
 최종 프로젝트 때는 빌드, 배포뿐 아니라 테스트를 하는 것도 도전해 봐야겠다.
 

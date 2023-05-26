@@ -36,7 +36,7 @@ thumbnail: "브라우저"
 
 💡 `visibility: hidden` 는 요소를 보이지 않게 만들지만 레이아웃에 공간을 차지한다.
 
-![렌더트리](/images/post/how-browsers-work/render-tree.png)
+![렌더트리](/public/images/post/20220915-how-browsers-work/render-tree.png)
 
 ## **레이아웃**
 

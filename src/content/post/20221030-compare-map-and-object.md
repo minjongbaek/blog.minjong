@@ -15,26 +15,26 @@ thumbnail: "Map VS Object"
 <table>
   <thead>
     <tr>
-      <th></th>
-      <th colspan="5">Map</th>
-      <th colspan="5">Object</th>
+      <th class="w-20"></th>
+      <th>Map</th>
+      <th>Object</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>기본키</td>
-      <td colspan="5">기본 키를 포함하고 있지 않고, 사용자가 직접 추가한 내용만 포함한다.</td>
-      <td colspan="5">프로토타입을 갖기 때문에, 사용자가 추가한 키와 충돌할 수 있는 키가 존재할 수 있다.</td>
+      <td>기본 키를 포함하고 있지 않고, 사용자가 직접 추가한 내용만 포함한다.</td>
+      <td>프로토타입을 갖기 때문에, 사용자가 추가한 키와 충돌할 수 있는 키가 존재할 수 있다.</td>
     </tr>
     <tr>
       <td>타입</td>
-      <td colspan="5">함수, 객체 등 타입에 제약을 받지 않는다.</td>
-      <td colspan="5">String 이나 Symbol 타입만 허용된다.</td>
+      <td>함수, 객체 등 타입에 제약을 받지 않는다.</td>
+      <td>String 이나 Symbol 타입만 허용된다.</td>
     </tr>
     <tr>
       <td>순서</td>
-      <td colspan="5">키의 삽입 순서를 보장한다.</td>
-      <td colspan="5"><a href="https://tc39.es/ecma262/#sec-ordinaryownpropertykeys%EC%97%90" target="_blank" rel="nofollow">ECMAScript 명세</a>에 따라 순서를 일부 보장할 수 있다.</td>
+      <td>키의 삽입 순서를 보장한다.</td>
+      <td><a href="https://tc39.es/ecma262/#sec-ordinaryownpropertykeys%EC%97%90" target="_blank" rel="nofollow">ECMAScript 명세</a>에 따라 순서를 일부 보장할 수 있다.</td>
     </tr>
   </tbody>
 </table>
@@ -58,16 +58,16 @@ console.log(obj["console"]); // 콘솔
 <table>
   <thead>
     <tr>
-      <th></th>
-      <th colspan="5">Map</th>
-      <th colspan="5">Object</th>
+      <th class="w-20"></th>
+      <th>Map</th>
+      <th>Object</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>크기</td>
-      <td colspan="5">size 프로퍼티를 이용해 쉽게 접근 가능하다.</td>
-      <td colspan="5">Object.keys() 와 같은 메서드를 이용해 구할 수 있다.</td>
+      <td>size 프로퍼티를 이용해 쉽게 접근 가능하다.</td>
+      <td>Object.keys() 와 같은 메서드를 이용해 구할 수 있다.</td>
     </tr>
   </tbody>
 </table>
@@ -90,16 +90,16 @@ console.log(map.size); // 2
 <table>
   <thead>
     <tr>
-      <th></th>
-      <th colspan="5">Map</th>
-      <th colspan="5">Object</th>
+      <th class="w-20"></th>
+      <th>Map</th>
+      <th>Object</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>반복</td>
-      <td colspan="5">iterable한 객체로 직접 반복이 가능하다.</td>
-      <td colspan="5"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#the_iterable_protocol" target="_blank" rel="nofollow">iterable protocol</a> 이 구현되지 않아 Object.entries 와 같은 메서드나 for...in 문을 사용하여 열거 가능한 속성들에 대해 직접 반복 가능하다.</td>
+      <td>iterable한 객체로 직접 반복이 가능하다.</td>
+      <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#the_iterable_protocol" target="_blank" rel="nofollow">iterable protocol</a> 이 구현되지 않아 Object.entries 와 같은 메서드나 for...in 문을 사용하여 열거 가능한 속성들에 대해 직접 반복 가능하다.</td>
     </tr>
   </tbody>
 </table>
@@ -125,16 +125,16 @@ for (const value of map) {
 <table>
   <thead>
     <tr>
-      <th></th>
-      <th colspan="5">Map</th>
-      <th colspan="5">Object</th>
+      <th class="w-20"></th>
+      <th>Map</th>
+      <th>Object</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>반복</td>
-      <td colspan="5">키-값 쌍을 자주 추가 및 제거하는 경우 더 나은 성능을 보인다.</td>
-      <td colspan="5">키-값 쌍의 빈번한 추가 및 제거에 최적화 되지 않았다.</td>
+      <td>키-값 쌍을 자주 추가 및 제거하는 경우 더 나은 성능을 보인다.</td>
+      <td>키-값 쌍의 빈번한 추가 및 제거에 최적화 되지 않았다.</td>
     </tr>
   </tbody>
 </table>
@@ -161,7 +161,7 @@ for (let i = 0; i < n; i++) {
 console.timeEnd("Map");
 ```
 
-![테스트 결과. Object가 훨씬 빠르다.](/images/post/compare-map-and-object/result.png)
+![테스트 결과. Object가 훨씬 빠르다.](/public/images/post/20221030-compare-map-and-object/result.png)
 
 테스트 결과. Object가 훨씬 빠르다.
 
@@ -185,9 +185,22 @@ console.timeEnd("Map");
 
 # 직렬화 및 파싱
 
-|                | Map                                       | Object                                         |
-| -------------- | ----------------------------------------- | ---------------------------------------------- |
-| 직렬화 및 파싱 | 직렬화 또는 파싱에 대한 기본 지원이 없다. | JSON으로의 직렬화, 파싱을 기본적으로 지원한다. |
+<table>
+  <thead>
+    <tr>
+      <th class="w-22"></th>
+      <th>Map</th>
+      <th>Object</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>직렬화 및 파싱</td>
+      <td>직렬화 또는 파싱에 대한 기본 지원이 없다.</td>
+      <td>JSON으로의 직렬화, 파싱을 기본적으로 지원한다.</td>
+    </tr>
+  </tbody>
+</table>
 
 ## Map 에서 직렬화 및 파싱
 
@@ -197,7 +210,7 @@ console.timeEnd("Map");
 
 # 마무리
 
-그동안 사용하기 편하다는 이유로 `Object` 만을 주로 사용했는데 둘의 차이점을 명확하게 알게되어 어떤 상황에 어떤 객체를 사용해야하는지 알게 되었다.
+그동안 사용하기 편하다는 이유로 `Object` 만을 주로 사용했는데 둘의 차이점을 명확하게 알게었다. 직렬화를 해야하는 상황이라면 `Object`를 고려하면 좋을 것 같고 키-값 쌍을 자주 추가 및 삭제하는 경우나 요소를 순회해야할 때는 `Map`을 고려하면 좋을 것 같다.
 
 # 참고
 
