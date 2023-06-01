@@ -4,6 +4,8 @@ import { Picture } from "@astrojs/image/components";
 import PostList from "../components/Post/PostList";
 import { getCollection } from "astro:content";
 
+export const prerender = true;
+
 const posts = (await getCollection("post")).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime()
 );
