@@ -5,6 +5,7 @@ import image from "@astrojs/image";
 import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
 import vercel from "@astrojs/vercel/serverless";
+import partytown from "@astrojs/partytown";
 
 // https://astro.build/config
 export default defineConfig({
@@ -21,6 +22,11 @@ export default defineConfig({
     sitemap({
       changefreq: "weekly",
       priority: 0.7,
+    }),
+    partytown({
+      config: {
+        forward: ["dataLayer.push"],
+      },
     }),
   ],
   markdown: {
