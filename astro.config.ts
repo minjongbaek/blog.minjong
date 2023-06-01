@@ -4,14 +4,13 @@ import sitemap from "@astrojs/sitemap";
 import image from "@astrojs/image";
 import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
-
 import vercel from "@astrojs/vercel/serverless";
 
 // https://astro.build/config
 export default defineConfig({
   site: import.meta.env.DEV
-    ? "http://localhost:3000"
-    : "https://blog.minjongdev.com",
+    ? "http://localhost:8000"
+    : "https://blog.minjong.codes",
   integrations: [
     mdx(),
     react(),

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://blog.minjongdev.com/sitemap-index.xml
+Sitemap: https://blog.minjong.codes/sitemap-index.xml

@@ -6,7 +6,7 @@ description: "단순히 '짠!' 하고 나오는 것이 아니었다."
 thumbnail: "브라우저"
 ---
 
-> 브라우저 주소창에 [blog.minjongdev.com](http://blog.minjongdev.com)을 입력했을 때 어떤 과정을 거쳐 페이지가 화면에 보이게 되는 걸까?
+> 브라우저 주소창에 [blog.minjong.codes](http://blog.minjong.codes)을 입력했을 때 어떤 과정을 거쳐 페이지가 화면에 보이게 되는 걸까?
 
 브라우저를 어렸을 때 부터 자연스럽게 사용하고 있었지만 동작 과정에 대해서는 알지 못했다. 이번에 브라우저의 동작 과정에 대해 학습한 내용을 간략하게 정리하고자 한다.
 
