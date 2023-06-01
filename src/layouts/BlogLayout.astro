@@ -10,7 +10,7 @@ import Header from "@/components/Base/Header.astro";
     <slot name="base-head" />
     <script
       type="text/partytown"
-      src=`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.GTAG_ID}`
+      src=`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.PUBLIC_GTAG_ID}`
     ></script>
     <script type="text/partytown">
       window.dataLayer = window.dataLayer || [];
@@ -19,7 +19,7 @@ import Header from "@/components/Base/Header.astro";
       }
       gtag("js", new Date());
 
-      gtag("config", `${import.meta.env.GTAG_ID}`);
+      gtag("config", `${import.meta.env.PUBLIC_GTAG_ID}`);
     </script>
   </head>
   <body>
