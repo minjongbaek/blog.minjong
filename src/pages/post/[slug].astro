@@ -2,7 +2,8 @@
 import { CollectionEntry, getCollection } from "astro:content";
 import Comment from "@/components/Base/Comment.astro";
 import PostHeader from "@/components/Post/PostHeader";
-import Layout from "@/layouts/Layout.astro";
+import BlogLayout from "@/layouts/BlogLayout.astro";
+import BaseHead from "@/components/Base/BaseHead.astro";
 
 export const prerender = true;
 
@@ -20,7 +21,13 @@ const { title, date, tags, description } = post.data;
 const { Content } = await post.render();
 ---
 
-<Layout title={title} description={description} keywords={tags.join(",")}>
+<BlogLayout>
+  <BaseHead
+    title={title}
+    description={description}
+    keywords={tags.join(", ")}
+    slot="base-head"
+  />
   <PostHeader
     title={title}
     date={date.toLocaleDateString("ko-KR")}
@@ -30,4 +37,4 @@ const { Content } = await post.render();
     <Content />
   </div>
   <Comment />
-</Layout>
+</BlogLayout>

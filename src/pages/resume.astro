@@ -7,6 +7,8 @@ import { Picture } from "@astrojs/image/components";
 import Icon from "astro-icon";
 import { getCollection } from "astro:content";
 
+export const prerender = true;
+
 const { searchParams } = Astro.url;
 const isShowProfileImage = searchParams.get("profile") === "y" ? true : false;
 
@@ -76,8 +78,8 @@ const experiences = await Promise.all(
             </div>
             <div class="flex gap-1">
               <Icon name="link" class="w-4" />
-              <a href="https://blog.minjongdev.com" target="_blank">
-                https://blog.minjongdev.com
+              <a href="https://blog.minjong.codes" target="_blank">
+                https://blog.minjong.codes
               </a>
             </div>
           </div>

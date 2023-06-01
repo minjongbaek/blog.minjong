@@ -1,15 +1,24 @@
 ---
-import Layout from "@/layouts/Layout.astro";
+import BlogLayout from "@/layouts/BlogLayout.astro";
 import { Picture } from "@astrojs/image/components";
 import PostList from "../components/Post/PostList";
 import { getCollection } from "astro:content";
+import BaseHead from "@/components/Base/BaseHead.astro";
+import { SITE_DESCRIPTION, SITE_TITLE } from "@/consts";
+
+export const prerender = true;
 
 const posts = (await getCollection("post")).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime()
 );
 ---
 
-<Layout>
+<BlogLayout>
+  <BaseHead
+    title={SITE_TITLE}
+    description={SITE_DESCRIPTION}
+    slot="base-head"
+  />
   <div class="aspect-video w-full select-none sm:block hidden">
     <Picture
       src="/images/logo.png"
@@ -21,4 +30,4 @@ const posts = (await getCollection("post")).sort(
     />
   </div>
   <PostList posts={posts} />
-</Layout>
+</BlogLayout>
