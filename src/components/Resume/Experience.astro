@@ -5,13 +5,14 @@ const experienceType: { [index: string]: string } = {
   carrer: "경력",
   project: "프로젝트",
   activity: "활동",
+  education: "교육",
 };
 
 interface Props {
   startDate: string;
   endDate?: string;
   period: string;
-  type: "carrer" | "project" | "activity";
+  type: "carrer" | "project" | "activity" | "education";
   Content: AstroComponentFactory;
   title: string;
   description: string;
@@ -49,7 +50,7 @@ const {
       <div>
         {startDate} ~ {endDate && endDate}
       </div>
-      <div>{period}</div>
+      <div>{type === "education" ? "졸업" : period}</div>
       {
         github && (
           <a class="inline-block underline" href={github} target="_blank">
