@@ -22,7 +22,11 @@ const experiences = await Promise.all(
       startDate: dateFormat(data.startDate),
       endDate: data.endDate ? dateFormat(data.endDate) : data.endDate,
       period: getPreiod(data.startDate, data.endDate),
-      type: slug.split("/")[0] as "carrer" | "project" | "activity",
+      type: slug.split("/")[0] as
+        | "carrer"
+        | "project"
+        | "activity"
+        | "education",
       Content: await render().then(({ Content }) => Content),
     }))
 );
@@ -107,6 +111,16 @@ const experiences = await Promise.all(
         {
           experiences
             .filter((experience) => experience.type === "activity")
+            .map((experience, index) => (
+              <Experience isFirst={index === 0} {...experience} />
+            ))
+        }
+      </div>
+
+      <div class="space-y-8">
+        {
+          experiences
+            .filter((experience) => experience.type === "education")
             .map((experience, index) => (
               <Experience isFirst={index === 0} {...experience} />
             ))
