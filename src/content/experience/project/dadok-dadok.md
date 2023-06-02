@@ -2,7 +2,7 @@
 startDate: 2023-02-01
 title: "다독다독"
 description: "책에 대한 인사이트를 공유하고 소통하는 독서 소셜 플랫폼"
-skills: ["TypeScript", "Next.js", "React", "React Query", "Chakra UI"]
+skills: ["TypeScript", "Next.js", "React", "React Query", "Recoil", "Chakra UI"]
 github: "https://github.com/prgrms-web-devcourse/Team-Gaerval-Dadok-FE"
 link: "https://dev.dadok.site"
 ---
@@ -16,3 +16,4 @@ link: "https://dev.dadok.site"
   - 도서 이미지를 제공하는 카카오 서버와의 CORS 이슈를 해결하기 위한 프록시 설정
 - 책 검색 페이지 개발
   - 디바운싱을 통해 이벤트를 제어하여 API 호출 빈도 감소
+- 지속적으로 성능 및 UI/UX 개선 중
