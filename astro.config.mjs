@@ -7,11 +7,13 @@ import tailwind from "@astrojs/tailwind";
 import vercel from "@astrojs/vercel/serverless";
 import partytown from "@astrojs/partytown";
 
+const site = import.meta.env.DEV
+  ? "http://localhost:8000"
+  : "https://blog.minjong.codes";
+
 // https://astro.build/config
 export default defineConfig({
-  site: import.meta.env.DEV
-    ? "http://localhost:8000"
-    : "https://blog.minjong.codes",
+  site,
   integrations: [
     mdx(),
     react(),
@@ -22,6 +24,8 @@ export default defineConfig({
     sitemap({
       changefreq: "weekly",
       priority: 0.7,
+      filter: (page) =>
+        !page.includes("/_image/") && !page.includes("/resume/"),
     }),
     partytown({
       config: {
