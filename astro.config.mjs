@@ -14,6 +14,7 @@ const site = import.meta.env.DEV
 // https://astro.build/config
 export default defineConfig({
   site,
+  trailingSlash: "never",
   integrations: [
     mdx(),
     react(),
