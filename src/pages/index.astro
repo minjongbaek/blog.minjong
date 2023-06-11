@@ -1,6 +1,5 @@
 ---
 import BlogLayout from "@/layouts/BlogLayout.astro";
-import { Picture } from "@astrojs/image/components";
 import PostList from "../components/Post/PostList";
 import { getCollection } from "astro:content";
 import BaseHead from "@/components/Base/BaseHead.astro";
@@ -19,15 +18,5 @@ const posts = (await getCollection("post")).sort(
     description={SITE_DESCRIPTION}
     slot="base-head"
   />
-  <div class="aspect-video w-full select-none sm:block hidden">
-    <Picture
-      src="/images/logo.png"
-      widths={[800, 1000, 1200, 1400]}
-      aspectRatio="16:9"
-      sizes="(max-width: 736px) 100vw, 736px"
-      alt="logo"
-      class="rounded-lg"
-    />
-  </div>
   <PostList posts={posts} />
 </BlogLayout>
