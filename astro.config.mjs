@@ -4,7 +4,6 @@ import sitemap from "@astrojs/sitemap";
 import image from "@astrojs/image";
 import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
-import vercel from "@astrojs/vercel/serverless";
 import partytown from "@astrojs/partytown";
 
 const site = import.meta.env.DEV
@@ -14,6 +13,7 @@ const site = import.meta.env.DEV
 // https://astro.build/config
 export default defineConfig({
   site,
+  trailingSlash: "never",
   integrations: [
     mdx(),
     react(),
@@ -24,8 +24,7 @@ export default defineConfig({
     sitemap({
       changefreq: "weekly",
       priority: 0.7,
-      filter: (page) =>
-        !page.includes("/_image/") && !page.includes("/resume/"),
+      filter: (page) => !page.includes("/resume/"),
     }),
     partytown({
       config: {
@@ -38,6 +37,4 @@ export default defineConfig({
       theme: "dark-plus",
     },
   },
-  output: "server",
-  adapter: vercel(),
 });
