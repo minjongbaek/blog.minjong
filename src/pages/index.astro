@@ -5,8 +5,6 @@ import { getCollection } from "astro:content";
 import BaseHead from "@/components/Base/BaseHead.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "@/consts";
 
-export const prerender = true;
-
 const posts = (await getCollection("post")).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime()
 );

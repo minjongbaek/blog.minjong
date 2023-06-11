@@ -5,8 +5,6 @@ import PostHeader from "@/components/Post/PostHeader";
 import BlogLayout from "@/layouts/BlogLayout.astro";
 import BaseHead from "@/components/Base/BaseHead.astro";
 
-export const prerender = true;
-
 export async function getStaticPaths() {
   const posts = await getCollection("post");
   return posts.map((post) => ({
