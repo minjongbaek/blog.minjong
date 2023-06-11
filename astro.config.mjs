@@ -4,7 +4,6 @@ import sitemap from "@astrojs/sitemap";
 import image from "@astrojs/image";
 import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
-import vercel from "@astrojs/vercel/serverless";
 import partytown from "@astrojs/partytown";
 
 const site = import.meta.env.DEV
@@ -38,6 +37,4 @@ export default defineConfig({
       theme: "dark-plus",
     },
   },
-  output: "server",
-  adapter: vercel(),
 });
