@@ -14,7 +14,6 @@ const site = import.meta.env.DEV
 // https://astro.build/config
 export default defineConfig({
   site,
-  trailingSlash: "never",
   integrations: [
     mdx(),
     react(),
@@ -25,7 +24,8 @@ export default defineConfig({
     sitemap({
       changefreq: "weekly",
       priority: 0.7,
-      filter: (page) => !page.includes("/resume/"),
+      filter: (page) =>
+        !page.includes("/_image/") && !page.includes("/resume/"),
     }),
     partytown({
       config: {
