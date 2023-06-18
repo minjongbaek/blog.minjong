@@ -25,7 +25,7 @@ export default defineConfig({
     sitemap({
       changefreq: "weekly",
       priority: 0.7,
-      filter: (page) => !page.includes("/resume/"),
+      filter: (page) => !page.includes("/resume"),
     }),
     partytown({
       config: {
