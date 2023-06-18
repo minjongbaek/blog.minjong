@@ -7,5 +7,4 @@ description: ""
 
 - JavaScript 주요 문법과 Vanilla JS 프로젝트를 통해 JavaScript 심화 학습
 - React, TypeScript, Next.js을 학습하고 팀 프로젝트 진행
-  - 함께 성장하기 위한 코드 리뷰를 진행
 - 도서 스터디와 CS 스터디를 통해 CS 지식을 습득하고 공유
