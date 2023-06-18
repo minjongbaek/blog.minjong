@@ -5,6 +5,7 @@ import image from "@astrojs/image";
 import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
 import partytown from "@astrojs/partytown";
+import vercelStatic from "@astrojs/vercel/static";
 
 const site = import.meta.env.DEV
   ? "http://localhost:8000"
@@ -24,7 +25,7 @@ export default defineConfig({
     sitemap({
       changefreq: "weekly",
       priority: 0.7,
-      filter: (page) => !page.includes("/resume/"),
+      filter: (page) => !page.includes("/resume"),
     }),
     partytown({
       config: {
@@ -37,4 +38,6 @@ export default defineConfig({
       theme: "dark-plus",
     },
   },
+  output: "static",
+  adapter: vercelStatic(),
 });
