@@ -8,7 +8,7 @@ export interface Props {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
   .toString()
-  .replace(/\+$/, "");
+  .replace(/\/+$/, "");
 
 const { title, description, keywords } = Astro.props;
 const imageURL = new URL("/images/logo.png", Astro.url);
