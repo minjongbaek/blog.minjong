@@ -1,9 +1,9 @@
 ---
-import { CollectionEntry, getCollection } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
+
 import Comment from "@/components/Base/Comment.astro";
 import PostHeader from "@/components/Post/PostHeader";
-import BlogLayout from "@/layouts/BlogLayout.astro";
-import BaseHead from "@/components/Base/BaseHead.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("post");
@@ -16,16 +16,17 @@ type Props = CollectionEntry<"post">;
 
 const post = Astro.props;
 const { title, date, tags, description } = post.data;
+
+const meta = {
+  title,
+  description,
+  keywords: tags.join(", "),
+};
+
 const { Content } = await post.render();
 ---
 
-<BlogLayout>
-  <BaseHead
-    title={title}
-    description={description}
-    keywords={tags.join(", ")}
-    slot="base-head"
-  />
+<BaseLayout {...meta}>
   <PostHeader
     title={title}
     date={date.toLocaleDateString("ko-KR")}
@@ -35,4 +36,4 @@ const { Content } = await post.render();
     <Content />
   </div>
   <Comment />
-</BlogLayout>
+</BaseLayout>

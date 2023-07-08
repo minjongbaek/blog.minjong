@@ -1,7 +1,8 @@
 ---
+import { SITE_TITLE, SITE_DESCRIPTION } from "@/utils/constants/site";
 export interface Props {
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
   keywords?: string;
   image?: string;
 }
@@ -10,7 +11,12 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site)
   .toString()
   .replace(/\/+$/, "");
 
-const { title, description, keywords } = Astro.props;
+const {
+  title = SITE_TITLE,
+  description = SITE_DESCRIPTION,
+  keywords,
+} = Astro.props;
+
 const imageURL = new URL("/images/logo.png", Astro.url);
 ---
 

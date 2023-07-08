@@ -1,20 +1,13 @@
 ---
-import BlogLayout from "@/layouts/BlogLayout.astro";
 import PostList from "../components/Post/PostList";
 import { getCollection } from "astro:content";
-import BaseHead from "@/components/Base/BaseHead.astro";
-import { SITE_DESCRIPTION, SITE_TITLE } from "@/consts";
+import BaseLayout from "@/layouts/BaseLayout.astro";
 
 const posts = (await getCollection("post")).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime()
 );
 ---
 
-<BlogLayout>
-  <BaseHead
-    title={SITE_TITLE}
-    description={SITE_DESCRIPTION}
-    slot="base-head"
-  />
+<BaseLayout>
   <PostList posts={posts} />
-</BlogLayout>
+</BaseLayout>
