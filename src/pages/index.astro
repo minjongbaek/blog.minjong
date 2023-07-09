@@ -10,7 +10,7 @@ const posts = (await getCollection("post"))
 ---
 
 <BaseLayout>
-  <div class="space-y-8">
+  <div class="space-y-8 mt-4">
     <div class="text-sm leading-6">
       <h1 class="text-xl py-4 font-semibold">
         안녕하세요, <Tag>백민종</Tag>입니다. 👋
@@ -27,7 +27,7 @@ const posts = (await getCollection("post"))
     </div>
 
     <div>
-      <h2 class="py-4 font-semibold">최근 게시물</h2>
+      <h2 class="py-4 font-semibold">최근 작성한 글</h2>
       <div class="flex flex-col gap-y-6">
         {posts.map((post) => <PostCard {...post} />)}
       </div>

@@ -1,0 +1,20 @@
+---
+import PostCard from "@/components/Post/PostCard.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+const posts = (await getCollection("post")).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+
+const meta = {
+  title: "작성한 글",
+  description: "공유하고 싶은 기술 및 경험 등을 작성한 글들이에요.",
+};
+---
+
+<BaseLayout {...meta}>
+  <h2 class="py-4 font-semibold">작성한 글 ({posts.length})</h2>
+  <div class="flex flex-col gap-y-6">
+    {posts.map((post) => <PostCard {...post} />)}
+  </div>
+</BaseLayout>
