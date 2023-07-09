@@ -2,8 +2,8 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 
 import Comment from "@/components/Base/Comment.astro";
-import PostHeader from "@/components/Post/PostHeader";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import Tag from "@/components/Tag.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("post");
@@ -27,12 +27,15 @@ const { Content } = await post.render();
 ---
 
 <BaseLayout {...meta}>
-  <PostHeader
-    title={title}
-    date={date.toLocaleDateString("ko-KR")}
-    tags={tags}
-  />
-  <div class="markdown space-y-8 mb-8">
+  <div class="flex flex-col items-center gap-4 mt-6 mb-10">
+    <h1 class="text-2xl font-bold text-center break-keep">{title}</h1>
+    <div class="text-slate-500">{date.toLocaleDateString("ko-KR")}</div>
+
+    <div class="flex gap-4">
+      {tags.map((tag) => <Tag>#{tag}</Tag>)}
+    </div>
+  </div>
+  <div class="markdown space-y-4 mb-8">
     <Content />
   </div>
   <Comment />

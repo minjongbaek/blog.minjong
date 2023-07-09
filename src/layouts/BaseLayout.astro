@@ -16,6 +16,11 @@ const meta = Astro.props;
   <head>
     <BaseHead {...meta} />
     <PartytownScripts />
+    <style>
+      body {
+        @apply bg-white dark:bg-stone-900 dark:text-gray-200;
+      }
+    </style>
   </head>
   <body>
     <div class="container mx-auto px-4 max-w-3xl min-h-screen">

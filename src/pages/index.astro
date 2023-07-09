@@ -1,13 +1,44 @@
 ---
-import PostList from "../components/Post/PostList";
 import { getCollection } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import PostCard from "@/components/PostCard.astro";
+import Tag from "@/components/Tag.astro";
 
-const posts = (await getCollection("post")).sort(
-  (a, b) => b.data.date.getTime() - a.data.date.getTime()
-);
+const posts = (await getCollection("post"))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
 ---
 
 <BaseLayout>
-  <PostList posts={posts} />
+  <div class="space-y-8">
+    <div class="text-sm leading-6">
+      <h1 class="text-xl py-4 font-semibold">
+        안녕하세요, <Tag>백민종</Tag>입니다. 👋
+      </h1>
+      <p>
+        저는 더 좋은 결과물을 만들기 위해 팀원들이 효율적으로 작업할 수 있는
+        방법을 찾는 것을 좋아해요.
+      </p>
+      <p>사소한 문제라도 넘어가지 않고 다양한 관점에서 해결하려고 노력해요.</p>
+      <p>
+        사용자와 서비스를 연결하기 위한 모든 것을 구현하는 프론트엔드 개발에
+        매력을 느끼고 커리어를 전환 중이에요.
+      </p>
+    </div>
+
+    <div>
+      <h2 class="py-4 font-semibold">최근 게시물</h2>
+      <div class="flex flex-col gap-y-6">
+        {posts.map((post) => <PostCard {...post} />)}
+      </div>
+    </div>
+
+    <!-- <div>
+      <h2 class="py-2 font-semibold">프로젝트</h2>
+      <div>프로젝트 1</div>
+      <div>프로젝트 1</div>
+      <div>프로젝트 1</div>
+      <div>프로젝트 1</div>
+    </div> -->
+  </div>
 </BaseLayout>

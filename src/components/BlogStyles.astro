@@ -1,29 +1,29 @@
 <style is:global>
-  body {
-    @apply bg-white dark:bg-stone-900 dark:text-gray-100;
-  }
-
   .markdown {
     a {
-      @apply underline font-semibold text-blue-500 dark:text-blue-400 hover:text-blue-600 dark:hover:text-blue-500 transition-colors;
+      @apply underline text-orange-500 hover:text-orange-600 transition-colors;
     }
 
     h1,
     h2,
     h3 {
-      @apply before:box-content before:bg-blue-500 before:pl-2 before:mr-2 before:rounded-md;
+      @apply before:box-content before:bg-orange-500 before:pl-2 before:mr-2 before:rounded-md;
     }
 
     h1 {
-      @apply text-4xl font-bold;
+      @apply text-2xl font-bold;
     }
 
     h2 {
-      @apply text-2xl font-semibold;
+      @apply text-lg font-semibold;
     }
 
     h3 {
-      @apply text-lg font-medium;
+      @apply text-base font-medium;
+    }
+
+    p {
+      @apply text-sm leading-6;
     }
 
     strong {
@@ -68,7 +68,7 @@
     }
 
     code:not(pre code) {
-      @apply text-blue-500 font-semibold bg-gray-100 break-all text-sm px-1 py-0.5 mx-0.5 rounded-md whitespace-normal dark:bg-gray-800 dark:text-blue-400;
+      @apply text-orange-500 bg-gray-100 break-all text-sm px-1 py-0.5 mx-0.5 rounded-md whitespace-normal dark:bg-gray-800;
 
       &::before,
       &::after {
