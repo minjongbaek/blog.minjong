@@ -1,0 +1,29 @@
+---
+import type { CollectionEntry } from "astro:content";
+import Tag from "../Common/Tag.astro";
+
+type Props = CollectionEntry<"post">;
+
+const {
+  slug,
+  data: { title, description, date, tags },
+} = Astro.props;
+---
+
+<a href={`/post/${slug}`} class="inline-block text-current group text-sm">
+  <div class="flex flex-col w-full leading-6">
+    <div class="text-sm text-slate-500">
+      {date.toLocaleDateString("ko-KR")}
+    </div>
+    <div class="flex gap-4 items-center">
+      {tags.map((tag) => <Tag>#{tag}</Tag>)}
+    </div>
+
+    <h1
+      class="text-lg font-semibold inline-block group-hover:text-orange-500 transition-colors duration-300 break-keep"
+    >
+      {title}
+    </h1>
+    <p>{description}</p>
+  </div>
+</a>

@@ -1,7 +1,7 @@
 ---
-import BaseHead from "@/components/Base/BaseHead.astro";
-import Experience from "@/components/Resume/Experience.astro";
-import ResumeStyles from "@/components/ResumeStyles.astro";
+import BaseHead from "@/components/Common/BaseHead.astro";
+import ResumeExperience from "@/components/Resume/ResumeExperience.astro";
+import ResumeStyles from "@/components/Styles/ResumeStyles.astro";
 import { dateFormat, getPreiod } from "@/utils/date";
 import { Picture } from "@astrojs/image/components";
 import Icon from "astro-icon";
@@ -94,7 +94,7 @@ const experiences = await Promise.all(
           experiences
             .filter((experience) => experience.type === "carrer")
             .map((experience, index) => (
-              <Experience isFirst={index === 0} {...experience} />
+              <ResumeExperience isFirst={index === 0} {...experience} />
             ))
         }
       </div>
@@ -103,7 +103,7 @@ const experiences = await Promise.all(
           experiences
             .filter((experience) => experience.type === "project")
             .map((experience, index) => (
-              <Experience isFirst={index === 0} {...experience} />
+              <ResumeExperience isFirst={index === 0} {...experience} />
             ))
         }
       </div>
@@ -112,7 +112,7 @@ const experiences = await Promise.all(
           experiences
             .filter((experience) => experience.type === "activity")
             .map((experience, index) => (
-              <Experience isFirst={index === 0} {...experience} />
+              <ResumeExperience isFirst={index === 0} {...experience} />
             ))
         }
       </div>
@@ -122,7 +122,7 @@ const experiences = await Promise.all(
           experiences
             .filter((experience) => experience.type === "education")
             .map((experience, index) => (
-              <Experience isFirst={index === 0} {...experience} />
+              <ResumeExperience isFirst={index === 0} {...experience} />
             ))
         }
       </div>
