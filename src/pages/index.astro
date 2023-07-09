@@ -1,8 +1,8 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import PostCard from "@/components/PostCard.astro";
-import Tag from "@/components/Tag.astro";
+import PostCard from "@/components/Post/PostCard.astro";
+import Tag from "@/components/Common/Tag.astro";
 
 const posts = (await getCollection("post"))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())

@@ -1,9 +1,8 @@
 ---
-import BaseHead from "@/components/Base/BaseHead.astro";
-import Footer from "@/components/Base/Footer.astro";
-import Header from "@/components/Base/Header.astro";
-import BlogStyles from "@/components/BlogStyles.astro";
-import PartytownScripts from "@/components/Common/PartytownScripts.astro";
+import BaseHead from "@/components/Common/BaseHead.astro";
+import Footer from "@/components/Common/Footer.astro";
+import Header from "@/components/Common/Header.astro";
+import PartytownScripts from "@/components/Scripts/PartytownScripts.astro";
 import type { Meta } from "@/types/meta";
 
 type Props = Meta;
@@ -18,13 +17,12 @@ const meta = Astro.props;
     <PartytownScripts />
     <style>
       body {
-        @apply bg-white dark:bg-stone-900 dark:text-gray-200;
+        @apply bg-white dark:bg-stone-900 dark:text-gray-300;
       }
     </style>
   </head>
   <body>
     <div class="container mx-auto px-4 max-w-3xl min-h-screen">
-      <BlogStyles />
       <Header />
       <slot />
       <Footer />
