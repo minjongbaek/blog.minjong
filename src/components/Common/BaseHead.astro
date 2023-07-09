@@ -11,11 +11,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site)
   .toString()
   .replace(/\/+$/, "");
 
-const {
-  title = SITE_TITLE,
-  description = SITE_DESCRIPTION,
-  keywords,
-} = Astro.props;
+const { title: _title, description = SITE_DESCRIPTION, keywords } = Astro.props;
+
+const title = _title ? `${_title} | ${SITE_TITLE}` : SITE_TITLE;
 
 const imageURL = new URL("/images/logo.png", Astro.url);
 ---
