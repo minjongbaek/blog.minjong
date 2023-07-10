@@ -2,7 +2,7 @@
 startDate: 2019-12-01
 endDate: 2022-07-01
 title: "노크"
-description: "시스템 개발부 / 선임 연구원"
+description: "시스템 개발부 / 선임 연구원 (프론트엔드 업무 약 1년 수행)"
 ---
 
 - Java / Spring 기반의 디지털 사이니지 솔루션 유지보수
