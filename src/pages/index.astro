@@ -3,15 +3,19 @@ import { getCollection } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import PostCard from "@/components/Post/PostCard.astro";
 import Tag from "@/components/Common/Tag.astro";
+import ProjectCard from "@/components/Project/ProjectCard.astro";
+import { PROJECTS } from "@/utils/constants/project";
 
 const posts = (await getCollection("post"))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0, 3);
+
+const projects = PROJECTS;
 ---
 
 <BaseLayout>
-  <div class="space-y-8 mt-4">
-    <div class="text-sm leading-6">
+  <div class="space-y-8 mt-4 text-sm leading-6">
+    <div>
       <h1 class="text-xl py-4 font-semibold">
         안녕하세요, <Tag>백민종</Tag>입니다. 👋
       </h1>
@@ -27,18 +31,17 @@ const posts = (await getCollection("post"))
     </div>
 
     <div>
-      <h2 class="py-4 font-semibold">최근 작성한 글</h2>
+      <h2 class="py-4 text-base font-semibold">최근 작성한 글</h2>
       <div class="flex flex-col gap-y-6">
         {posts.map((post) => <PostCard {...post} />)}
       </div>
     </div>
 
-    <!-- <div>
-      <h2 class="py-2 font-semibold">프로젝트</h2>
-      <div>프로젝트 1</div>
-      <div>프로젝트 1</div>
-      <div>프로젝트 1</div>
-      <div>프로젝트 1</div>
-    </div> -->
+    <div>
+      <h2 class="py-4 text-base font-semibold">프로젝트</h2>
+      <div class="grid sm:grid-cols-2 grid-cols-1 gap-6">
+        {projects.map((project) => <ProjectCard {...project} />)}
+      </div>
+    </div>
   </div>
 </BaseLayout>

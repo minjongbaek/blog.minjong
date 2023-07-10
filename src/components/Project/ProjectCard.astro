@@ -1,0 +1,40 @@
+---
+import { Picture } from "@astrojs/image/components";
+import Tag from "@/components/Common/Tag.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  tags: string[];
+  imageURL: string;
+  githubURL: string;
+}
+
+const { title, description, tags, imageURL, githubURL } = Astro.props;
+---
+
+<a href={githubURL} target="_blank" class="group">
+  <div class="rounded-md flex flex-col gap-2">
+    <Picture
+      src={imageURL}
+      alt={title}
+      width={640}
+      height={320}
+      sizes="(max-width: 640px) 100vw, 640px"
+      widths={[320, 640]}
+      aspectRatio={2 / 1}
+      class="rounded-[3px]"
+    />
+    <div>
+      <h3
+        class="text-lg font-semibold group-hover:text-orange-500 transition-colors duration-300"
+      >
+        {title}
+      </h3>
+      <div>{description}</div>
+      <div class="flex gap-x-4 flex-wrap">
+        {tags.map((tag) => <Tag>#{tag}</Tag>)}
+      </div>
+    </div>
+  </div>
+</a>
