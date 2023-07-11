@@ -7,7 +7,7 @@
   }
 
   a {
-    @apply text-gray-600 underline;
+    @apply underline;
   }
 
   @media print {
@@ -23,8 +23,12 @@
         @apply first:mt-1;
       }
     }
-    .print-break {
+    /* .print-break {
       @apply break-inside-avoid;
+    } */
+
+    h1 {
+      @apply text-xl;
     }
   }
 </style>

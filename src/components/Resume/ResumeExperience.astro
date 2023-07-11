@@ -15,7 +15,7 @@ interface Props {
   type: "carrer" | "project" | "activity" | "education";
   Content: AstroComponentFactory;
   title: string;
-  description: string;
+  description?: string;
   skills?: string[];
   github?: string;
   link?: string;
@@ -53,22 +53,22 @@ const {
       <div>{type === "education" ? "졸업" : period}</div>
       {
         github && (
-          <a class="inline-block underline" href={github} target="_blank">
+          <a class="block underline" href={github} target="_blank">
             GitHub 링크
           </a>
         )
       }
       {
         link && (
-          <a class="inline-block underline" href={link} target="_blank">
+          <a class="block underline" href={link} target="_blank">
             배포 링크
           </a>
         )
       }
     </div>
     <div class="space-y-2">
-      <h3 class="text-xl font-semibold">{title}</h3>
-      <p>{description}</p>
+      <h3 class="text-2xl font-semibold">{title}</h3>
+      {description && <p class="text-lg font-semibold">{description}</p>}
       <Content />
       {
         skills && (
