@@ -13,7 +13,7 @@ const post = defineCollection({
 const experience = defineCollection({
   schema: z.object({
     title: z.string(),
-    description: z.string(),
+    description: z.string().optional(),
     startDate: z.date(),
     endDate: z.date().optional(),
     skills: z.array(z.string()).optional(),
