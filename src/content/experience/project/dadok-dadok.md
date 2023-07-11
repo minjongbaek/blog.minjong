@@ -22,6 +22,6 @@ link: "https://dev.dadok.site"
 
 - 키보드 입력시 디바운싱을 통해 이벤트를 제어하여 API 호출 빈도 감소
 
-**Next.js app router로 마이그레이션**
+**Next.js pages -> app router로 마이그레이션**
 
 - 첫 JS 로드 크기 223KB -> 102KB로 감소
