@@ -1,5 +1,9 @@
 <style is:global>
   .markdown {
+    * {
+      @apply text-sm;
+    }
+
     a {
       @apply underline text-orange-500 hover:text-orange-600 transition-colors;
     }
@@ -23,7 +27,7 @@
     }
 
     p {
-      @apply text-sm leading-6;
+      @apply leading-6;
     }
 
     strong {
@@ -36,6 +40,10 @@
 
     ol {
       @apply list-decimal ml-4;
+    }
+
+    li:not(:last-child) {
+      @apply mb-2;
     }
 
     img {
@@ -58,9 +66,6 @@
 
     pre.astro-code {
       @apply px-6 py-4 leading-3 rounded-md border dark:border-gray-700;
-      code {
-        @apply text-sm;
-      }
     }
 
     .twitter-tweet {
@@ -68,7 +73,7 @@
     }
 
     code:not(pre code) {
-      @apply text-orange-500 bg-gray-100 break-all text-sm px-1 py-0.5 mx-0.5 rounded-md whitespace-normal dark:bg-gray-800;
+      @apply text-orange-500 bg-gray-100 break-all px-0.5 py-0.5 mx-0.5 rounded-md whitespace-normal dark:bg-gray-800;
 
       &::before,
       &::after {

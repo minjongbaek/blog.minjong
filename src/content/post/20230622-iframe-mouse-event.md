@@ -3,7 +3,6 @@ date: "2023-06-22"
 title: "마우스 이벤트가 iframe 위에서 사라지는 문제를 해결하기"
 tags: ["JavaScript", "Web"]
 description: "pointer-events: none;"
-thumbnail: "pointer-events: none;"
 ---
 
 최근에 개인 프로젝트를 진행 하면서 라이브러리의 도움 없이 리사이징 이벤트를 구현했다.

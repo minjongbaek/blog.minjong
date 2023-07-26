@@ -3,7 +3,6 @@ date: "2022-08-26"
 title: "드래그 앤 드롭 이벤트"
 tags: ["JavaScript", "Web"]
 description: "Element를 끌어다 놓아보자"
-thumbnail: "드래그 앤 드롭"
 ---
 
 요소를 드래그 앤 드롭해서 요소의 순서를 변경해야할 일이 있었다.

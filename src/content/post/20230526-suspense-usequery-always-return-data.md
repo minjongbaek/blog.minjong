@@ -1,9 +1,8 @@
 ---
 date: "2023-05-26"
-title: "성공 데이터 타입을 반환하는 useQuery 커스텀 훅 작성하기"
+title: "성공 데이터 타입을 보장하는 useQuery 커스텀 훅 작성하기"
 tags: ["TanStack-Query"]
 description: "feat. Suspense & ErrorBoundary"
-thumbnail: "useQuery()"
 ---
 
 최근 진행한 프로젝트에서 [\<Suspense>와 \<ErrorBoundary>를 이용하여 일부 UI를 선언적으로 렌더링](/post/20230419-fetching-data-declartively)하도록 구현했다.
