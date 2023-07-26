@@ -42,6 +42,10 @@
       @apply list-decimal ml-4;
     }
 
+    li:not(:last-child) {
+      @apply mb-2;
+    }
+
     img {
       @apply mx-auto dark:bg-stone-900 dark:shadow-white;
     }
@@ -69,7 +73,7 @@
     }
 
     code:not(pre code) {
-      @apply text-orange-500 bg-gray-100 break-all px-1 py-0.5 mx-0.5 rounded-md whitespace-normal dark:bg-gray-800;
+      @apply text-orange-500 bg-gray-100 break-all px-0.5 py-0.5 mx-0.5 rounded-md whitespace-normal dark:bg-gray-800;
 
       &::before,
       &::after {
