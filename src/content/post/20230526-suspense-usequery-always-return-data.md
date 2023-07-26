@@ -1,6 +1,6 @@
 ---
 date: "2023-05-26"
-title: "성공 데이터 타입을 반환하는 useQuery 커스텀 훅 작성하기"
+title: "성공 데이터 타입을 보장하는 useQuery 커스텀 훅 작성하기"
 tags: ["TanStack-Query"]
 description: "feat. Suspense & ErrorBoundary"
 thumbnail: "useQuery()"
