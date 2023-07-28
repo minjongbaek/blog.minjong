@@ -23,7 +23,7 @@ description: "Next.js에서 라우팅을 app directory로 변경했을 뿐인데
 
 # 리액트 서버 컴포넌트 (RSC / React Server Components)
 
-리액트 서버 컴포넌트는 React 18에서 추가된 기능이다. 리액트 팀의 [소개](https://nextjs.org/docs/getting-started/react-essentials#when-to-use-server-and-client-components)에 따르면 아래와 같은 특징이 있다.
+리액트 서버 컴포넌트는 React 18에서 추가된 기능이다. 리액트의 [RFC](https://github.com/reactjs/rfcs/blob/main/text/0188-server-components.md)를 보면 리액트 팀은 서버 컴포넌트의 특징을 다음과 같이 이야기 하고 있다.
 
 - 서버에서 실행되어 번들 크기가 제로(0)이며,
 - 데이터베이스나 파일 시스템과 같은 서버에 있는 자원에 접근 가능하며,
