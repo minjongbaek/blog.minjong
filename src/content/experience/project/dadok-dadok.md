@@ -26,4 +26,4 @@ link: "https://dev.dadok.site"
 
 - 첫 JS 로드 크기 223KB -> 102KB로 감소
 
-**피드백 수집 후 지속적으로 UI/UX 개선 중**
+**현재 피드백 수집 후 UI/UX 개선 중**
