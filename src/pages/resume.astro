@@ -3,8 +3,8 @@ import BaseHead from "@/components/Common/BaseHead.astro";
 import ResumeExperience from "@/components/Resume/ResumeExperience.astro";
 import ResumeStyles from "@/components/Styles/ResumeStyles.astro";
 import { dateFormat, getPreiod } from "@/utils/helpers/date";
-import { Picture } from "@astrojs/image/components";
 import Icon from "astro-icon";
+import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 
 const { searchParams } = Astro.url;
@@ -44,19 +44,6 @@ const experiences = await Promise.all(
       <div class="space-y-4">
         <h1 class="text-3xl font-bold">백민종</h1>
         <div class="flex justify-between items-top gap-4">
-          {
-            isShowProfileImage && (
-              <div class="w-80">
-                <Picture
-                  src="/images/profile.png"
-                  widths={[600]}
-                  aspectRatio="3:4"
-                  alt="logo"
-                  class="border"
-                />
-              </div>
-            )
-          }
           <div class="space-y-2">
             <p>
               더 좋은 결과물을 만들기 위해 팀원들이 효율적으로 작업할 수 있는

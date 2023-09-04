@@ -1,7 +1,6 @@
 {
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
-    "types": ["@astrojs/image/client"],
     "verbatimModuleSyntax": true,
     "baseUrl": ".",
     "paths": {

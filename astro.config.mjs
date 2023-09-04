@@ -1,8 +1,6 @@
 import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
-import image from "@astrojs/image";
-import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
 import partytown from "@astrojs/partytown";
 import vercelStatic from "@astrojs/vercel/static";
@@ -17,11 +15,7 @@ export default defineConfig({
   trailingSlash: "never",
   integrations: [
     mdx(),
-    react(),
     tailwind(),
-    image({
-      serviceEntryPoint: "@astrojs/image/sharp",
-    }),
     sitemap({
       changefreq: "weekly",
       priority: 0.7,
