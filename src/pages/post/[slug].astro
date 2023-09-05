@@ -1,6 +1,5 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content";
-import MarkdownStyles from "@/components/Styles/MarkdownStyles.astro";
 import Comment from "@/components/Post/PostComment.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Tag from "@/components/Common/Tag.astro";
@@ -27,7 +26,6 @@ const { Content } = await post.render();
 ---
 
 <BaseLayout {...meta}>
-  <MarkdownStyles />
   <div class="flex flex-col items-center gap-4 mt-6 mb-10">
     <h1 class="text-2xl font-bold text-center break-keep">{title}</h1>
     <div class="text-slate-500">{date.toLocaleDateString("ko-KR")}</div>
@@ -36,7 +34,7 @@ const { Content } = await post.render();
       {tags.map((tag) => <Tag>#{tag}</Tag>)}
     </div>
   </div>
-  <div class="markdown space-y-4 mb-8">
+  <div class="markdown-content space-y-4 mb-8">
     <Content />
   </div>
   <Comment />

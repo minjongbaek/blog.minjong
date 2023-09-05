@@ -13,7 +13,7 @@ const meta = {
 ---
 
 <BaseLayout {...meta}>
-  <h2 class="py-4 font-semibold">작성한 글 ({posts.length})</h2>
+  <h2 class="py-4 text-lg font-semibold">작성한 글 ({posts.length})</h2>
   <div class="flex flex-col gap-y-6">
     {posts.map((post) => <PostCard {...post} />)}
   </div>

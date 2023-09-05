@@ -1,0 +1,11 @@
+@import "./markdown.css";
+
+@layer {
+  html {
+    @apply text-slate-700;
+  }
+
+  p {
+    @apply leading-7;
+  }
+}

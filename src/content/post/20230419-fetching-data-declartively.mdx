@@ -11,7 +11,7 @@ description: "Next.js에서 Suspense 삽질 기록"
 
 **Suspense는 렌더링 시간을 예측할 수 없는 상황에 더 나은 사용자 경험을 제공하기 위해 추가된 기능이다.** Suspense를 사용하면 데이터를 불러오는 동안에도 UI를 렌더링 하여 사용자에게 적절한 피드백을 줄 수 있다.
 
-특히 컴포넌트를 선언적으로 렌더링 할 수 있다는 특징이 있는데 여기까지 보면 Suspense가 없어도 isLoading이나 isSuccess 같은 상태 변수를 잘 활용하면 해결할 수 있지 않나?라는 생각이 든다.
+특히 컴포넌트를 선언적으로 렌더링 할 수 있다는 특징이 있는데 여기까지 보면 Suspense가 없어도 `isLoading`이나 `isSuccess` 같은 상태 변수를 잘 활용하면 해결할 수 있지 않나?라는 생각이 든다.
 
 하지만 여러 데이터를 로드하는 경우에는 어떨까?
 
@@ -60,7 +60,7 @@ const MyProfile = () => {
 };
 ```
 
-![기존 프로필 페이지](/images/post/20230419-fetching-data-declartively/profile-page.png)
+![기존 프로필 페이지](/post/20230419-fetching-data-declartively/profile-page.png)
 
 **`1. 사용자의 프로필` `2. 사용자의 책장` `3. 사용자가 참여한 모임`** 3개의 데이터를 모두 불러와야 컴포넌트가 렌더링 될 수 있었고, 하나라도 데이터를 불러오지 못한다면 컴포넌트 전체가 렌더링 되지 않는 문제가 있었다.
 
@@ -229,7 +229,7 @@ const ProfileInfo = ({ userId, children }: ProfileInfoProps) => {
 
 Suspense와 ErrorBoundary를 이용해 컴포넌트의 역할을 명확하게 분리하고 결합도를 낮출 수 있었다.
 
-![리팩터링한 프로필 페이지](/images/post/20230419-fetching-data-declartively/result.gif)
+![리팩터링한 프로필 페이지](/post/20230419-fetching-data-declartively/result.gif)
 
 Suspense를 비동기로 데이터를 불러오는 모든 컴포넌트에 적용하는 것이 아니라, 적재적소에 잘 활용하는게 좋을 것 같다. 여러 데이터를 동시에 불러오거나, 결합도를 낮추고 싶을 때, 복잡도를 낮추고 싶을 때 사용하면 좋은 결과를 낼 수 있을 것 같다.
 

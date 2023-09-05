@@ -2,7 +2,6 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import PostCard from "@/components/Post/PostCard.astro";
-import Tag from "@/components/Common/Tag.astro";
 import ProjectCard from "@/components/Project/ProjectCard.astro";
 import { PROJECTS } from "@/utils/constants/project";
 
@@ -14,31 +13,29 @@ const projects = PROJECTS;
 ---
 
 <BaseLayout>
-  <div class="space-y-8 mt-4 text-sm leading-6">
-    <div>
-      <h1 class="text-xl py-4 font-semibold">
-        안녕하세요, <Tag>백민종</Tag>입니다. 👋
+  <div class="space-y-4 mt-4 leading-6">
+    <div class="space-y-2">
+      <h1 class="text-xl font-semibold">
+        안녕하세요, 저는 <span class="text-orange-500">백민종</span>
+         이에요. 👋
       </h1>
       <p>
-        저는 더 좋은 결과물을 만들기 위해 팀원들이 효율적으로 작업할 수 있는
-        방법을 찾는 것을 좋아해요.
+        동료와 도움을 주고 받는 것을 좋아해요. 제 도움으로 인해 팀의 생산성이
+        향샹되거나 좋은 성과를 만들어 냈을 때 큰 성취감을 느껴요.
       </p>
-      <p>사소한 문제라도 넘어가지 않고 다양한 관점에서 해결하려고 노력해요.</p>
       <p>
         사용자와 서비스를 연결하기 위한 모든 것을 구현하는 프론트엔드 개발에
-        매력을 느끼고 커리어를 전환 중이에요.
+        매력을 느껴 프론트엔드 개발을 시작했어요.
       </p>
     </div>
-
     <div>
-      <h2 class="py-4 text-base font-semibold">최근 작성한 글</h2>
+      <h2 class="py-2 text-lg font-semibold">최근 작성한 글</h2>
       <div class="flex flex-col gap-y-6">
         {posts.map((post) => <PostCard {...post} />)}
       </div>
     </div>
-
     <div>
-      <h2 class="py-4 text-base font-semibold">프로젝트</h2>
+      <h2 class="py-2 text-lg font-semibold">프로젝트</h2>
       <div class="grid sm:grid-cols-2 grid-cols-1 gap-6">
         {projects.map((project) => <ProjectCard {...project} />)}
       </div>
