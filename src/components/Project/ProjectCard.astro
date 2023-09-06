@@ -1,29 +1,16 @@
 ---
 import { Image } from "astro:assets";
 import Tag from "@/components/Common/Tag.astro";
+import type { PROJECTS } from "@/utils/constants/project";
 
-interface Props {
-  title: string;
-  description: string;
-  tags: string[];
-  imageURL: string;
-  githubURL: string;
-}
+type Props = (typeof PROJECTS)[number];
 
 const { title, description, tags, imageURL, githubURL } = Astro.props;
 ---
 
 <a href={githubURL} target="_blank" class="group">
   <div class="rounded-md flex flex-col gap-1">
-    <Image
-      src={imageURL}
-      alt={title}
-      width={320}
-      height={100}
-      decoding="async"
-      loading="lazy"
-      class="rounded-[3px]"
-    />
+    <Image src={imageURL} alt={title} class="rounded-[3px]" />
     <div>
       <h3
         class="text-base font-semibold group-hover:text-orange-500 transition-colors duration-300"
