@@ -3,6 +3,7 @@ date: "2022-10-18"
 title: "클로저는 언제 쓰이는걸까?"
 tags: ["JavaScript"]
 description: "클로저에 대한 정의는 알았다. 그런데 이거... 언제 어떻게 사용되는거지?"
+layout: "@/layouts/PostLayout.astro"
 ---
 
 클로저는 자바스크립트에 관심이 있거나 공부를 해본 사람이라면 한 번쯤 들어봤을 것이다.
@@ -82,7 +83,7 @@ const searchInput = new SearchInput({
 
 아래 사진은 결과물로, 짧은 시간 내에 키 입력이 연속적으로 발생해도 처음 이벤트 하나만 실행된다.
 
-![debounce 결과](/post/20221018-when-to-use-closures/result.gif)
+![debounce 결과](./result.gif)
 
 ## throttle
 

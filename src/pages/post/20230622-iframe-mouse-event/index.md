@@ -3,13 +3,14 @@ date: "2023-06-22"
 title: "마우스 이벤트가 iframe 위에서 사라지는 문제를 해결하기"
 tags: ["JavaScript", "Web"]
 description: "pointer-events: none;"
+layout: "@/layouts/PostLayout.astro"
 ---
 
 최근에 개인 프로젝트를 진행 하면서 라이브러리의 도움 없이 리사이징 이벤트를 구현했다.
 
 마우스 이벤트 핸들러를 `document` 객체에 등록하고 마우스가 이동하면 좌표를 구해서 컴포넌트를 리사이징 하는데, 아래 그림처럼 마우스가 `iframe` 내부에 위치하면 마우스 이벤트가 사라지는 문제가 있었다.
 
-![마우스 이벤트가 iframe 위에서 사라지는 문제](/post/20230622-iframe-mouse-event/resize-move-iframe.gif)
+![마우스 이벤트가 iframe 위에서 사라지는 문제](./resize-move-iframe.gif)
 
 몇 번 삽질을 하고 쉽게 해결할 수 있는 방법을 찾았다.
 
@@ -37,7 +38,7 @@ const handleMouseUp = (event: MouseEvent) => {
 };
 ```
 
-![리사이징 얍얍](/post/20230622-iframe-mouse-event/resize.gif)
+![리사이징 얍얍](./resize.gif)
 
 ## 참고
 

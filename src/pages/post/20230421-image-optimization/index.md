@@ -3,11 +3,12 @@ date: "2023-04-21"
 title: "avif, webp 포맷을 이용한 웹 이미지 최적화"
 tags: ["Web"]
 description: "이미지 페이로드를 줄여보자"
+layout: "@/layouts/PostLayout.astro"
 ---
 
 최근 <a href="/devcourse-final-project-retrospect" target="_blank">디그디그딥 프로젝트</a>의 Lighthouse Performance를 100점으로 개선했다. 이 블로그는 많은 기능을 포함하고 있지 않으니 당연히 100점이 나올거라 예상했지만 95점이 나왔다.
 
-![첫 번째 lighthouse](/post/20230421-image-optimization/first-lighthouse.png)
+![첫 번째 lighthouse](./first-lighthouse.png)
 
 점수를 깎는 가장 큰 원인은 로고 이미지 때문이었는데, 로고를 가져오는데 약 900KB 네트워크 비용이 발생했다. 다양한 네트워크 환경을 고려한다면 확실히 적은 비용은 아니었다.
 
@@ -55,9 +56,9 @@ HTML의 [picture](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/pict
 
 <div className="flex">
 
-![첫 번째 lighthouse](/post/20230421-image-optimization/prev-payload.png)
+![첫 번째 lighthouse](./prev-payload.png)
 
-![첫 번째 lighthouse](/post/20230421-image-optimization/new-payload.png)
+![첫 번째 lighthouse](./new-payload.png)
 
 </div>
 
@@ -86,4 +87,4 @@ img {
 
 코드를 잘 작성하는 것도 중요하지만, 작성한 코드가 더욱 원활한 환경에서 작동할 수 있도록 환경을 구성하는 것도 중요한 것 같다.
 
-![결과](/post/20230421-image-optimization/result.png)
+![결과](./result.png)

@@ -1,13 +1,23 @@
 ---
-import { getCollection } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import PostCard from "@/components/Post/PostCard.astro";
 import ProjectCard from "@/components/Project/ProjectCard.astro";
 import { PROJECTS } from "@/utils/constants/project";
-
-const posts = (await getCollection("post"))
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
-  .slice(0, 3);
+interface Frontmatter {
+  title: string;
+  description: string;
+  tags: string[];
+  date: string;
+}
+const posts = (await Astro.glob("./**/*.md*"))
+  .reverse()
+  .splice(0, 3)
+  .map((post) => {
+    return {
+      slug: post.url.split("/").slice(-1)[0] as string,
+      ...(post.frontmatter as Frontmatter),
+    };
+  });
 
 const projects = PROJECTS;
 ---

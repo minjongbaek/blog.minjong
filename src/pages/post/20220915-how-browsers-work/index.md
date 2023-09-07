@@ -3,6 +3,7 @@ date: "2022-09-15"
 title: "브라우저는 어떻게 동작할까?"
 tags: ["Web", "Computer Science"]
 description: "단순히 '짠!' 하고 나오는 것이 아니었다."
+layout: "@/layouts/PostLayout.astro"
 ---
 
 > 브라우저 주소창에 [blog.minjong.codes](http://blog.minjong.codes)을 입력했을 때 어떤 과정을 거쳐 페이지가 화면에 보이게 되는 걸까?
@@ -35,7 +36,7 @@ description: "단순히 '짠!' 하고 나오는 것이 아니었다."
 
 💡 `visibility: hidden` 는 요소를 보이지 않게 만들지만 레이아웃에 공간을 차지한다.
 
-![렌더트리](/post/20220915-how-browsers-work/render-tree.png)
+![렌더트리](./render-tree.png)
 
 ## **레이아웃**
 

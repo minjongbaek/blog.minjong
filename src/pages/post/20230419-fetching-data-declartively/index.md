@@ -3,6 +3,7 @@ date: "2023-04-19"
 title: "Suspense & ErrorBoundary를 이용한 선언적 렌더링"
 tags: ["React", "Next.js"]
 description: "Next.js에서 Suspense 삽질 기록"
+layout: "@/layouts/PostLayout.astro"
 ---
 
 최근에 Suspense를 도입해서 <a href="/devcourse-final-project-retrospect" target="_blank">다독다독 프로젝트</a>를 리팩터링했다. 그 기록을 남기려고 한다.
@@ -60,7 +61,7 @@ const MyProfile = () => {
 };
 ```
 
-![기존 프로필 페이지](/post/20230419-fetching-data-declartively/profile-page.png)
+![기존 프로필 페이지](./profile-page.png)
 
 **`1. 사용자의 프로필` `2. 사용자의 책장` `3. 사용자가 참여한 모임`** 3개의 데이터를 모두 불러와야 컴포넌트가 렌더링 될 수 있었고, 하나라도 데이터를 불러오지 못한다면 컴포넌트 전체가 렌더링 되지 않는 문제가 있었다.
 
@@ -229,7 +230,7 @@ const ProfileInfo = ({ userId, children }: ProfileInfoProps) => {
 
 Suspense와 ErrorBoundary를 이용해 컴포넌트의 역할을 명확하게 분리하고 결합도를 낮출 수 있었다.
 
-![리팩터링한 프로필 페이지](/post/20230419-fetching-data-declartively/result.gif)
+![리팩터링한 프로필 페이지](./result.gif)
 
 Suspense를 비동기로 데이터를 불러오는 모든 컴포넌트에 적용하는 것이 아니라, 적재적소에 잘 활용하는게 좋을 것 같다. 여러 데이터를 동시에 불러오거나, 결합도를 낮추고 싶을 때, 복잡도를 낮추고 싶을 때 사용하면 좋은 결과를 낼 수 있을 것 같다.
 
