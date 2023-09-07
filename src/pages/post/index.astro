@@ -1,10 +1,19 @@
 ---
 import PostCard from "@/components/Post/PostCard.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { getCollection } from "astro:content";
-const posts = (await getCollection("post")).sort(
-  (a, b) => b.data.date.getTime() - a.data.date.getTime()
-);
+
+interface Frontmatter {
+  title: string;
+  description: string;
+  tags: string[];
+  date: string;
+}
+const posts = (await Astro.glob("./**/*.md*")).reverse().map((post) => {
+  return {
+    slug: post.url.split("/").slice(-1)[0] as string,
+    ...(post.frontmatter as Frontmatter),
+  };
+});
 
 const meta = {
   title: "작성한 글",
