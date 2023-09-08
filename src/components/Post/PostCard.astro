@@ -10,21 +10,19 @@ const {
 } = Astro.props;
 ---
 
-<a href={`/post/${slug}`} class="inline-block text-current group text-sm">
+<a href={`/post/${slug}`} class="inline-block text-current group">
   <div class="flex flex-col w-full gap-1">
     <div class="text-sm text-slate-500">
       {date.toLocaleDateString("ko-KR")}
     </div>
-    <div class="flex gap-4 items-center">
+    <div class="flex gap-4 items-center text-sm">
       {tags.map((tag) => <Tag>#{tag}</Tag>)}
     </div>
-    <div>
-      <p
-        class="inline-block text-lg font-semibold group-hover:text-orange-500 transition-colors duration-300 break-keep"
-      >
-        {title}
-      </p>
-      <p>{description}</p>
+    <div
+      class="inline-block text-lg font-semibold group-hover:text-orange-500 transition-colors duration-300 break-keep"
+    >
+      {title}
     </div>
+    <div class="leading-4">{description}</div>
   </div>
 </a>

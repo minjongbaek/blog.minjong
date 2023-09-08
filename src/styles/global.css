@@ -2,7 +2,7 @@
 
 @layer {
   html {
-    @apply text-slate-700;
+    @apply text-slate-600;
   }
 
   p {

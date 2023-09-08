@@ -1,6 +1,5 @@
 ---
 import { Image } from "astro:assets";
-import Tag from "@/components/Common/Tag.astro";
 import type { PROJECTS } from "@/utils/constants/project";
 
 type Props = (typeof PROJECTS)[number];
@@ -12,15 +11,12 @@ const { title, description, tags, imageURL, githubURL } = Astro.props;
   <div class="rounded-md flex flex-col gap-1">
     <Image src={imageURL} alt={title} class="rounded-[3px]" />
     <div>
-      <h3
-        class="text-base font-semibold group-hover:text-orange-500 transition-colors duration-300"
+      <div
+        class="text-lg font-semibold group-hover:text-orange-500 transition-colors duration-300"
       >
         {title}
-      </h3>
-      <div class="text-sm">{description}</div>
-      <div class="text-sm flex gap-x-4 flex-wrap">
-        {tags.map((tag) => <Tag>#{tag}</Tag>)}
       </div>
+      <div class="break-keep">{description}</div>
     </div>
   </div>
 </a>
