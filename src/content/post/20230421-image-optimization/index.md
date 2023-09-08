@@ -1,5 +1,5 @@
 ---
-date: "2023-04-21"
+date: 2023-04-21
 title: "avif, webp 포맷을 이용한 웹 이미지 최적화"
 tags: ["Web"]
 description: "이미지 페이로드를 줄여보자"

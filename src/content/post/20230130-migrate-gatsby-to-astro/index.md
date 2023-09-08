@@ -1,5 +1,5 @@
 ---
-date: "2023-01-30"
+date: 2023-01-30
 title: "블로그 프레임워크를 Astro로 전환한 후기"
 tags: ["SSG", "Astro", "Gatsby"]
 description: "느린 빌드시간, 이제는 안녕~"

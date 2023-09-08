@@ -1,5 +1,5 @@
 ---
-date: "2022-10-30"
+date: 2022-10-30
 title: "Map과 Object의 차이"
 tags: ["JavaScript"]
 description: "key를 이용해 값을 저장하고, 탐색하고 삭제하는 것은 같다."

@@ -5,7 +5,7 @@ const post = defineCollection({
     title: z.string(),
     description: z.string(),
     tags: z.array(z.string()),
-    date: z.string().transform((str) => new Date(str)),
+    date: z.date(),
   }),
 });
 

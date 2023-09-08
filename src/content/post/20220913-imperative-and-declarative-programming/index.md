@@ -1,5 +1,5 @@
 ---
-date: "2022-09-13"
+date: 2022-09-13
 title: "명령형 프로그래밍과 선언형 프로그래밍"
 tags: ["Programming"]
 description: "'어떻게 하는가'와 '무엇을 하는가'"

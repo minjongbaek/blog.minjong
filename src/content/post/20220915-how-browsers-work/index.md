@@ -1,5 +1,5 @@
 ---
-date: "2022-09-15"
+date: 2022-09-15
 title: "브라우저는 어떻게 동작할까?"
 tags: ["Web", "Computer Science"]
 description: "단순히 '짠!' 하고 나오는 것이 아니었다."

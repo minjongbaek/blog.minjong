@@ -1,5 +1,5 @@
 ---
-date: "2023-06-22"
+date: 2023-06-22
 title: "마우스 이벤트가 iframe 위에서 사라지는 문제를 해결하기"
 tags: ["JavaScript", "Web"]
 description: "pointer-events: none;"
