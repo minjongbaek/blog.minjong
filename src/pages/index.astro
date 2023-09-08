@@ -5,9 +5,7 @@ import ProjectCard from "@/components/Project/ProjectCard.astro";
 import { PROJECTS } from "@/utils/constants/project";
 import { getCollection } from "astro:content";
 
-const posts = (await getCollection("post")).sort(
-  (a, b) => b.data.date.getTime() - a.data.date.getTime()
-);
+const posts = (await getCollection("post")).reverse().slice(0, 3);
 const projects = PROJECTS;
 ---
 

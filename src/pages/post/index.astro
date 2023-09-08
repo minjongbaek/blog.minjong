@@ -3,9 +3,7 @@ import PostCard from "@/components/Post/PostCard.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 
-const posts = (await getCollection("post")).sort(
-  (a, b) => b.data.date.getTime() - a.data.date.getTime()
-);
+const posts = (await getCollection("post")).reverse();
 
 const meta = {
   title: "작성한 글",
