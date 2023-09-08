@@ -3,7 +3,6 @@ date: "2022-09-19"
 title: "호이스팅의 등장 배경"
 tags: ["JavaScript"]
 description: "var는 이제 거의 사용하지 않는데 호이스팅을 알 필요가 있을까?"
-layout: "@/layouts/PostLayout.astro"
 ---
 
 # 호이스팅의 등장 배경

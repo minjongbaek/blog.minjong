@@ -3,7 +3,6 @@ date: "2023-07-26"
 title: "리액트 서버 컴포넌트는 서버 사이드 렌더링과 다르다."
 tags: ["RSC", "SSR", "Next.js"]
 description: "Next.js에서 라우팅을 app directory로 변경했을 뿐인데 번들 사이즈가 2배나 줄었다고?"
-layout: "@/layouts/PostLayout.astro"
 ---
 
 최근에 `Next.js`를 사용하던 프로젝트의 라우팅 방식을 `pages`에서 `app`으로 변경하기만 했는데 JS 번들 사이즈가 절반 가까이 줄어드는 경험을 할 수 있었다.

@@ -1,15 +1,13 @@
 ---
 import Tag from "@/components/Common/Tag.astro";
+import type { CollectionEntry } from "astro:content";
 
-type Props = {
-  slug: string;
-  title: string;
-  description: string;
-  tags: string[];
-  date: string;
-};
+type Props = CollectionEntry<"post">;
 
-const { slug, title, description, date, tags } = Astro.props;
+const {
+  slug,
+  data: { title, description, date, tags },
+} = Astro.props;
 ---
 
 <a href={`/post/${slug}`} class="inline-block text-current group text-sm">
