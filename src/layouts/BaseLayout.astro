@@ -3,18 +3,20 @@ import BaseHead from "@/components/Common/BaseHead.astro";
 import Footer from "@/components/Common/Footer.astro";
 import Header from "@/components/Common/Header.astro";
 import PartytownScripts from "@/components/Scripts/PartytownScripts.astro";
+import { ViewTransitions } from "astro:transitions";
 import type { Meta } from "@/types/meta";
-import '@/styles/global.css'
+import "@/styles/global.css";
 
 type Props = Meta;
 
 const meta = Astro.props;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
   <head>
     <BaseHead {...meta} />
+    <ViewTransitions />
     <PartytownScripts />
     <style>
       body {
