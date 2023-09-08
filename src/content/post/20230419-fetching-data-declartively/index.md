@@ -1,9 +1,8 @@
 ---
-date: "2023-04-19"
+date: 2023-04-19
 title: "Suspense & ErrorBoundary를 이용한 선언적 렌더링"
 tags: ["React", "Next.js"]
 description: "Next.js에서 Suspense 삽질 기록"
-layout: "@/layouts/PostLayout.astro"
 ---
 
 최근에 Suspense를 도입해서 <a href="/devcourse-final-project-retrospect" target="_blank">다독다독 프로젝트</a>를 리팩터링했다. 그 기록을 남기려고 한다.

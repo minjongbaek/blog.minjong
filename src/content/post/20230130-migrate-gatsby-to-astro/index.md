@@ -1,9 +1,8 @@
 ---
-date: "2023-01-30"
+date: 2023-01-30
 title: "블로그 프레임워크를 Astro로 전환한 후기"
 tags: ["SSG", "Astro", "Gatsby"]
 description: "느린 빌드시간, 이제는 안녕~"
-layout: "@/layouts/PostLayout.astro"
 ---
 
 `Gatsby`로 개발했던 블로그를 `Astro`로 전환했다. 내가 왜 마이그레이션을 했고 무엇을 느꼈는지 작성하려한다.

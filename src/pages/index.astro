@@ -3,22 +3,9 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import PostCard from "@/components/Post/PostCard.astro";
 import ProjectCard from "@/components/Project/ProjectCard.astro";
 import { PROJECTS } from "@/utils/constants/project";
-interface Frontmatter {
-  title: string;
-  description: string;
-  tags: string[];
-  date: string;
-}
-const posts = (await Astro.glob("./**/*.md*"))
-  .reverse()
-  .splice(0, 3)
-  .map((post) => {
-    return {
-      slug: post.url.split("/").slice(-1)[0] as string,
-      ...(post.frontmatter as Frontmatter),
-    };
-  });
+import { getCollection } from "astro:content";
 
+const posts = (await getCollection("post")).reverse().slice(0, 3);
 const projects = PROJECTS;
 ---
 
