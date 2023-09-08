@@ -3,9 +3,9 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import PostCard from "@/components/Post/PostCard.astro";
 import ProjectCard from "@/components/Project/ProjectCard.astro";
 import { PROJECTS } from "@/utils/constants/project";
-import { getCollection } from "astro:content";
+import { getPosts } from "@/utils/post";
 
-const posts = (await getCollection("post")).reverse().slice(0, 3);
+const posts = await getPosts(3);
 const projects = PROJECTS;
 ---
 

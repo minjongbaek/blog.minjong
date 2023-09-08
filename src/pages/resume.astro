@@ -4,16 +4,10 @@ import ResumeExperience from "@/components/Resume/ResumeExperience.astro";
 import ResumeStyles from "@/components/Styles/ResumeStyles.astro";
 import { dateFormat, getPreiod } from "@/utils/helpers/date";
 import Icon from "astro-icon";
-import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 
-const { searchParams } = Astro.url;
-const isShowProfileImage = searchParams.get("profile") === "y" ? true : false;
-
 const experiences = await Promise.all(
-  (
-    await getCollection("experience")
-  )
+  (await getCollection("experience"))
     .sort((a, b) => b.data.startDate.valueOf() - a.data.startDate.valueOf())
     .map(async ({ data, slug, render }) => ({
       ...data,
@@ -30,7 +24,7 @@ const experiences = await Promise.all(
 );
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
   <head>
     <BaseHead

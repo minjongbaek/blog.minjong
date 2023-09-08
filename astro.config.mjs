@@ -3,7 +3,7 @@ import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import partytown from "@astrojs/partytown";
-import vercelStatic from "@astrojs/vercel/static";
+import vercel from "@astrojs/vercel/static";
 
 const site = import.meta.env.DEV
   ? "http://localhost:8000"
@@ -33,5 +33,7 @@ export default defineConfig({
     },
   },
   output: "static",
-  adapter: vercelStatic(),
+  adapter: vercel({
+    edgeMiddleware: true,
+  }),
 });
