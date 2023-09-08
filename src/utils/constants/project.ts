@@ -14,7 +14,7 @@ export const PROJECTS = [
   },
   {
     title: "디그디그딥",
-    description: "커뮤니케이션을 통한 학습을 제공하는 개발자 전용 SNS",
+    description: "커뮤니케이션을 통한 학습을 제공하는 개발자 전용 플랫폼",
     tags: ["TypeScript", "React", "Recoil", "Styled-Components"],
     imageURL: digdigProjectImage,
     githubURL: "https://github.com/prgrms-fe-devcourse/FEDC3_DigDigDeep_Yuri",
