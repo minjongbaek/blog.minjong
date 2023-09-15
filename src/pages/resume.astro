@@ -1,14 +1,15 @@
 ---
 import BaseHead from "@/components/Common/BaseHead.astro";
 import ResumeExperience from "@/components/Resume/ResumeExperience.astro";
-import ResumeStyles from "@/components/Styles/ResumeStyles.astro";
 import { dateFormat, getPreiod } from "@/utils/helpers/date";
-import Icon from "astro-icon";
 import { getCollection } from "astro:content";
+import "@/styles/resume.css";
+import GithubIcon from "@/components/Common/Icon/GithubIcon.astro";
+import LinkIcon from "@/components/Common/Icon/LinkIcon.astro";
 
 const experiences = await Promise.all(
   (await getCollection("experience"))
-    .sort((a, b) => b.data.startDate.valueOf() - a.data.startDate.valueOf())
+    .sort((a, b) => b.data.startDate.getTime() - a.data.startDate.getTime())
     .map(async ({ data, slug, render }) => ({
       ...data,
       startDate: dateFormat(data.startDate),
@@ -29,12 +30,16 @@ const experiences = await Promise.all(
   <head>
     <BaseHead
       title="백민종 | 이력서"
-      description="안녕하세요, 웹 프론트엔드 개발자로 커리어를 전환 중인 백민종입니다."
+      description="안녕하세요, 웹 프론트엔드 개발자 백민종입니다."
     />
   </head>
   <body>
-    <ResumeStyles />
-    <main class="container mx-auto p-12 max-w-3xl print space-y-6 break-keep">
+    <main
+      class="container mx-auto px-12 py-8 max-w-3xl print space-y-6 break-keep"
+    >
+      <div class="no-print text-sm italic text-center text-slate-400">
+        이력서는 A4 용지에 최적화되어있습니다.
+      </div>
       <div class="space-y-4">
         <h1 class="text-3xl font-bold">백민종</h1>
         <div class="flex justify-between items-top gap-4">
@@ -45,28 +50,21 @@ const experiences = await Promise.all(
               찾는 것을 좋아합니다.
             </p>
             <p>
-              jQuery로 작성된 코드를 Vue.js로 마이그레이션 하면서 처음으로
-              프론트엔드 개발에 관심을 두게 되었고, 사용자와 서비스를 연결하기
-              위한 모든 것을 구현하는 프론트엔드 개발에 재미를 느꼈습니다.
-            </p>
-            <p>
-              프레임워크를 이용해 무언가를 만들어 낼 수는 있지만, 근간이 되는
-              JavaScript 지식이 부족하다는 것을 깨닫고 약 5개월간의 교육
-              프로그램에 참여했습니다. 팀 프로젝트를 통해 협업을 경험하고, 코드
-              리뷰와 스터디 등을 통해 동료들과 함께 성장했습니다.
+              사용자와 서비스를 연결하기 위한 모든 것을 구현하는 프론트엔드
+              개발에 매력을 느끼고 커리어를 이어나가고 있습니다.
             </p>
             <p>
               단순히 기능 구현을 잘하고 서비스를 잘 만드는 것을 넘어서, 지속
               가능한 개발자가 되어 서비스를 함께 성공시키고 싶습니다.
             </p>
-            <div class="flex gap-1">
-              <Icon name="github" class="w-4" />
+            <div class="flex gap-1.5 items-center">
+              <GithubIcon class="w-4 h-4" />
               <a href="https://github.com/minjongbaek" target="_blank">
                 https://github.com/minjongbaek
               </a>
             </div>
-            <div class="flex gap-1">
-              <Icon name="link" class="w-4" />
+            <div class="flex gap-1.5 items-center">
+              <LinkIcon class="w-4 h-4" />
               <a href="https://blog.minjong.codes" target="_blank">
                 https://blog.minjong.codes
               </a>
