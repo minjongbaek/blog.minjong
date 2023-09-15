@@ -1,10 +1,11 @@
 ---
 import BaseHead from "@/components/Common/BaseHead.astro";
 import ResumeExperience from "@/components/Resume/ResumeExperience.astro";
-import "@/styles/resume.css";
 import { dateFormat, getPreiod } from "@/utils/helpers/date";
-import Icon from "astro-icon";
 import { getCollection } from "astro:content";
+import "@/styles/resume.css";
+import GithubIcon from "@/components/Common/Icon/GithubIcon.astro";
+import LinkIcon from "@/components/Common/Icon/LinkIcon.astro";
 
 const experiences = await Promise.all(
   (await getCollection("experience"))
@@ -49,23 +50,17 @@ const experiences = await Promise.all(
               위한 모든 것을 구현하는 프론트엔드 개발에 재미를 느꼈습니다.
             </p>
             <p>
-              프레임워크를 이용해 무언가를 만들어 낼 수는 있지만, 근간이 되는
-              JavaScript 지식이 부족하다는 것을 깨닫고 약 5개월간의 교육
-              프로그램에 참여했습니다. 팀 프로젝트를 통해 협업을 경험하고, 코드
-              리뷰와 스터디 등을 통해 동료들과 함께 성장했습니다.
-            </p>
-            <p>
               단순히 기능 구현을 잘하고 서비스를 잘 만드는 것을 넘어서, 지속
               가능한 개발자가 되어 서비스를 함께 성공시키고 싶습니다.
             </p>
-            <div class="flex gap-1">
-              <Icon name="github" class="w-4" />
+            <div class="flex gap-1.5 items-center">
+              <GithubIcon class="w-4 h-4" />
               <a href="https://github.com/minjongbaek" target="_blank">
                 https://github.com/minjongbaek
               </a>
             </div>
-            <div class="flex gap-1">
-              <Icon name="link" class="w-4" />
+            <div class="flex gap-1.5 items-center">
+              <LinkIcon class="w-4 h-4" />
               <a href="https://blog.minjong.codes" target="_blank">
                 https://blog.minjong.codes
               </a>
