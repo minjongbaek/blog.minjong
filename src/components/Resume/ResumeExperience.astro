@@ -26,7 +26,7 @@ const {
   title,
   startDate,
   endDate,
-  period,
+  period: _period,
   type,
   description,
   skills,
@@ -35,6 +35,12 @@ const {
   link,
   isFirst,
 } = Astro.props;
+
+const period = (() => {
+  if (type === "education") return "졸업";
+  if (type === "carrer" && _period === "진행 중") return "재직 중";
+  return _period;
+})();
 ---
 
 <div class="print-break">
