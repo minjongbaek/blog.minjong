@@ -1,5 +1,6 @@
 ---
 startDate: 2023-02-01
+endDate: 2023-05-01
 title: "다독다독"
 description: "책장으로 책에 대한 인사이트를 공유하고 소통하는 독서 소셜 플랫폼"
 skills: ["TypeScript", "Next.js", "React", "React-Query", "Recoil", "Chakra UI"]
@@ -26,4 +27,4 @@ link: "https://dev.dadok.site"
 
 - 첫 JS 로드 크기 223KB -> 102KB로 감소
 
-**현재 피드백 수집 후 UI/UX 개선 중**
+**지속적으로 UI/UX 개선 중**
