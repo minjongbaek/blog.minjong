@@ -1,7 +1,7 @@
 ---
 import BaseHead from "@/components/Common/BaseHead.astro";
 import ResumeExperience from "@/components/Resume/ResumeExperience.astro";
-import ResumeStyles from "@/components/Styles/ResumeStyles.astro";
+import "@/styles/resume.css";
 import { dateFormat, getPreiod } from "@/utils/helpers/date";
 import Icon from "astro-icon";
 import { getCollection } from "astro:content";
@@ -29,11 +29,10 @@ const experiences = await Promise.all(
   <head>
     <BaseHead
       title="백민종 | 이력서"
-      description="안녕하세요, 웹 프론트엔드 개발자로 커리어를 전환 중인 백민종입니다."
+      description="안녕하세요, 웹 프론트엔드 개발자 백민종입니다."
     />
   </head>
   <body>
-    <ResumeStyles />
     <main class="container mx-auto p-12 max-w-3xl print space-y-6 break-keep">
       <div class="space-y-4">
         <h1 class="text-3xl font-bold">백민종</h1>
