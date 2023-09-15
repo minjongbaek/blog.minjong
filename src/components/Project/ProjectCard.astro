@@ -4,7 +4,7 @@ import type { PROJECTS } from "@/utils/constants/project";
 
 type Props = (typeof PROJECTS)[number];
 
-const { title, description, tags, imageURL, githubURL } = Astro.props;
+const { title, description, imageURL, githubURL } = Astro.props;
 ---
 
 <a href={githubURL} target="_blank" class="group">
