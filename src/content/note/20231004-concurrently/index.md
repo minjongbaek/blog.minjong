@@ -1,8 +1,25 @@
 ---
-title: "concurrently로 여러 node 명령어를 동시에 실행하기"
-description: "concurrently로 여러 node 명령어를 동시에 실행하기"
+title: "concurrently로 여러 명령어를 동시에 실행하기"
+description: "concurrently로 여러 서버 띄우기"
 date: 2023-10-04
 tags: ["concurrently"]
 ---
 
-여러 node 명령어를 실행해보자.
+[concurrently](https://www.npmjs.com/package/concurrently) 패키지를 통해 여러 명령어를 동시에 실행할 수 있다.
+
+```bash
+npm i -g concurrently
+```
+
+```bash
+concurrently [명령어_1] [명령어_2] ...
+```
+
+만약 여러개의 node 개발 서버를 명령줄로 띄워야 하는 경우 스크립트를 작성해두면 편하다.
+
+```bash
+concurrently
+  "npm run serve --prefix=./project1"
+  "npm run serve --prefix=./project2"
+  "npm run serve --prefix=./project3"
+```
