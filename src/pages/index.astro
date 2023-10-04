@@ -4,13 +4,16 @@ import PostCard from "@/components/Post/PostCard.astro";
 import ProjectCard from "@/components/Project/ProjectCard.astro";
 import { PROJECTS } from "@/utils/constants/project";
 import { getContents } from "@/utils/helpers/content";
+import NoteCard from "@/components/Note/NoteCard.astro";
 
 const posts = await getContents({ collectionName: "post", count: 3 });
+const notes = await getContents({ collectionName: "note", count: 3 });
 const projects = PROJECTS;
 ---
 
 <BaseLayout>
   <div class="space-y-8 mt-4 leading-6">
+    <hr />
     <div class="space-y-2">
       <h1 class="text-xl font-semibold">
         안녕하세요, 저는 <span class="text-orange-500">백민종</span>
@@ -24,18 +27,21 @@ const projects = PROJECTS;
         사용자와 서비스를 연결하기 위한 모든 것을 구현하는 프론트엔드 개발에 매력을 느껴 프론트엔드 개발을 시작했어요.
       </p>
     </div>
+    <hr />
     <div>
       <h2 class="py-2 text-lg font-semibold">최근 작성한 메모</h2>
       <div class="flex flex-col gap-y-6">
-        <!-- {posts.map((post) => <PostCard {...post} />)} -->
+        {notes.map((note) => <NoteCard {...note} />)}
       </div>
     </div>
+    <hr />
     <div>
       <h2 class="py-2 text-lg font-semibold">최근 작성한 글</h2>
       <div class="flex flex-col gap-y-6">
         {posts.map((post) => <PostCard {...post} />)}
       </div>
     </div>
+    <hr />
     <div>
       <h2 class="py-2 text-lg font-semibold">프로젝트</h2>
       <div class="grid sm:grid-cols-2 grid-cols-1 gap-6">

@@ -1,0 +1,19 @@
+---
+import NoteCard from "@/components/Note/NoteCard.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getContents } from "@/utils/helpers/content";
+
+const notes = await getContents({ collectionName: "note" });
+
+const meta = {
+  title: "작성한 메모",
+  description: "공유하고 싶은 기술 및 경험 등을 짧게 작성한 글들이에요.",
+};
+---
+
+<BaseLayout {...meta}>
+  <h2 class="py-4 text-lg font-semibold">작성한 메모 ({notes.length})</h2>
+  <div class="flex flex-col gap-y-6">
+    {notes.map((note) => <NoteCard {...note} />)}
+  </div>
+</BaseLayout>
