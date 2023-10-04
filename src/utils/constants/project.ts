@@ -1,8 +1,4 @@
-import {
-  dadokProjectImage,
-  digdigProjectImage,
-  blogProjectImage,
-} from "@assets/project";
+import { dadokProjectImage, digdigProjectImage, blogProjectImage } from "@assets/project";
 
 export const PROJECTS = [
   {

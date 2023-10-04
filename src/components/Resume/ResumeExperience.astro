@@ -44,13 +44,7 @@ const period = (() => {
 ---
 
 <div class="print-break">
-  {
-    isFirst && (
-      <h2 class="text-2xl my-2 font-semibold pb-1 border-b">
-        {experienceType[type]}
-      </h2>
-    )
-  }
+  {isFirst && <h2 class="text-2xl my-2 font-semibold pb-1 border-b">{experienceType[type]}</h2>}
   <div class="flex gap-4">
     <div class="w-40 flex-shrink-0 text-md text-gray-600 space-y-1">
       <div>
@@ -80,9 +74,7 @@ const period = (() => {
         skills && (
           <div class="flex gap-1">
             {skills.map((skill) => (
-              <span class="px-1 py-0.5 text-xs border border-slate-300 rounded-lg">
-                {skill}
-              </span>
+              <span class="px-1 py-0.5 text-xs border border-slate-300 rounded-lg">{skill}</span>
             ))}
           </div>
         )

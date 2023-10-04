@@ -18,6 +18,7 @@ concurrently [명령어_1] [명령어_2] ...
 만약 여러개의 node 개발 서버를 명령줄로 띄워야 하는 경우 스크립트를 작성해두면 편하다.
 
 ```bash
+# run-multiple-server.sh
 concurrently
   "npm run serve --prefix=./project1"
   "npm run serve --prefix=./project2"
