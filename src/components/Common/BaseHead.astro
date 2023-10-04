@@ -4,9 +4,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "@/utils/constants/site";
 
 type Props = Meta;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site)
-  .toString()
-  .replace(/\/+$/, "");
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString().replace(/\/+$/, "");
 
 const { title: _title, description = SITE_DESCRIPTION, keywords } = Astro.props;
 

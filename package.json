@@ -9,7 +9,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "lint": "eslint './src/**/*.{ts,tsx,astro}'"
+    "lint": "eslint './src/**/*.{ts,tsx,astro}'",
+    "format": "prettier --write './src/**/*.{ts,tsx,astro}' --plugin=prettier-plugin-astro"
   },
   "dependencies": {
     "@astrojs/mdx": "^1.0.0",
@@ -34,6 +35,8 @@
     "eslint": "^8.40.0",
     "eslint-plugin-astro": "^0.29.0",
     "postcss": "^8.4.29",
+    "prettier": "^3.0.3",
+    "prettier-plugin-astro": "^0.12.0",
     "typescript": "^5.2.2"
   }
 }

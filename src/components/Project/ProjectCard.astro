@@ -11,9 +11,7 @@ const { title, description, imageURL, githubURL } = Astro.props;
   <div class="rounded-md flex flex-col gap-1">
     <Image src={imageURL} alt={title} class="rounded-[3px]" />
     <div>
-      <div
-        class="text-lg font-semibold group-hover:text-orange-500 transition-colors duration-300"
-      >
+      <div class="text-lg font-semibold group-hover:text-orange-500 transition-colors duration-300">
         {title}
       </div>
       <div class="break-keep">{description}</div>

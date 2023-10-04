@@ -6,11 +6,8 @@ export const dateFormat = (date: Date) => {
 
 export const getPreiod = (startDate: Date, endDate?: Date) => {
   if (!endDate) return "진행 중";
-  const years =
-    (Number(endDate.getFullYear()) - Number(startDate.getFullYear())) * 12;
-  const months = Math.abs(
-    Number(endDate.getMonth()) - Number(startDate.getMonth())
-  );
+  const years = (Number(endDate.getFullYear()) - Number(startDate.getFullYear())) * 12;
+  const months = Math.abs(Number(endDate.getMonth()) - Number(startDate.getMonth()));
 
   const periodMonth = Math.abs(years - months) % 12;
   const periodYear = Math.floor(Math.abs(years - months) / 12);
