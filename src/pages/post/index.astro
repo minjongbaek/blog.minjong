@@ -1,9 +1,9 @@
 ---
 import PostCard from "@/components/Post/PostCard.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { getPosts } from "@/utils/post";
+import { getContents } from "@/utils/helpers/content";
 
-const posts = await getPosts();
+const posts = await getContents({ collectionName: "post" });
 
 const meta = {
   title: "작성한 글",
