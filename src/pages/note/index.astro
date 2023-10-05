@@ -1,4 +1,5 @@
 ---
+import ContentCard from "@/components/Content/ContentCard.astro";
 import NoteCard from "@/components/Note/NoteCard.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import ContentListLayout from "@/layouts/ContentListLayout.astro";
@@ -15,6 +16,6 @@ const meta = {
 <BaseLayout {...meta}>
   <ContentListLayout>
     <text slot="title">작성한 메모 ({notes.length})</text>
-    {notes.map((note) => <NoteCard slot="content-item" {...note} />)}
+    {notes.map((note) => <ContentCard slot="content-item" collectionName="note" {...note} />)}
   </ContentListLayout>
 </BaseLayout>

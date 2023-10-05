@@ -5,6 +5,7 @@ import ProjectCard from "@/components/Project/ProjectCard.astro";
 import { PROJECTS } from "@/utils/constants/project";
 import { getContents } from "@/utils/helpers/content";
 import NoteCard from "@/components/Note/NoteCard.astro";
+import ContentCard from "@/components/Content/ContentCard.astro";
 
 const posts = await getContents({ collectionName: "post", count: 3 });
 const notes = await getContents({ collectionName: "note", count: 3 });
@@ -31,14 +32,14 @@ const projects = PROJECTS;
     <div>
       <h2 class="py-2 text-lg font-semibold">최근 작성한 메모</h2>
       <div class="flex flex-col gap-y-6">
-        {notes.map((note) => <NoteCard {...note} />)}
+        {notes.map((note) => <ContentCard collectionName="note" {...note} />)}
       </div>
     </div>
     <hr />
     <div>
       <h2 class="py-2 text-lg font-semibold">최근 작성한 글</h2>
       <div class="flex flex-col gap-y-6">
-        {posts.map((post) => <PostCard {...post} />)}
+        {posts.map((post) => <ContentCard collectionName="post" {...post} />)}
       </div>
     </div>
     <hr />
