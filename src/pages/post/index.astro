@@ -2,7 +2,7 @@
 import ContentCard from "@/components/Content/ContentCard.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import ContentListLayout from "@/layouts/ContentListLayout.astro";
-import { getContents } from "@/utils/helpers/content";
+import { getContents } from "@/utils/content";
 
 const posts = await getContents({ collectionName: "post" });
 
