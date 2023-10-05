@@ -1,6 +1,7 @@
 ---
 import PostCard from "@/components/Post/PostCard.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import ContentListLayout from "@/layouts/ContentListLayout.astro";
 import { getContents } from "@/utils/helpers/content";
 
 const posts = await getContents({ collectionName: "post" });
@@ -12,8 +13,8 @@ const meta = {
 ---
 
 <BaseLayout {...meta}>
-  <h2 class="py-4 text-lg font-semibold">작성한 글 ({posts.length})</h2>
-  <div class="flex flex-col gap-y-6">
-    {posts.map((post) => <PostCard {...post} />)}
-  </div>
+  <ContentListLayout>
+    <text slot="title">작성한 메모 ({posts.length})</text>
+    {posts.map((post) => <PostCard slot="content-item" {...post} />)}
+  </ContentListLayout>
 </BaseLayout>
