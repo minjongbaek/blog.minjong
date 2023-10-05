@@ -4,10 +4,9 @@ import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import partytown from "@astrojs/partytown";
 import vercel from "@astrojs/vercel/static";
+import { SITE_URL } from "./src/config";
 
-const site = import.meta.env.DEV
-  ? "http://localhost:8000"
-  : "https://blog.minjong.codes";
+const site = import.meta.env.DEV ? "http://localhost:8000" : SITE_URL;
 
 // https://astro.build/config
 export default defineConfig({
