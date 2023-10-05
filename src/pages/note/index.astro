@@ -1,7 +1,8 @@
 ---
-import NoteCard from "@/components/Note/NoteCard.astro";
+import ContentCard from "@/components/Content/ContentCard.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { getContents } from "@/utils/helpers/content";
+import ContentListLayout from "@/layouts/ContentListLayout.astro";
+import { getContents } from "@/utils/content";
 
 const notes = await getContents({ collectionName: "note" });
 
@@ -12,8 +13,8 @@ const meta = {
 ---
 
 <BaseLayout {...meta}>
-  <h2 class="py-4 text-lg font-semibold">작성한 메모 ({notes.length})</h2>
-  <div class="flex flex-col gap-y-6">
-    {notes.map((note) => <NoteCard {...note} />)}
-  </div>
+  <ContentListLayout>
+    <text slot="title">작성한 메모 ({notes.length})</text>
+    {notes.map((note) => <ContentCard slot="content-item" collectionName="note" {...note} />)}
+  </ContentListLayout>
 </BaseLayout>

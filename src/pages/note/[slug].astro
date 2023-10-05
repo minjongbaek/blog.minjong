@@ -2,8 +2,8 @@
 import type { CollectionEntry } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Tag from "@/components/Common/Tag.astro";
-import { getContents } from "@/utils/helpers/content";
-import { SITE_URL } from "@/utils/constants/site";
+import { getContents } from "@/utils/content";
+import ContentDetailLayout from "@/layouts/ContentDetailLayout.astro";
 
 export async function getStaticPaths() {
   const notes = await getContents({ collectionName: "note" });
@@ -27,27 +27,7 @@ const { Content } = await note.render();
 ---
 
 <BaseLayout {...meta}>
-  <div class="flex flex-col items-center gap-4 mt-6 mb-10">
-    <h1 class="text-2xl font-bold text-center break-keep">{title}</h1>
-    <div class="text-slate-500">{date.toLocaleDateString("ko-KR")}</div>
-
-    <div class="flex gap-4">
-      {tags.map((tag) => <Tag>#{tag}</Tag>)}
-    </div>
-  </div>
-  <div class="markdown-content space-y-4 mb-8">
-    <Content />
-    <hr />
-    <p class="text-sm italic text-slate-500">
-      잘못된 내용이나 표현, 혹은 궁금한 내용이 있다면{" "}
-      <a
-        target="_blank"
-        href={`https://github.com/minjongbaek/blog.minjong/issues/new?;title=\`${title}\` 글에 대한 논의&amp;assignees=minjongbaek&amp;body=${SITE_URL}/post/${note.slug}`}
-        >여기</a
-      >
-       를 클릭해서 이슈를 남겨주세요.
-      <br />
-       감사합니다.
-    </p>
-  </div>
+  <ContentDetailLayout title={title} date={date} slug={note.slug}>
+    <Content slot="content" />
+  </ContentDetailLayout>
 </BaseLayout>

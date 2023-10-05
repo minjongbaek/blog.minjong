@@ -1,8 +1,8 @@
-# [Blog.minjongdev](https://blog.minjongdev.com)
+# [Blog.minjong](https://blog.minjong.codes)
 
-[Astro](https://astro.build/)를 이용하여 개발한 블로그입니다.
+[Astro](https://astro.build) 프레임워크로 개발한 블로그입니다.
 
-[블로그 프레임워크를 Astro로 전환한 후기](https://blog.minjongdev.com/post/20230130-migrate-gatsby-to-astro)
+공유하고 싶은 기술이나 경험을 기록하고 있습니다.
 
 ## Stack
 
