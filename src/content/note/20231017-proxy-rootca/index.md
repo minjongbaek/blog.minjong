@@ -9,7 +9,7 @@ tags: ["node", "proxy", "UNABLE_TO_GET_ISSUER_CERT_LOCALLY"]
 
 node에서 요청을 보내야 하는 프록시 서버와 최상위 인증서 파일을 설정한다.
 
-```
+```bash
 npm config set https-proxy [https://proxy-server-host]
 npm config set http-proxy [http://proxy-server-host]
 npm config set cafile [path-to-my-cert.pem]
