@@ -3,6 +3,7 @@ title: "proxy 환경에서 UNABLE_TO_GET_ISSUER_CERT_LOCALLY 에러 해결하기
 description: "proxy 환경의 node 클라이언트에서 https로 요청을 보낼 때 발생하는 UNABLE_TO_GET_ISSUER_CERT_LOCALLY 에러 해결하기"
 date: 2023-10-21
 tags: ["node", "proxy", "UNABLE_TO_GET_ISSUER_CERT_LOCALLY"]
+draft: true
 ---
 
 # 방법 1

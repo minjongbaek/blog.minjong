@@ -12,6 +12,7 @@ export const getContents = async <T extends CollectionName>({
   count = 0,
 }: GetContentsParameters<T>): Promise<CollectionEntry<T>[]> => {
   return (await getCollection(collectionName))
+    .filter((content) => !content.data.draft)
     .slice(count * -1)
     .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 };

@@ -3,6 +3,7 @@ startDate: 2019-12-01
 endDate: 2022-07-01
 title: "노크"
 description: "시스템 개발부 / 선임 연구원"
+skills: ["Vue.js", "jQuery"]
 ---
 
 - Java / Spring 기반의 디지털 사이니지 솔루션 백엔드 개발 및 유지보수
