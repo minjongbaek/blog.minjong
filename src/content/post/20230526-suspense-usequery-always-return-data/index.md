@@ -80,7 +80,7 @@ const Contents = () => {
 
 단순히 리액트의 개념을 확장한 것으로 다른 패키지에 의존적이도 않고, 최근에는 TasStack-Query의 공식 문서에도 추가되었으니 비슷한 고민을 하고 있다면 사용해 보면 좋을 것 같다.
 
-- [https://suspensive.org](<[suspensive](https://suspensive.org)>)
+- <a href="https://github.com/suspensive" target="_blank">Suspensive</a>
 
 <div>
 
