@@ -3,7 +3,6 @@ import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import partytown from "@astrojs/partytown";
-import vercel from "@astrojs/vercel/static";
 import { SITE_URL } from "./src/config";
 
 const site = import.meta.env.DEV ? "http://localhost:8000" : SITE_URL;
@@ -11,15 +10,10 @@ const site = import.meta.env.DEV ? "http://localhost:8000" : SITE_URL;
 // https://astro.build/config
 export default defineConfig({
   site,
-  trailingSlash: "never",
   integrations: [
     mdx(),
     tailwind(),
-    sitemap({
-      changefreq: "weekly",
-      priority: 0.7,
-      filter: (page) => !page.includes("/resume"),
-    }),
+    sitemap(),
     partytown({
       config: {
         forward: ["dataLayer.push"],
@@ -32,7 +26,4 @@ export default defineConfig({
     },
   },
   output: "static",
-  adapter: vercel({
-    edgeMiddleware: true,
-  }),
 });
