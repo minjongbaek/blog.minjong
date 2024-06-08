@@ -1,40 +1,26 @@
 {
-  "name": "blog.minjongdev",
-  "type": "module",
-  "version": "1.1.0",
+  "name": "blog.minjong",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "astro dev --port 8000",
-    "start": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro",
-    "lint": "eslint './src/**/*.{ts,tsx,astro}'",
-    "format": "prettier --write './src/**/*.{ts,tsx,astro}' --plugin=prettier-plugin-astro"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
-    "@astrojs/mdx": "^2.1.1",
-    "@astrojs/partytown": "^2.0.4",
-    "@astrojs/sitemap": "^3.1.1",
-    "@astrojs/tailwind": "^5.1.0",
-    "@tailwindcss/nesting": "^0.0.0-insiders.565cd3e",
-    "@types/react": "^18.0.27",
-    "@types/react-dom": "^18.0.10",
-    "astro": "^4.4.10",
-    "postcss-nesting": "^12.0.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "sharp": "^0.32.1",
-    "tailwindcss": "^3.2.4"
+    "react": "^18",
+    "react-dom": "^18",
+    "next": "14.2.3"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^6.5.0",
-    "@typescript-eslint/parser": "^6.5.0",
-    "eslint": "^8.40.0",
-    "eslint-plugin-astro": "^0.29.0",
-    "postcss": "^8.4.29",
-    "prettier": "^3.0.3",
-    "prettier-plugin-astro": "^0.12.0",
-    "typescript": "^5.2.2"
+    "typescript": "^5",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.3"
   }
 }
