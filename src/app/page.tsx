@@ -1,4 +1,50 @@
-const HomePage = () => {
+import ContentCard from "@/components/ContentCard";
+import notion from "@/request";
+import { Content, ContentType } from "@/types/content";
+import { isFullPage } from "@notionhq/client";
+
+const getContents = async ({ type }: { type: ContentType }) => {
+  const contents: Content[] = [];
+  const response = await notion.databases.query({
+    database_id: "b110ffc4f30f4792820bd895191a52f1",
+    filter: {
+      property: "type",
+      select: {
+        equals: type,
+      },
+    },
+  });
+
+  response.results.forEach((result) => {
+    if (isFullPage(result)) {
+      const { title, description, tags, createAt } = result.properties;
+      const content = {
+        id: result.id,
+        title: title.type === "title" ? title.title[0].plain_text : "",
+        description:
+          description.type === "rich_text"
+            ? description.rich_text[0].plain_text
+            : "",
+        tags:
+          tags.type === "multi_select"
+            ? tags.multi_select.map((tag) => tag.name)
+            : [],
+        createdAt:
+          createAt.type === "date" && createAt.date ? createAt.date.start : "",
+        type,
+      };
+
+      contents.push(content);
+    }
+  });
+
+  return contents;
+};
+
+const HomePage = async () => {
+  const posts = await getContents({ type: "post" });
+  const notes = await getContents({ type: "note" });
+
   return (
     <div className="space-y-8 mt-4 leading-6">
       <hr />
@@ -20,18 +66,18 @@ const HomePage = () => {
       <div>
         <h2 className="py-2 text-lg font-semibold">최근 작성한 메모</h2>
         <div className="flex flex-col gap-y-6">
-          {/* {notes.map((note) => (
-            <ContentCard collectionName="note" {...note} />
-          ))} */}
+          {notes.map((note) => (
+            <ContentCard key={note.id} {...note} />
+          ))}
         </div>
       </div>
       <hr />
       <div>
         <h2 className="py-2 text-lg font-semibold">최근 작성한 글</h2>
         <div className="flex flex-col gap-y-6">
-          {/* {posts.map((post) => (
-            <ContentCard collectionName="post" {...post} />
-          ))} */}
+          {posts.map((post) => (
+            <ContentCard key={post.id} {...post} />
+          ))}
         </div>
       </div>
       <hr />
