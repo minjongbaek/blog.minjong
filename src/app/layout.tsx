@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "@/styles/globals.css";
 
 import GithubIcon from "@/assets/icons/github.svg";
+import Link from "next/link";
 
 const SITE_TITLE = "Blog.minjong";
 const SITE_DESCRIPTION = "민종의 기록을 위한 블로그입니다.";
@@ -29,26 +30,26 @@ export default function RootLayout({
                 Blog.minjong
               </a>
               <div className="flex font-semibold items-center gap-3">
-                <a
+                <Link
                   href="/post"
                   className="hover:text-orange-500 transition-colors duration-300"
                 >
                   작성한 글
-                </a>
-                <a
+                </Link>
+                <Link
                   href="/note"
                   className="hover:text-orange-500 transition-colors duration-300"
                 >
                   작성한 메모
-                </a>
-                <a href="https://github.com/minjongbaek" target="_blank">
+                </Link>
+                <Link href="https://github.com/minjongbaek" target="_blank">
                   <GithubIcon
                     width="16"
                     height="16"
                     viewBox="0 0 24 24"
                     className="w-5 h-5"
                   />
-                </a>
+                </Link>
               </div>
             </div>
           </header>
