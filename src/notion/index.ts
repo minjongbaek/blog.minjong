@@ -1,9 +1,12 @@
 import { Content, ContentType } from "@/types/content";
 import { Client, isFullPage } from "@notionhq/client";
+import { NotionToMarkdown } from "notion-to-md";
 
 const notionClient = new Client({
   auth: process.env.NOTION_TOKEN,
 });
+
+const n2m = new NotionToMarkdown({ notionClient });
 
 export const getContents = async ({ type }: { type: ContentType }) => {
   const contents: Content[] = [];
@@ -41,4 +44,10 @@ export const getContents = async ({ type }: { type: ContentType }) => {
   });
 
   return contents;
+};
+
+export const getContent = async ({ id }: { id: string }) => {
+  const markdownBlocks = await n2m.pageToMarkdown(id);
+  const markdownString = n2m.toMarkdownString(markdownBlocks);
+  return markdownString;
 };

@@ -1,5 +1,5 @@
 import ContentCard from "@/components/ContentCard";
-import { getContents } from "@/request";
+import { getContents } from "@/notion";
 
 const HomePage = async () => {
   const posts = await getContents({ type: "post" });
