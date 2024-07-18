@@ -25,7 +25,7 @@ export const getContents = async ({ type }: { type: ContentType }) => {
         title: title.type === "title" ? title.title[0].plain_text : "",
         description:
           description.type === "rich_text"
-            ? description.rich_text[0].plain_text
+            ? description.rich_text[0]?.plain_text
             : "",
         tags:
           tags.type === "multi_select"
