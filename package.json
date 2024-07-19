@@ -13,7 +13,13 @@
     "next": "14.2.3",
     "notion-to-md": "^3.1.1",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "rehype-stringify": "^10.0.0",
+    "remark-breaks": "^4.0.0",
+    "remark-gfm": "^4.0.0",
+    "remark-parse": "^11.0.0",
+    "remark-rehype": "^11.1.0",
+    "unified": "^11.0.5"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",

@@ -1,6 +1,12 @@
 import { Content, ContentType } from "@/types/content";
 import { Client, isFullPage } from "@notionhq/client";
 import { NotionToMarkdown } from "notion-to-md";
+import rehypeStringify from "rehype-stringify";
+import remarkBreaks from "remark-breaks";
+import remarkGfm from "remark-gfm";
+import remarkParse from "remark-parse";
+import remarkRehype from "remark-rehype";
+import { unified } from "unified";
 
 const notionClient = new Client({
   auth: process.env.NOTION_TOKEN,
@@ -49,5 +55,14 @@ export const getContents = async ({ type }: { type: ContentType }) => {
 export const getContent = async ({ id }: { id: string }) => {
   const markdownBlocks = await n2m.pageToMarkdown(id);
   const markdownString = n2m.toMarkdownString(markdownBlocks);
-  return markdownString;
+
+  const { value: htmlContent } = await unified()
+    .use(remarkParse)
+    .use(remarkGfm)
+    .use(remarkBreaks)
+    .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypeStringify, { allowDangerousHtml: true })
+    .process(markdownString.parent);
+
+  return htmlContent;
 };
