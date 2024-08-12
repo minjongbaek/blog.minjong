@@ -6,6 +6,7 @@ import remarkBreaks from "remark-breaks";
 import remarkGfm from "remark-gfm";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
+import rehypeShiki from "@shikijs/rehype";
 import { unified } from "unified";
 
 const notionClient = new Client({
@@ -61,6 +62,12 @@ export const getContent = async ({ id }: { id: string }) => {
     .use(remarkGfm)
     .use(remarkBreaks)
     .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypeShiki, {
+      themes: {
+        light: "vitesse-light",
+        dark: "vitesse-dark",
+      },
+    })
     .use(rehypeStringify, { allowDangerousHtml: true })
     .process(markdownString.parent);
 
