@@ -1,6 +1,6 @@
 import ContentCard from "@/components/ContentCard";
 import ProjectCard from "@/components/ProjectCard";
-import { PROJECTS } from "@/constatns/Project";
+import { PROJECTS } from "@/constants/Project";
 import { getPages } from "@/notion";
 
 const HomePage = async () => {
