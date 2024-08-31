@@ -53,7 +53,7 @@ export const getPages = async ({ type }: { type: ContentType }) => {
   return contents;
 };
 
-export const getPageProperties = async ({ id }: { id: string }) => {
+export const getPageProperty = async ({ id }: { id: string }) => {
   const result = await notionClient.pages.retrieve({ page_id: id });
 
   if (isFullPage(result)) {
