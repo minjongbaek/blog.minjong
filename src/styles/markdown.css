@@ -83,7 +83,7 @@
     }
   }
 
-  pre.astro-code {
+  pre.shiki {
     @apply px-6 py-4 rounded-md border dark:border-gray-700 text-sm;
   }
 }
