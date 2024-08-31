@@ -1,4 +1,6 @@
 import ContentCard from "@/components/ContentCard";
+import ProjectCard from "@/components/ProjectCard";
+import { PROJECTS } from "@/constatns/Project";
 import { getPages } from "@/notion";
 
 const HomePage = async () => {
@@ -6,7 +8,7 @@ const HomePage = async () => {
   const notes = await getPages({ type: "note" });
 
   return (
-    <div className="space-y-8 mt-4 leading-6">
+    <div className="space-y-8 mt-4 leading-6 w-full">
       <hr />
       <div className="space-y-2">
         <h1 className="text-xl font-semibold">
@@ -44,9 +46,9 @@ const HomePage = async () => {
       <div>
         <h2 className="py-2 text-lg font-semibold">프로젝트</h2>
         <div className="grid sm:grid-cols-2 grid-cols-1 gap-6">
-          {/* {projects.map((project) => (
-            <ProjectCard {...project} />
-          ))} */}
+          {PROJECTS.map((project) => (
+            <ProjectCard key={project.title} {...project} />
+          ))}
         </div>
       </div>
     </div>
