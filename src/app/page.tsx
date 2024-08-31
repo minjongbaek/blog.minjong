@@ -44,11 +44,13 @@ const HomePage = async () => {
       </div>
       <hr />
       <div>
-        <h2 className="py-2 text-lg font-semibold">프로젝트</h2>
+        <h2 className="py-2 text-lg font-semibold">사이드 프로젝트</h2>
         <div className="grid sm:grid-cols-2 grid-cols-1 gap-6">
-          {PROJECTS.map((project) => (
-            <ProjectCard key={project.title} {...project} />
-          ))}
+          {Array.from(PROJECTS)
+            .reverse()
+            .map((project) => (
+              <ProjectCard key={project.title} {...project} />
+            ))}
         </div>
       </div>
     </div>
