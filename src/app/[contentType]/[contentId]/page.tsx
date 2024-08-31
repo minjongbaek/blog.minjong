@@ -1,9 +1,9 @@
-import { getContent } from "@/notion";
+import { getPageContent } from "@/notion";
 import React from "react";
 
 const ContentPage = async ({ params }: { params: { contentId: string } }) => {
   const { contentId } = params;
-  const content = await getContent({ id: contentId });
+  const content = await getPageContent({ id: contentId });
 
   return (
     <div

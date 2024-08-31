@@ -15,7 +15,7 @@ const notionClient = new Client({
 
 const n2m = new NotionToMarkdown({ notionClient });
 
-export const getContents = async ({ type }: { type: ContentType }) => {
+export const getPages = async ({ type }: { type: ContentType }) => {
   const contents: Content[] = [];
   const response = await notionClient.databases.query({
     database_id: "b110ffc4f30f4792820bd895191a52f1",
@@ -53,7 +53,32 @@ export const getContents = async ({ type }: { type: ContentType }) => {
   return contents;
 };
 
-export const getContent = async ({ id }: { id: string }) => {
+export const getPageProperties = async ({ id }: { id: string }) => {
+  const result = await notionClient.pages.retrieve({ page_id: id });
+
+  if (isFullPage(result)) {
+    const { title, description, tags, createAt } = result.properties;
+    const content = {
+      id: result.id,
+      title: title.type === "title" ? title.title[0].plain_text : "",
+      description:
+        description.type === "rich_text"
+          ? description.rich_text[0]?.plain_text
+          : "",
+      tags:
+        tags.type === "multi_select"
+          ? tags.multi_select.map((tag) => tag.name)
+          : [],
+      createdAt:
+        createAt.type === "date" && createAt.date ? createAt.date.start : "",
+    };
+    return content;
+  } else {
+    throw new Error(`Not Found Page - ${id}`);
+  }
+};
+
+export const getPageContent = async ({ id }: { id: string }) => {
   const markdownBlocks = await n2m.pageToMarkdown(id);
   const markdownString = n2m.toMarkdownString(markdownBlocks);
 

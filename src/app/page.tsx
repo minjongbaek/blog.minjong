@@ -1,9 +1,9 @@
 import ContentCard from "@/components/ContentCard";
-import { getContents } from "@/notion";
+import { getPages } from "@/notion";
 
 const HomePage = async () => {
-  const posts = await getContents({ type: "post" });
-  const notes = await getContents({ type: "note" });
+  const posts = await getPages({ type: "post" });
+  const notes = await getPages({ type: "note" });
 
   return (
     <div className="space-y-8 mt-4 leading-6">

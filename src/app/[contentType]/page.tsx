@@ -1,5 +1,5 @@
 import ContentCard from "@/components/ContentCard";
-import { getContents } from "@/notion";
+import { getPages } from "@/notion";
 import { ContentType } from "@/types/content";
 
 const ContentsPage = async ({
@@ -8,7 +8,7 @@ const ContentsPage = async ({
   params: { contentType: ContentType };
 }) => {
   const { contentType } = params;
-  const contents = await getContents({ type: contentType });
+  const contents = await getPages({ type: contentType });
 
   return (
     <>
