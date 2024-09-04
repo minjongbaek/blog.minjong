@@ -25,6 +25,7 @@ export const getPages = async ({ type }: { type: ContentType }) => {
         equals: type,
       },
     },
+    sorts: [{ property: "createAt", direction: "descending" }],
   });
 
   response.results.forEach((result) => {
