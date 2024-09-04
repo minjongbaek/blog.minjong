@@ -25,12 +25,12 @@ export const getPages = async ({ type }: { type: ContentType }) => {
         equals: type,
       },
     },
-    sorts: [{ property: "createAt", direction: "descending" }],
+    sorts: [{ property: "createdAt", direction: "descending" }],
   });
 
   response.results.forEach((result) => {
     if (isFullPage(result)) {
-      const { title, description, tags, createAt } = result.properties;
+      const { title, description, tags, createdAt } = result.properties;
       const content = {
         id: result.id,
         title: title.type === "title" ? title.title[0].plain_text : "",
@@ -43,7 +43,9 @@ export const getPages = async ({ type }: { type: ContentType }) => {
             ? tags.multi_select.map((tag) => tag.name)
             : [],
         createdAt:
-          createAt.type === "date" && createAt.date ? createAt.date.start : "",
+          createdAt.type === "date" && createdAt.date
+            ? createdAt.date.start
+            : "",
         type,
       };
 
@@ -58,7 +60,7 @@ export const getPageProperty = async ({ id }: { id: string }) => {
   const result = await notionClient.pages.retrieve({ page_id: id });
 
   if (isFullPage(result)) {
-    const { title, description, tags, createAt } = result.properties;
+    const { title, description, tags, createdAt } = result.properties;
     const content = {
       id: result.id,
       title: title.type === "title" ? title.title[0].plain_text : "",
@@ -71,7 +73,7 @@ export const getPageProperty = async ({ id }: { id: string }) => {
           ? tags.multi_select.map((tag) => tag.name)
           : [],
       createdAt:
-        createAt.type === "date" && createAt.date ? createAt.date.start : "",
+        createdAt.type === "date" && createdAt.date ? createdAt.date.start : "",
     };
     return content;
   } else {
