@@ -1,5 +1,5 @@
 .markdown-content {
-  @apply space-y-6;
+  @apply space-y-6 w-full box-border;
 
   a {
     @apply font-semibold text-orange-500 underline transition-colors hover:text-orange-600;
@@ -83,7 +83,7 @@
     }
   }
 
-  pre.astro-code {
-    @apply px-6 py-4 rounded-md border dark:border-gray-700 text-sm;
+  pre.shiki {
+    @apply px-6 py-4 rounded-md border dark:border-gray-700 text-sm break-words box-border overflow-auto;
   }
 }
