@@ -4,8 +4,8 @@ import { PROJECTS } from "@/constants/Project";
 import { getPages } from "@/notion";
 
 const HomePage = async () => {
-  const posts = await getPages({ type: "post" });
-  const notes = await getPages({ type: "note" });
+  const posts = await getPages({ type: "post", pageSize: 3 });
+  const notes = await getPages({ type: "note", pageSize: 3 });
 
   return (
     <div className="space-y-8 mt-4 leading-6 w-full">

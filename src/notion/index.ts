@@ -15,7 +15,13 @@ const notionClient = new Client({
 
 const n2m = new NotionToMarkdown({ notionClient });
 
-export const getPages = async ({ type }: { type: ContentType }) => {
+export const getPages = async ({
+  type,
+  pageSize,
+}: {
+  type: ContentType;
+  pageSize?: number;
+}) => {
   const contents: Content[] = [];
   const response = await notionClient.databases.query({
     database_id: "b110ffc4f30f4792820bd895191a52f1",
@@ -26,6 +32,7 @@ export const getPages = async ({ type }: { type: ContentType }) => {
       },
     },
     sorts: [{ property: "createdAt", direction: "descending" }],
+    page_size: pageSize,
   });
 
   response.results.forEach((result) => {
