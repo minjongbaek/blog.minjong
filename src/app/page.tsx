@@ -3,6 +3,8 @@ import ProjectCard from "@/components/ProjectCard";
 import { PROJECTS } from "@/constants/Project";
 import { getPages } from "@/notion";
 
+export const revalidate = 60;
+
 const HomePage = async () => {
   const posts = await getPages({ type: "post", pageSize: 3 });
   const notes = await getPages({ type: "note", pageSize: 3 });
