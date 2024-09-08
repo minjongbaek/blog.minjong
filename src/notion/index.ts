@@ -40,7 +40,7 @@ export const getPages = async ({
       const { title, description, tags, createdAt } = result.properties;
       const content = {
         id: result.id,
-        title: title.type === "title" ? title.title[0].plain_text : "",
+        title: title.type === "title" ? title.title[0]?.plain_text : "",
         description:
           description.type === "rich_text"
             ? description.rich_text[0]?.plain_text
@@ -55,6 +55,10 @@ export const getPages = async ({
             : "",
         type,
       };
+
+      if (!content.title || !content.description || !content.createdAt) {
+        return;
+      }
 
       contents.push(content);
     }
