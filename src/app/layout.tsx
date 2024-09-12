@@ -1,6 +1,6 @@
+import GithubIcon from "@/assets/icons/github.svg";
 import "@/styles/globals.css";
 import type { Metadata } from "next";
-import GithubIcon from "@/assets/icons/github.svg";
 import Link from "next/link";
 
 export const revalidate = 300;
