@@ -1,6 +1,8 @@
 import { getPageContent, getPageProperty } from "@/notion";
 import React from "react";
 
+export const revalidate = 300;
+
 const ContentPage = async ({ params }: { params: { contentId: string } }) => {
   const { contentId } = params;
   const { title, tags, createdAt } = await getPageProperty({
