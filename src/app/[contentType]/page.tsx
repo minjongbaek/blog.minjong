@@ -1,6 +1,6 @@
 import ContentCard from "@/components/ContentCard";
 import { getPages } from "@/notion";
-import { ContentType } from "@/types/content";
+import { ContentType } from "@/enum/content";
 
 const ContentsPage = async ({
   params,
