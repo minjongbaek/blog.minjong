@@ -1,13 +1,15 @@
 import ContentCard from "@/components/ContentCard";
 import ProjectCard from "@/components/ProjectCard";
 import { PROJECTS } from "@/constants/Project";
-import { getPages } from "@/notion";
+import { getAllPages } from "@/lib/notion";
 
 export const revalidate = 60;
 
 const HomePage = async () => {
-  const posts = await getPages({ type: "post", pageSize: 3 });
-  const notes = await getPages({ type: "note", pageSize: 3 });
+  const pages = await getAllPages();
+
+  const notes = pages.filter((page) => page.type === "note").slice(0, 3);
+  const posts = pages.filter((page) => page.type === "post").slice(0, 3);
 
   return (
     <div className="space-y-8 mt-4 leading-6 w-full">
