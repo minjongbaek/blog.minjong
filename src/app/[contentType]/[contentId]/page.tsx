@@ -7,7 +7,10 @@ export const dynamicParams = true;
 export const generateStaticParams = async () => {
   const posts = await getPages({ type: "post" });
   const notes = await getPages({ type: "note" });
-  return [...posts, ...notes].map(({ id }) => ({ contentId: id }));
+  return [...posts, ...notes].map(({ type, id }) => ({
+    contentType: type,
+    contentId: id,
+  }));
 };
 
 const ContentPage = async ({ params }: { params: { contentId: string } }) => {
