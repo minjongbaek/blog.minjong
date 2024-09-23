@@ -1,6 +1,6 @@
 import ContentCard from "@/components/ContentCard";
-import { getPages } from "@/notion";
 import { ContentType } from "@/enum/content";
+import { getAllPages } from "@/lib/notion";
 
 const ContentsPage = async ({
   params,
@@ -8,7 +8,8 @@ const ContentsPage = async ({
   params: { contentType: ContentType };
 }) => {
   const { contentType } = params;
-  const contents = await getPages({ type: contentType });
+  const pages = await getAllPages();
+  const contents = pages.filter((page) => page.type === contentType);
 
   return (
     <>

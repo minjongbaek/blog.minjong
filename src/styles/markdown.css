@@ -8,7 +8,7 @@
   h1,
   h2,
   h3 {
-    @apply before:mr-2 before:box-content before:rounded-md before:bg-orange-500 before:pl-1.5;
+    @apply before:mr-2 before:box-content before:rounded-md before:bg-orange-500 before:pl-1.5 flex;
   }
 
   h1 {

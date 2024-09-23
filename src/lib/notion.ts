@@ -28,7 +28,7 @@ export const getAllPages = async () => {
   return result.filter(isContent);
 };
 
-function isContent(content: Partial<Content>): content is Content {
+const isContent = (content: Partial<Content>): content is Content => {
   return (
     typeof content.id === "string" &&
     typeof content.title === "string" &&
@@ -37,4 +37,8 @@ function isContent(content: Partial<Content>): content is Content {
     typeof content.createdAt === "number" &&
     typeof content.type === "string"
   );
-}
+};
+
+export const getPage = async (id: string) => {
+  return await client.getPage(id);
+};
