@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import "@/styles/globals.css";
-
 import GithubIcon from "@/assets/icons/github.svg";
 import Link from "next/link";
+
+export const revalidate = 300;
 
 const SITE_TITLE = "Blog.minjong";
 const SITE_DESCRIPTION = "민종의 기록을 위한 블로그입니다.";

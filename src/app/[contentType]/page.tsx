@@ -2,6 +2,8 @@ import ContentCard from "@/components/ContentCard";
 import { getPages } from "@/notion";
 import { ContentType } from "@/types/content";
 
+export const dynamic = "error";
+
 const ContentsPage = async ({
   params,
 }: {

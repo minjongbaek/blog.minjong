@@ -1,5 +1,6 @@
 import { getPageContent, getPageProperty } from "@/notion";
-import React from "react";
+
+export const dynamic = "error";
 
 const ContentPage = async ({ params }: { params: { contentId: string } }) => {
   const { contentId } = params;
