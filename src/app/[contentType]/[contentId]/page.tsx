@@ -1,6 +1,16 @@
-import { getPageContent, getPageProperty } from "@/notion";
+import { getPageContent, getPageProperty, getPages } from "@/notion";
+
+export const revalidate = 300;
+
+export const dynamicParams = true;
 
 export const dynamic = "error";
+
+export const generateStaticParams = async () => {
+  const posts = await getPages({ type: "post" });
+  const notes = await getPages({ type: "note" });
+  return [...posts, ...notes].map(({ id }) => ({ contentId: id }));
+};
 
 const ContentPage = async ({ params }: { params: { contentId: string } }) => {
   const { contentId } = params;
