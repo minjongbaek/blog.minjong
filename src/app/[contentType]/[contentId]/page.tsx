@@ -2,7 +2,7 @@ import { getPageContent, getPageProperty, getPages } from "@/notion";
 
 export const revalidate = 300;
 
-export const dynamicParams = true;
+export const dynamicParams = false;
 
 export const generateStaticParams = async () => {
   const posts = await getPages({ type: "post" });

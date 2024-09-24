@@ -4,7 +4,7 @@ import { ContentType } from "@/types/content";
 
 export const revalidate = 300;
 
-export const dynamicParams = true;
+export const dynamicParams = false;
 
 export const generateStaticParams = async () => {
   return ["post", "note"].map((contentType) => ({
