@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "@/styles/globals.css";
-
 import GithubIcon from "@/assets/icons/github.svg";
 import Link from "next/link";
 

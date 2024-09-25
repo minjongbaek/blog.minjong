@@ -2,6 +2,16 @@ import ContentCard from "@/components/ContentCard";
 import { getPages } from "@/notion";
 import { ContentType } from "@/types/content";
 
+export const revalidate = 300;
+
+export const dynamicParams = false;
+
+export const generateStaticParams = async () => {
+  return ["post", "note"].map((contentType) => ({
+    contentType,
+  }));
+};
+
 const ContentsPage = async ({
   params,
 }: {
