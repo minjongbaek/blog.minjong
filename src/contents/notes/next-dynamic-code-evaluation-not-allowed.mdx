@@ -1,0 +1,15 @@
+export const metadata = {
+  title: "Dynamic Code Evaluation not allowed in Edge Runtime.",
+  description: "(e. g. 'eval', 'new Function', 'WebAssembly.compile')",
+  createdAt: "2024-10-10",
+  tags: ["Next.js", "Error"],
+};
+
+**Dynamic Code Evaluation (e. g. 'eval', 'new Function', 'WebAssembly.compile') not allowed in Edge Runtime.**
+
+Next.js에서 middleware에 트리셰이킹으로 제거할 수 없는 동적 평가 문이 import 되어 있을 때 해당 에러가 발생할 수 있다.
+
+진행중인 프로젝트의 middleware에서 import 하고 있는 파일에는 어떤 컴포넌트가 포함되어 있었다. 단순 JSX 파일이라면 문제가 되지 않지만, 작성한 컴포넌트에서 import 하고있는 [Ant Design](https://ant.design/)을 트리셰이킹 하지 못해 문제가 발생했던 것이다.
+
+- https://nextjs.org/docs/messages/edge-dynamic-code-evaluation
+- https://stackoverflow.com/questions/72558308/next-js-fails-to-build-due-to-dynamic-code-evaluation-not-allowed-in-middleware

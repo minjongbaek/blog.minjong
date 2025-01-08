@@ -1,0 +1,60 @@
+export const metadata = {
+  title: "로컬에서 secure 속성의 쿠키 값을 주고받기",
+  description: "로컬 환경에서 SSL을 적용하고, https로 통신해보자.",
+  createdAt: "2024-08-01",
+  tags: ["Web", "SSL"],
+};
+
+# 로컬에서 적용되지 않는 Set-Cookie
+
+로컬에서 개발 서버와 API 요청을 주고받는데 브라우저에 쿠키가 저장되지 않는 문제가 있었다. (클라이언트와 서버가 같은 도메인임에도!)
+
+확인해 보니 많은 브라우저가 `secure` 속성이 있는 쿠키는 http 연결에서 전송되는 것을 원칙적으로 차단한다고 한다. 따라서, 로컬 환경에서 https로 통신할 필요가 있다.
+
+# mkcert 설치 및 localhost 도메인 발급
+
+```bash
+brew install mkcert
+mkcert localhost
+```
+
+# localhost 대신 사용할 hostname 설정
+
+```bash
+# /etc/hosts
+
+#
+# Host Database
+#
+# localhost is used to configure the loopback interface
+# when the system is booting.  Do not change this entry.
+##
+127.0.0.1       localhost
+255.255.255.255 broadcasthost
+::1             localhost
+
+127.0.0.1       local.minjong.dev # localhost 대신 사용할 hostname
+```
+
+# 프록시 설정
+
+```json
+// proxy.config.json 파일 생성
+// target은 웹 애플리케이션이 점유하고 있는 포트번호
+// key, cert는 맨 처음 단계에서 생성한 파일
+// hostname은 /etc/hosts 에서 추가한 localhost 대신 사용할 hostname
+
+{
+  "local": {
+    "source": 443,
+    "target": 3000,
+    "key": "localhost-key.pem",
+    "cert": "localhost.pem",
+    "hostname": "local.minjong.dev"
+  }
+}
+```
+
+```bash
+npx local-ssl-proxy --config proxy.config.json
+```

@@ -1,5 +1,10 @@
+import createMDX from "@next/mdx";
+import rehypeShiki from "@shikijs/rehype";
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  pageExtensions: ["mdx", "ts", "tsx"],
+
   webpack: (config) => {
     // Grab the existing rule that handles SVG imports
     const fileLoaderRule = config.module.rules.find((rule) =>
@@ -29,4 +34,21 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+const withMDX = createMDX({
+  options: {
+    remarkPlugins: [],
+    rehypePlugins: [
+      [
+        rehypeShiki,
+        {
+          themes: {
+            light: "vitesse-light",
+            dark: "vitesse-dark",
+          },
+        },
+      ],
+    ],
+  },
+});
+
+export default withMDX(nextConfig);

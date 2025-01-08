@@ -36,6 +36,8 @@
   }
 
   li {
+    word-break: break-all;
+
     ul {
       @apply mt-2;
     }
