@@ -1,24 +1,22 @@
-import { Content } from "@/types/content";
+import { ContentSummary } from "@/types/content";
+import Link from "next/link";
 
-interface Props extends Content {}
+interface Props extends ContentSummary {}
 
-const ContentCard = ({
-  id,
-  title,
-  description,
-  tags,
-  createdAt,
-  type,
-}: Props) => {
-  const isPostType = type === "post";
+const ContentCard = (props: Props) => {
+  const { fileName, title, description, createdAt, tags, type } = props;
+  const isArticle = type === "article";
 
   return (
-    <a href={`/${type}/${id}`} className="inline-block text-current group">
+    <Link
+      href={`/${type}/${fileName}`}
+      className="inline-block text-current group"
+    >
       <div className="flex flex-col w-full gap-1">
         <div className="text-sm text-slate-500">
           {new Date(createdAt).toLocaleDateString("ko-KR")}
         </div>
-        {isPostType && (
+        {isArticle && (
           <div className="flex gap-4 items-center text-sm">
             {tags.map((tag) => (
               <span className="text-orange-500" key={tag}>
@@ -30,11 +28,11 @@ const ContentCard = ({
         <div className="inline-block text-lg font-semibold group-hover:text-orange-500 transition-colors duration-300 break-keep leading-5">
           {title}
         </div>
-        {isPostType && (
+        {isArticle && (
           <div className="leading-4 text-md mt-0.5">{description}</div>
         )}
       </div>
-    </a>
+    </Link>
   );
 };
 

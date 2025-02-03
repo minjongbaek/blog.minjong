@@ -3,11 +3,9 @@ import ProjectCard from "@/components/ProjectCard";
 import { PROJECTS } from "@/constants/Project";
 import { getAllContentMetadata } from "@/utils/content";
 
-export const revalidate = 60;
-
 const HomePage = async () => {
   const posts = new Array();
-  const notesMetadata = getAllContentMetadata("notes");
+  const notesMetadata = getAllContentMetadata("note");
 
   return (
     <div className="space-y-8 mt-4 leading-6 w-full">
@@ -18,12 +16,12 @@ const HomePage = async () => {
           이에요. 👋
         </h1>
         <p>
-          동료와 도움을 주고 받는 것을 좋아해요. 제 도움으로 인해 팀의 생산성이
-          향샹되거나 좋은 성과를 만들어 냈을 때 큰 성취감을 느껴요.
-        </p>
-        <p>
           사용자와 서비스를 연결하기 위한 모든 것을 구현하는 프론트엔드 개발에
           매력을 느껴 프론트엔드 개발을 시작했어요.
+        </p>
+        <p>
+          동료와 도움을 주고 받는 것을 좋아해요. 제 도움으로 인해 팀의 생산성이
+          향샹되거나 좋은 성과를 만들어 냈을 때 큰 성취감을 느껴요.
         </p>
       </div>
       <hr />
