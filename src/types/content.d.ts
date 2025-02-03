@@ -1,10 +1,8 @@
 export type ContentType = "post" | "note";
 
-export interface Content {
-  id: string;
+export interface ContentMetadata {
   title: string;
-  description: string;
+  description?: string;
   tags: string[];
   createdAt: string;
-  type: ContentType;
 }

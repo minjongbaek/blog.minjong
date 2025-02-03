@@ -1,12 +1,13 @@
 import ContentCard from "@/components/ContentCard";
 import ProjectCard from "@/components/ProjectCard";
 import { PROJECTS } from "@/constants/Project";
+import { getAllContentMetadata } from "@/utils/content";
 
 export const revalidate = 60;
 
 const HomePage = async () => {
   const posts = new Array();
-  const notes = new Array();
+  const notesMetadata = getAllContentMetadata("notes");
 
   return (
     <div className="space-y-8 mt-4 leading-6 w-full">
@@ -29,8 +30,8 @@ const HomePage = async () => {
       <div>
         <h2 className="py-2 text-lg font-semibold">최근 작성한 메모</h2>
         <div className="flex flex-col gap-y-6">
-          {notes.map((note) => (
-            <ContentCard key={note.id} {...note} />
+          {notesMetadata.map((note) => (
+            <ContentCard key={note.title} {...note} />
           ))}
         </div>
       </div>
