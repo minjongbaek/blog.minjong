@@ -11,6 +11,9 @@ export const getAllContentMetadata = (type: ContentType) => {
       const metadata = require(`../contents/${type}/${fileName}`)
         .metadata as ContentMetadata;
       return { ...metadata, fileName: fileName.replace(/\.mdx$/, ""), type };
+    })
+    .sort((a, b) => {
+      return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
     });
   return contents;
 };
