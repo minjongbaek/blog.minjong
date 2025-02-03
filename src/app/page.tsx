@@ -4,7 +4,7 @@ import { PROJECTS } from "@/constants/Project";
 import { getAllContentMetadata } from "@/utils/content";
 
 const HomePage = async () => {
-  const posts = new Array();
+  const articlesMetadata = getAllContentMetadata("article");
   const notesMetadata = getAllContentMetadata("note");
 
   return (
@@ -28,8 +28,8 @@ const HomePage = async () => {
       <div>
         <h2 className="py-2 text-lg font-semibold">최근 작성한 메모</h2>
         <div className="flex flex-col gap-y-6">
-          {notesMetadata.map((note) => (
-            <ContentCard key={note.title} {...note} />
+          {notesMetadata.slice(0, 5).map((note) => (
+            <ContentCard key={note.slug} {...note} />
           ))}
         </div>
       </div>
@@ -37,8 +37,8 @@ const HomePage = async () => {
       <div>
         <h2 className="py-2 text-lg font-semibold">최근 작성한 글</h2>
         <div className="flex flex-col gap-y-6">
-          {posts.map((post) => (
-            <ContentCard key={post.id} {...post} />
+          {articlesMetadata.slice(0, 5).map((article) => (
+            <ContentCard key={article.slug} {...article} />
           ))}
         </div>
       </div>

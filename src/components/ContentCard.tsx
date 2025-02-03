@@ -4,14 +4,11 @@ import Link from "next/link";
 interface Props extends ContentSummary {}
 
 const ContentCard = (props: Props) => {
-  const { fileName, title, description, createdAt, tags, type } = props;
+  const { slug, title, description, createdAt, tags, type } = props;
   const isArticle = type === "article";
 
   return (
-    <Link
-      href={`/${type}/${fileName}`}
-      className="inline-block text-current group"
-    >
+    <Link href={`/${type}/${slug}`} className="inline-block text-current group">
       <div className="flex flex-col w-full gap-1">
         <div className="text-sm text-slate-500">
           {new Date(createdAt).toLocaleDateString("ko-KR")}

@@ -8,6 +8,6 @@ export interface ContentMetadata {
 }
 
 export interface ContentSummary extends ContentMetadata {
-  fileName: string;
+  slug: string;
   type: ContentType;
 }

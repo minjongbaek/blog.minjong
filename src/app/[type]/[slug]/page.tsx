@@ -1,12 +1,12 @@
 export default async function Page({
   params,
 }: {
-  params: Promise<{ type: string; title: string }>;
+  params: Promise<{ type: string; slug: string }>;
 }) {
-  const { type, title } = await params;
+  const { type, slug } = await params;
   try {
     const { default: Post, metadata } = await import(
-      `@/contents/${type}/${title}.mdx`
+      `@/contents/${type}/${slug}/index.mdx`
     );
 
     return (
