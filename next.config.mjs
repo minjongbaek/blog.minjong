@@ -3,10 +3,14 @@ import rehypeShiki from "@shikijs/rehype";
 import remarkGfm from "remark-gfm";
 
 const remarkPublicImage = () => {
-  const visitNode = (node, directory) => {
+  const updateImageUrl = (node, directory) => {
     if (node.type === "image") {
       node.url = `/images/content/${directory}/${node.url}`;
     }
+  };
+
+  const visitNode = (node, directory) => {
+    updateImageUrl(node, directory);
     if (node.children) {
       node.children.forEach((child) => visitNode(child, directory));
     }
