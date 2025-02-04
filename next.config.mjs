@@ -1,6 +1,27 @@
 import createMDX from "@next/mdx";
 import rehypeShiki from "@shikijs/rehype";
-import remarkGfm from 'remark-gfm';
+import remarkGfm from "remark-gfm";
+
+const remarkPublicImage = () => {
+  const visitNode = (node, directory) => {
+    if (node.type === "image") {
+      node.url = `/images/content/${directory}/${node.url}`;
+    }
+    if (node.children) {
+      node.children.forEach((child) => visitNode(child, directory));
+    }
+  };
+
+  return (tree, file) => {
+    const directory = file.history[0]
+      .split("/")
+      .slice(-3)
+      .slice(0, 2)
+      .join("/");
+
+    tree.children.forEach((node) => visitNode(node, directory));
+  };
+};
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -37,7 +58,7 @@ const nextConfig = {
 
 const withMDX = createMDX({
   options: {
-    remarkPlugins: [remarkGfm],
+    remarkPlugins: [remarkGfm, remarkPublicImage],
     rehypePlugins: [
       [
         rehypeShiki,
