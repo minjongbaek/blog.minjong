@@ -30,7 +30,7 @@ export default function RootLayout({
               </a>
               <div className="flex font-semibold items-center gap-3">
                 <Link
-                  href="/post"
+                  href="/article"
                   className="hover:text-orange-500 transition-colors duration-300"
                 >
                   작성한 글

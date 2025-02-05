@@ -1,7 +1,9 @@
+import { ContentType } from "@/types/content";
+
 export default async function Page({
   params,
 }: {
-  params: Promise<{ type: string; slug: string }>;
+  params: Promise<{ type: ContentType; slug: string }>;
 }) {
   const { type, slug } = await params;
   try {

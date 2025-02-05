@@ -28,7 +28,7 @@ const HomePage = async () => {
       <div>
         <h2 className="py-2 text-lg font-semibold">최근 작성한 메모</h2>
         <div className="flex flex-col gap-y-6">
-          {notesMetadata.slice(0, 5).map((note) => (
+          {notesMetadata.slice(0, 3).map((note) => (
             <ContentCard key={note.slug} {...note} />
           ))}
         </div>
@@ -37,7 +37,7 @@ const HomePage = async () => {
       <div>
         <h2 className="py-2 text-lg font-semibold">최근 작성한 글</h2>
         <div className="flex flex-col gap-y-6">
-          {articlesMetadata.slice(0, 5).map((article) => (
+          {articlesMetadata.slice(0, 3).map((article) => (
             <ContentCard key={article.slug} {...article} />
           ))}
         </div>
