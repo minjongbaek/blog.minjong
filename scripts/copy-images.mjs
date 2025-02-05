@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 
 const CONTENTS_DIRECTORY = path.join(process.cwd(), "src/contents");
-const PUBLIC_IMAGES_DIRECTORY = path.join(
+const PUBLIC_CONTENT_IMAGES_DIRECTORY = path.join(
   process.cwd(),
   "public/images/content"
 );
@@ -13,9 +13,14 @@ const copyImages = () => {
     .filter((node) => node.isDirectory())
     .map((node) => node.name);
 
-  if (!fs.existsSync(PUBLIC_IMAGES_DIRECTORY)) {
-    fs.mkdirSync(PUBLIC_IMAGES_DIRECTORY, { recursive: true });
+  if (fs.existsSync(PUBLIC_CONTENT_IMAGES_DIRECTORY)) {
+    fs.rmSync(PUBLIC_CONTENT_IMAGES_DIRECTORY, {
+      recursive: true,
+      force: true,
+    });
   }
+
+  fs.mkdirSync(PUBLIC_CONTENT_IMAGES_DIRECTORY, { recursive: true });
 
   contentTypes.forEach((contentType) => {
     const contentDirectories = fs
@@ -33,7 +38,7 @@ const copyImages = () => {
       );
 
       const targetDirectory = path.join(
-        PUBLIC_IMAGES_DIRECTORY,
+        PUBLIC_CONTENT_IMAGES_DIRECTORY,
         contentType,
         contentDirectory
       );
