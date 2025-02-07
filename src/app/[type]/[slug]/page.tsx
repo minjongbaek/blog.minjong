@@ -1,11 +1,28 @@
 import { ContentType } from "@/types/content";
+import { Metadata } from "next";
 
-export default async function Page({
+export const generateMetadata = async ({
   params,
 }: {
   params: Promise<{ type: ContentType; slug: string }>;
-}) {
+}): Promise<Metadata> => {
   const { type, slug } = await params;
+
+  const { metadata } = await import(`@/contents/${type}/${slug}/index.mdx`);
+
+  return {
+    title: `${metadata.title} | Blog.minjong`,
+    description: metadata.description,
+  };
+};
+
+const ContentDetailPage = async ({
+  params,
+}: {
+  params: Promise<{ type: ContentType; slug: string }>;
+}) => {
+  const { type, slug } = await params;
+
   try {
     const { default: Post, metadata } = await import(
       `@/contents/${type}/${slug}/index.mdx`
@@ -37,4 +54,6 @@ export default async function Page({
     console.error(error);
     return <div>Not found</div>;
   }
-}
+};
+
+export default ContentDetailPage;
