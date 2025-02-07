@@ -5,10 +5,25 @@ import Link from "next/link";
 
 const SITE_TITLE = "Blog.minjong";
 const SITE_DESCRIPTION = "민종의 기록을 위한 블로그입니다.";
+const SITE_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://blog.minjong.dev"
+    : "http://localhost:3000";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  alternates: {
+    canonical: "/",
+  },
   title: SITE_TITLE,
   description: SITE_DESCRIPTION,
+  openGraph: {
+    images: ["/opengraph-image.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/opengraph-image.png"],
+  },
 };
 
 export default function RootLayout({
