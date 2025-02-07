@@ -1,0 +1,37 @@
+export const metadata = {
+  title: "GitHub Actions - 워크플로 종속성 캐싱",
+  description: "캐싱을 통해 런타임과 비용을 줄이자.",
+  createdAt: "2024-11-05",
+  tags: ["Git"],
+};
+
+재사용 가능한 종속성들에 대한 캐시를 만들고, 다음 실행 시 캐싱된 파일을 사용하게 함으로써 GitHub 워크플로우 속도를 향상시킬 수 있다.
+
+```yaml
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Cache Yarn dependencies
+        id: yarn-cache
+        uses: actions/cache@v3
+        with:
+          path: | # 캐싱할 파일의 경로
+            ~/.yarn/cache
+            node_modules
+          key: yarn-${{ hashFiles('**/yarn.lock') }} # yarn.lock 파일의 해시를 기반으로 키 지정
+          restore-keys: | # 일치하는 키가 없을 때 탐색할 키의 prefix
+            yarn-
+
+      - name: Install dependencies
+        run: yarn --pure-lockfile
+        if: steps.yarn-cache.outputs.cache-hit != 'true' # 일치하는 키가 없는 경우에만 실행
+```
+
+- [워크플로 속도를 높이기 위한 종속성 캐싱 - GitHub Docs](https://docs.github.com/ko/actions/writing-workflows/choosing-what-your-workflow-does/caching-dependencies-to-speed-up-workflows)

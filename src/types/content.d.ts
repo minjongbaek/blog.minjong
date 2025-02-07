@@ -1,10 +1,13 @@
-export type ContentType = "post" | "note";
+export type ContentType = "article" | "note";
 
-export interface Content {
-  id: string;
+export interface ContentMetadata {
   title: string;
-  description: string;
+  description?: string;
   tags: string[];
   createdAt: string;
+}
+
+export interface ContentSummary extends ContentMetadata {
+  slug: string;
   type: ContentType;
 }
