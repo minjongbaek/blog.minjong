@@ -29,8 +29,8 @@ const ContentDetailPage = async ({
     );
 
     return (
-      <div className="flex flex-col items-center gap-4 mt-6 mb-10">
-        <h1 className="text-2xl font-bold text-center break-keep">
+      <div className="mb-10 mt-6 flex flex-col items-center gap-4">
+        <h1 className="break-keep text-center text-2xl font-bold">
           {metadata.title}
         </h1>
         <div className="text-slate-500">
@@ -45,7 +45,7 @@ const ContentDetailPage = async ({
             ))}
           </div>
         )}
-        <div className="markdown-content space-y-4 mb-8">
+        <div className="markdown-content mb-8 space-y-4">
           <Post />
         </div>
       </div>

@@ -1,5 +1,5 @@
 .markdown-content {
-  @apply space-y-6 w-full box-border;
+  @apply box-border w-full space-y-6;
 
   a {
     @apply font-semibold text-orange-500 underline transition-colors hover:text-orange-600;
@@ -86,7 +86,7 @@
   }
 
   pre.shiki {
-    @apply px-6 py-4 rounded-md border dark:border-gray-700 text-sm break-words box-border overflow-auto;
+    @apply box-border overflow-auto break-words rounded-md border px-6 py-4 text-sm dark:border-gray-700;
   }
 
   @media (prefers-color-scheme: dark) {

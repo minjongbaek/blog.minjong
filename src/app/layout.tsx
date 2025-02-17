@@ -35,25 +35,25 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body>
-        <div className="container mx-auto px-4 max-w-2xl min-h-screen py-4">
-          <header className="sticky top-0 bg-white z-20 dark:bg-stone-900">
-            <div className="py-3 flex justify-between items-center">
+        <div className="container mx-auto min-h-screen max-w-2xl px-4 py-4">
+          <header className="sticky top-0 z-20 bg-white dark:bg-stone-900">
+            <div className="flex items-center justify-between py-3">
               <a
                 href="/"
-                className="font-semibold text-xl select-none hover:text-orange-500 transition-colors duration-300"
+                className="select-none text-xl font-semibold transition-colors duration-300 hover:text-orange-500"
               >
                 {SITE_TITLE}
               </a>
-              <div className="flex font-semibold items-center gap-3">
+              <div className="flex items-center gap-3 font-semibold">
                 <Link
                   href="/article"
-                  className="hover:text-orange-500 transition-colors duration-300"
+                  className="transition-colors duration-300 hover:text-orange-500"
                 >
                   작성한 글
                 </Link>
                 <Link
                   href="/note"
-                  className="hover:text-orange-500 transition-colors duration-300"
+                  className="transition-colors duration-300 hover:text-orange-500"
                 >
                   작성한 메모
                 </Link>
@@ -62,7 +62,7 @@ export default function RootLayout({
                     width="16"
                     height="16"
                     viewBox="0 0 24 24"
-                    className="w-5 h-5 dark:fill-gray-300 hover:fill-orange-500 transition-colors duration-300"
+                    className="h-5 w-5 transition-colors duration-300 hover:fill-orange-500 dark:fill-gray-300"
                   />
                 </Link>
               </div>

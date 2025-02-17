@@ -1,5 +1,5 @@
 ul {
-  @apply list-disc space-y-2 ml-4;
+  @apply ml-4 list-disc space-y-2;
   & li {
     @apply first:mt-2;
   }
