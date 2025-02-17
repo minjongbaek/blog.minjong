@@ -1,10 +1,11 @@
-import type { Metadata } from "next";
-import "@/styles/globals.css";
 import GithubIcon from "@/assets/icons/github.svg";
+import "@/styles/globals.css";
+import type { Metadata } from "next";
 import Link from "next/link";
 
 const SITE_TITLE = "Blog.minjong";
 const SITE_DESCRIPTION = "민종의 기록을 위한 블로그입니다.";
+const OPEN_GRAPH_IMAGE = "/open-graph-image.png";
 const SITE_URL =
   process.env.NODE_ENV === "production"
     ? "https://blog.minjong.dev"
@@ -18,11 +19,11 @@ export const metadata: Metadata = {
   title: SITE_TITLE,
   description: SITE_DESCRIPTION,
   openGraph: {
-    images: ["/opengraph-image.png"],
+    images: [OPEN_GRAPH_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
-    images: ["/opengraph-image.png"],
+    images: [OPEN_GRAPH_IMAGE],
   },
 };
 
@@ -41,7 +42,7 @@ export default function RootLayout({
                 href="/"
                 className="font-semibold text-xl select-none hover:text-orange-500 transition-colors duration-300"
               >
-                Blog.minjong
+                {SITE_TITLE}
               </a>
               <div className="flex font-semibold items-center gap-3">
                 <Link
@@ -61,7 +62,7 @@ export default function RootLayout({
                     width="16"
                     height="16"
                     viewBox="0 0 24 24"
-                    className="w-5 h-5"
+                    className="w-5 h-5 dark:fill-gray-300 hover:fill-orange-500 transition-colors duration-300"
                   />
                 </Link>
               </div>
