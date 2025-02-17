@@ -8,13 +8,13 @@ const ContentCard = (props: Props) => {
   const isArticle = type === "article";
 
   return (
-    <Link href={`/${type}/${slug}`} className="inline-block text-current group">
-      <div className="flex flex-col w-full gap-1">
+    <Link href={`/${type}/${slug}`} className="group inline-block text-current">
+      <div className="flex w-full flex-col gap-1">
         <div className="text-sm text-slate-500">
           {new Date(createdAt).toLocaleDateString("ko-KR")}
         </div>
         {isArticle && (
-          <div className="flex gap-4 items-center text-sm">
+          <div className="flex items-center gap-4 text-sm">
             {tags.map((tag) => (
               <span className="text-orange-500" key={tag}>
                 #{tag}
@@ -22,11 +22,11 @@ const ContentCard = (props: Props) => {
             ))}
           </div>
         )}
-        <div className="inline-block text-lg font-semibold group-hover:text-orange-500 transition-colors duration-300 break-keep leading-5">
+        <div className="inline-block break-keep text-lg font-semibold leading-5 transition-colors duration-300 group-hover:text-orange-500">
           {title}
         </div>
         {isArticle && (
-          <div className="leading-4 text-md mt-0.5">{description}</div>
+          <div className="text-md mt-0.5 leading-4">{description}</div>
         )}
       </div>
     </Link>

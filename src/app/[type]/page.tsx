@@ -18,7 +18,7 @@ const HomePage = async ({
   const title = type === "article" ? "작성한 글" : "작성한 메모";
 
   return (
-    <div className="space-y-8 mt-4 leading-6 w-full">
+    <div className="mt-4 w-full space-y-8 leading-6">
       <div className="space-y-2">
         <h2 className="py-2 text-lg font-semibold">
           {title} {`(${contentsMetadata.length})`}
