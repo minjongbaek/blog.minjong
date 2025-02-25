@@ -6,14 +6,18 @@
 
 @layer {
   html {
-    @apply text-slate-600;
+    @apply text-slate-700;
   }
 
   body {
-    @apply bg-white dark:bg-stone-900 dark:text-gray-300;
+    @apply bg-white
   }
 
   p {
     @apply leading-7;
+  }
+
+  h1, h2, h3, h4, h5, b {
+    @apply text-slate-800
   }
 }

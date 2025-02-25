@@ -1,4 +1,3 @@
-import GithubIcon from "@/assets/icons/github.svg";
 import "@/styles/globals.css";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -35,47 +34,26 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body>
-        <div className="container mx-auto min-h-screen max-w-2xl px-4 py-4">
-          <header className="sticky top-0 z-20 bg-white dark:bg-stone-900">
-            <div className="flex items-center justify-between py-3">
-              <a
-                href="/"
-                className="select-none text-xl font-semibold transition-colors duration-300 hover:text-orange-500"
-              >
-                {SITE_TITLE}
-              </a>
-              <div className="flex items-center gap-3 font-semibold">
-                <Link
-                  href="/article"
-                  className="transition-colors duration-300 hover:text-orange-500"
-                >
-                  작성한 글
-                </Link>
-                <Link
-                  href="/note"
-                  className="transition-colors duration-300 hover:text-orange-500"
-                >
-                  작성한 메모
-                </Link>
-                <Link href="https://github.com/minjongbaek" target="_blank">
-                  <GithubIcon
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    className="h-5 w-5 transition-colors duration-300 hover:fill-orange-500 dark:fill-gray-300"
-                  />
-                </Link>
+        <div className="container mx-auto flex min-h-screen max-w-2xl flex-col px-4 pt-8">
+          <header className="mb-8">
+            <div className="flex items-baseline justify-between">
+              <Link className="text-2xl font-semibold text-black" href="/">
+                Blog.minjong
+              </Link>
+              <div className="flex gap-4">
+                <Link href={"/article"}>글</Link>
+                <Link href={"/note"}>메모</Link>
               </div>
             </div>
           </header>
-          {children}
-          <footer className="mt-2 text-sm text-gray-500">
-            <div className="flex justify-center p-4">
+          <main className="grow">{children}</main>
+          <footer className="p-8">
+            <div className="flex justify-center">
               <a
                 href="https://github.com/minjongbaek"
                 target="_blank"
                 rel="noreferrer"
-                className="hover:underline"
+                className="text-sm hover:underline"
               >
                 &copy; minjongbaek
               </a>
