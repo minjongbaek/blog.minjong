@@ -16,9 +16,9 @@ export const getAllContentMetadata = (contentType: ContentType) => {
 
   const contents: ContentSummary[] = contentDirectories
     .map((contentDirectory) => {
-      const metadata =
-        require(`../contents/${contentType}/${contentDirectory}/index.mdx`)
-          .metadata as ContentMetadata;
+      const metadata = require(
+        `../contents/${contentType}/${contentDirectory}/index.mdx`,
+      ).metadata as ContentMetadata;
 
       return {
         ...metadata,
