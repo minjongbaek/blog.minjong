@@ -1,9 +1,7 @@
-import Link from "next/link";
-
 const HomePage = async () => {
   return (
     <div className="flex flex-col gap-6">
-      <h1 className="text-xl font-semibold text-black">백민종</h1>
+      <h1 className="text-xl font-semibold">백민종</h1>
       <p>
         동료들과 협력하며 도움을 주고받는 것을 좋아하고, 팀의 생산성을 높여 좋은
         성과를 만들어내는 데에 늘 관심을 가지고 있습니다.
