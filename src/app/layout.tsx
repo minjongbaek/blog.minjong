@@ -1,4 +1,4 @@
-import "@/styles/globals.css";
+import "@/styles/app.css";
 import type { Metadata } from "next";
 import Link from "next/link";
 

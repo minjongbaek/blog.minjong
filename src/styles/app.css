@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "./markdown.css";
+
+@layer base {
+  html {
+    @apply text-slate-700;
+  }
+
+  body {
+    @apply overflow-scroll bg-white;
+  }
+
+  p {
+    @apply leading-7;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  b {
+    @apply text-black;
+  }
+
+  ::-webkit-scrollbar {
+    @apply h-1.5 w-2;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-lg bg-gray-100;
+  }
+}
