@@ -56,7 +56,7 @@ export default function RootLayout({
                 href="https://github.com/minjongbaek"
                 target="_blank"
                 rel="noreferrer"
-                className="text-sm text-slate-500 hover:underline dark:text-stone-300"
+                className="text-sm text-slate-500 dark:text-stone-300"
               >
                 &copy; minjongbaek
               </a>

@@ -21,6 +21,15 @@
     @apply text-black dark:text-white;
   }
 
+  a {
+    @apply relative box-border inline;
+
+    &::before {
+      @apply absolute -bottom-0.5 -left-1.5 -right-1.5 -top-0.5 -z-10 rounded transition-all hover:bg-gray-100 dark:hover:bg-stone-700;
+      content: "";
+    }
+  }
+
   h1 {
     @apply text-xl font-semibold;
   }
@@ -54,7 +63,7 @@
     @apply box-border w-full space-y-8;
 
     a {
-      @apply font-semibold text-black underline dark:text-white;
+      @apply text-black underline underline-offset-4 dark:text-white;
     }
 
     h1,
