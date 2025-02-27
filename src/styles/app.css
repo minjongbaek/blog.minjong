@@ -3,12 +3,8 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    @apply text-slate-700;
-  }
-
   body {
-    @apply overflow-y-scroll bg-white;
+    @apply overflow-y-scroll bg-white text-slate-700 dark:bg-stone-800 dark:text-gray-100;
   }
 
   p {
@@ -20,8 +16,17 @@
   h3,
   h4,
   h5,
-  b {
-    @apply text-black;
+  b,
+  a {
+    @apply text-black dark:text-white;
+  }
+
+  h1 {
+    @apply text-xl font-semibold;
+  }
+
+  h2 {
+    @apply text-lg font-semibold;
   }
 
   ::-webkit-scrollbar {
@@ -29,12 +34,18 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply rounded-lg bg-gray-100;
+    @apply rounded-lg bg-gray-100 dark:bg-stone-700;
   }
 
   * {
     scrollbar-width: thin;
     scrollbar-color: #f3f4f6 transparent;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    * {
+      scrollbar-color: #44403c transparent;
+    }
   }
 }
 
@@ -43,25 +54,13 @@
     @apply box-border w-full space-y-8;
 
     a {
-      @apply font-semibold text-black underline;
+      @apply font-semibold text-black underline dark:text-white;
     }
 
     h1,
     h2,
     h3 {
-      @apply before:mr-2 before:box-content before:rounded-md before:bg-black before:pl-1.5;
-    }
-
-    h1 {
-      @apply text-2xl font-semibold;
-    }
-
-    h2 {
-      @apply text-xl font-semibold;
-    }
-
-    h3 {
-      @apply text-lg;
+      @apply before:mr-2 before:box-content before:rounded-md before:bg-black before:pl-1.5 dark:before:bg-white;
     }
 
     strong {
@@ -77,7 +76,7 @@
     }
 
     li {
-      word-break: break-all;
+      @apply break-keep leading-7;
 
       ul {
         @apply mt-2;
@@ -119,7 +118,7 @@
     }
 
     code:not(pre code) {
-      @apply mx-0.5 whitespace-normal break-all rounded-md bg-gray-100 px-1 py-0.5 text-sm font-semibold text-black;
+      @apply mx-0.5 inline-block whitespace-normal break-all rounded-md bg-gray-100 px-1 py-0.5 text-sm font-semibold text-black dark:bg-stone-700 dark:text-white;
       &::after,
       &::before {
         @apply content-none;
@@ -127,21 +126,20 @@
     }
 
     pre.shiki {
-      @apply box-border overflow-auto break-words rounded-md border px-6 py-4 text-sm;
+      @apply box-border overflow-auto break-words rounded-md border px-6 py-4 text-sm dark:border-none;
     }
 
-    /* 다크모드 스타일을 제거함에 따라 일시적으로 주석 처리 */
-    /* @media (prefers-color-scheme: dark) {
-    color-scheme: dark;
+    @media (prefers-color-scheme: dark) {
+      color-scheme: dark;
 
-    .shiki,
-    .shiki span {
-      color: var(--shiki-dark) !important;
-      background-color: var(--shiki-dark-bg) !important;
-      font-style: var(--shiki-dark-font-style) !important;
-      font-weight: var(--shiki-dark-font-weight) !important;
-      text-decoration: var(--shiki-dark-text-decoration) !important;
+      .shiki,
+      .shiki span {
+        color: var(--shiki-dark) !important;
+        background-color: var(--shiki-dark-bg) !important;
+        font-style: var(--shiki-dark-font-style) !important;
+        font-weight: var(--shiki-dark-font-weight) !important;
+        text-decoration: var(--shiki-dark-text-decoration) !important;
+      }
     }
-  } */
   }
 }
