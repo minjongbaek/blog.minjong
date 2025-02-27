@@ -18,16 +18,14 @@ const HomePage = async ({
   const title = type === "article" ? "작성한 글" : "작성한 메모";
 
   return (
-    <div className="mt-4 w-full space-y-8 leading-6">
-      <div className="space-y-2">
-        <h2 className="py-2 text-lg font-semibold">
-          {title} {`(${contentsMetadata.length})`}
-        </h2>
-        <div className="flex flex-col gap-y-6">
-          {contentsMetadata.map((content) => (
-            <ContentCard key={content.slug} {...content} />
-          ))}
-        </div>
+    <div className="flex flex-col gap-8">
+      <h1 className="text-lg font-semibold">
+        {title} {`(${contentsMetadata.length})`}
+      </h1>
+      <div className="flex flex-col gap-8">
+        {contentsMetadata.map((content) => (
+          <ContentCard key={content.slug} {...content} />
+        ))}
       </div>
     </div>
   );

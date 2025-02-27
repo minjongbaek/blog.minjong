@@ -36,15 +36,6 @@ const ContentDetailPage = async ({
         <div className="text-slate-500">
           {new Date(metadata.createdAt).toLocaleDateString("ko-KR")}
         </div>
-        {metadata.tags && (
-          <div className="flex gap-4">
-            {metadata.tags.map((tag: string) => (
-              <span key={tag} className="text-orange-500">
-                #{tag}
-              </span>
-            ))}
-          </div>
-        )}
         <div className="markdown-content mb-8 space-y-4">
           <Post />
         </div>
