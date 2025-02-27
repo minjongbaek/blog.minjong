@@ -36,7 +36,7 @@ const ContentDetailPage = async ({
       <div className="text-slate-500">
         {new Date(metadata.createdAt).toLocaleDateString("ko-KR")}
       </div>
-      <div className="markdown-content mb-8 space-y-4">
+      <div className="markdown-content">
         <Post />
       </div>
     </div>
