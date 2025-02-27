@@ -5,7 +5,6 @@ interface Props extends ContentSummary {}
 
 const ContentCard = (props: Props) => {
   const { slug, title, description, type } = props;
-  const isArticle = type === "article";
 
   return (
     <Link href={`/${type}/${slug}`}>

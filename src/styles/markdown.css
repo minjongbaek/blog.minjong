@@ -2,13 +2,13 @@
   @apply box-border w-full space-y-6;
 
   a {
-    @apply font-semibold text-orange-500 underline transition-colors hover:text-orange-600;
+    @apply font-semibold text-black underline;
   }
 
   h1,
   h2,
   h3 {
-    @apply before:mr-2 before:box-content before:rounded-md before:bg-orange-500 before:pl-1.5;
+    @apply before:mr-2 before:box-content before:rounded-md before:bg-black before:pl-1.5;
   }
 
   h1 {
@@ -78,7 +78,7 @@
   }
 
   code:not(pre code) {
-    @apply mx-0.5 whitespace-normal break-all rounded-md bg-gray-100 px-1 py-0.5 text-sm font-semibold text-orange-500 dark:bg-stone-700;
+    @apply mx-0.5 whitespace-normal break-all rounded-md bg-gray-100 px-1 py-0.5 text-sm font-semibold text-black;
     &::after,
     &::before {
       @apply content-none;
@@ -86,20 +86,20 @@
   }
 
   pre.shiki {
-    @apply box-border overflow-auto break-words rounded-md border px-6 py-4 text-sm dark:border-gray-700;
+    @apply box-border overflow-auto break-words rounded-md border px-6 py-4 text-sm;
   }
 
-  @media (prefers-color-scheme: dark) {
+  /* 다크모드 스타일을 제거함에 따라 일시적으로 주석 처리 */
+  /* @media (prefers-color-scheme: dark) {
     color-scheme: dark;
 
     .shiki,
     .shiki span {
       color: var(--shiki-dark) !important;
       background-color: var(--shiki-dark-bg) !important;
-      /* Optional, if you also want font styles */
       font-style: var(--shiki-dark-font-style) !important;
       font-weight: var(--shiki-dark-font-weight) !important;
       text-decoration: var(--shiki-dark-text-decoration) !important;
     }
-  }
+  } */
 }

@@ -13,9 +13,7 @@ const ProjectCard = ({ title, description, imageURL, githubURL }: Project) => {
           className="aspect-video rounded-[3px]"
         />
         <div>
-          <div className="text-lg font-semibold transition-colors duration-300 group-hover:text-orange-500">
-            {title}
-          </div>
+          <div className="text-lg font-semibold">{title}</div>
           <div className="break-keep">{description}</div>
         </div>
       </div>
