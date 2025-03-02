@@ -9,10 +9,10 @@ const ContentCard = (props: Props) => {
   return (
     <Link href={`/${type}/${slug}`}>
       <div className="flex w-full flex-col gap-2">
-        <div className="inline-block break-keep text-lg font-semibold leading-5">
+        <div className="inline-block break-keep font-semibold leading-5">
           {title}
         </div>
-        <div className="text-md mt-0.5 leading-4 text-slate-500">
+        <div className="mt-0.5 text-sm leading-4 text-gray-500 dark:text-gray-300">
           {description}
         </div>
       </div>

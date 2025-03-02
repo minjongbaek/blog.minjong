@@ -1,6 +1,7 @@
 import ContentCard from "@/components/ContentCard";
 import { ContentType } from "@/types/content";
 import { getAllContentMetadata } from "@/utils/content";
+import Link from "next/link";
 
 const HomePage = async ({
   params,
@@ -9,26 +10,35 @@ const HomePage = async ({
 }) => {
   const { type } = await params;
 
-  if (type !== "article" && type !== "note") {
-    return <div>Not Found</div>;
-  }
-
   const contentsMetadata = getAllContentMetadata(type);
 
-  const title = type === "article" ? "작성한 글" : "작성한 메모";
+  const pageTitle = type === "article" ? "작성한 글" : "작성한 메모";
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="space-y-6">
       <h1 className="text-lg font-semibold">
-        {title} {`(${contentsMetadata.length})`}
+        {pageTitle} {`(${contentsMetadata.length})`}
       </h1>
-      <div className="flex flex-col gap-8">
-        {contentsMetadata.map((content) => (
-          <ContentCard key={content.slug} {...content} />
+      <ul className="flex flex-col gap-6">
+        {contentsMetadata.map(({ slug, title, description }) => (
+          <li key={slug} className="w-full space-y-1">
+            <Link href={`/${type}/${slug}`} className="break-keep leading-7">
+              {title}
+            </Link>
+            <div className="mt-0.5 text-sm leading-4 text-gray-500 dark:text-gray-300">
+              {description}
+            </div>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 };
+
+export const generateStaticParams = () => {
+  return [{ type: "article" }, { type: "note" }];
+};
+
+export const dynamicParams = false;
 
 export default HomePage;

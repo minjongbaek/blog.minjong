@@ -37,7 +37,10 @@ export default function RootLayout({
         <div className="container mx-auto flex min-h-screen max-w-2xl flex-col px-4 pt-8">
           <header className="mb-8">
             <div className="flex items-baseline justify-between">
-              <Link className="text-2xl font-semibold text-black" href="/">
+              <Link
+                className="text-xl font-semibold text-black dark:text-white"
+                href="/"
+              >
                 Blog.minjong
               </Link>
               <div className="flex gap-4">
@@ -53,7 +56,7 @@ export default function RootLayout({
                 href="https://github.com/minjongbaek"
                 target="_blank"
                 rel="noreferrer"
-                className="text-sm hover:underline"
+                className="text-sm text-slate-500 dark:text-stone-300"
               >
                 &copy; minjongbaek
               </a>

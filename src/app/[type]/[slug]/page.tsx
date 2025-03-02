@@ -1,4 +1,5 @@
 import { ContentType } from "@/types/content";
+import { getAllContentMetadata } from "@/utils/content";
 import { Metadata } from "next";
 
 export const generateMetadata = async ({
@@ -23,28 +24,34 @@ const ContentDetailPage = async ({
 }) => {
   const { type, slug } = await params;
 
-  try {
-    const { default: Post, metadata } = await import(
-      `@/contents/${type}/${slug}/index.mdx`
-    );
+  const { default: Post, metadata } = await import(
+    `@/contents/${type}/${slug}/index.mdx`
+  );
 
-    return (
-      <div className="mb-10 mt-6 flex flex-col items-center gap-4">
-        <h1 className="break-keep text-center text-2xl font-bold">
-          {metadata.title}
-        </h1>
-        <div className="text-slate-500">
-          {new Date(metadata.createdAt).toLocaleDateString("ko-KR")}
-        </div>
-        <div className="markdown-content mb-8 space-y-4">
-          <Post />
-        </div>
+  return (
+    <div className="mb-10 mt-6 flex flex-col items-center gap-4">
+      <h1 className="break-keep text-center font-bold">{metadata.title}</h1>
+      <div className="text-gray-500 dark:text-gray-300">
+        {new Date(metadata.createdAt).toLocaleDateString("ko-KR")}
       </div>
-    );
-  } catch (error) {
-    console.error(error);
-    return <div>Not found</div>;
-  }
+      <div className="markdown-content">
+        <Post />
+      </div>
+    </div>
+  );
 };
+
+export const generateStaticParams = () => {
+  const contentTypes: ContentType[] = ["article", "note"];
+
+  return contentTypes
+    .flatMap((type) => getAllContentMetadata(type))
+    .map(({ type, slug }) => ({
+      type,
+      slug,
+    }));
+};
+
+export const dynamicParams = false;
 
 export default ContentDetailPage;
