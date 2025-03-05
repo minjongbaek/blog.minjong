@@ -32,3 +32,19 @@ export const getAllContentMetadata = async (contentType: ContentType) => {
 
   return contents;
 };
+
+export const groupContentsByYear = (contents: ContentSummary[]) => {
+  const contentsByYear: Record<string, ContentSummary[]> = {};
+
+  contents.forEach((content) => {
+    const year = new Date(content.createdAt).getFullYear().toString();
+
+    if (!contentsByYear[year]) {
+      contentsByYear[year] = [];
+    }
+
+    contentsByYear[year].push(content);
+  });
+
+  return contentsByYear;
+};
