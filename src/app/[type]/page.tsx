@@ -1,4 +1,3 @@
-import ContentCard from "@/components/ContentCard";
 import { ContentType } from "@/types/content";
 import { getAllContentMetadata } from "@/utils/content";
 import Link from "next/link";
@@ -10,7 +9,7 @@ const HomePage = async ({
 }) => {
   const { type } = await params;
 
-  const contentsMetadata = getAllContentMetadata(type);
+  const contentsMetadata = await getAllContentMetadata(type);
 
   const pageTitle = type === "article" ? "작성한 글" : "작성한 메모";
 

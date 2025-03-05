@@ -4,20 +4,18 @@ import path from "path";
 
 const CONTENTS_DIRECTORY = path.join(process.cwd(), "src/contents");
 
-export const getAllContentMetadata = (contentType: ContentType) => {
+export const getAllContentMetadata = async (contentType: ContentType) => {
   const contentTypeDirectory = path.join(CONTENTS_DIRECTORY, contentType);
 
   const contentDirectories = fs
-    .readdirSync(contentTypeDirectory, {
-      withFileTypes: true,
-    })
+    .readdirSync(contentTypeDirectory, { withFileTypes: true })
     .filter((node) => node.isDirectory())
     .map((node) => node.name);
 
-  const contents: ContentSummary[] = contentDirectories
-    .map((contentDirectory) => {
-      const metadata = require(
-        `../contents/${contentType}/${contentDirectory}/index.mdx`,
+  const contents: ContentSummary[] = await Promise.all(
+    contentDirectories.map(async (contentDirectory) => {
+      const metadata = (
+        await import(`../contents/${contentType}/${contentDirectory}/index.mdx`)
       ).metadata as ContentMetadata;
 
       return {
@@ -25,9 +23,12 @@ export const getAllContentMetadata = (contentType: ContentType) => {
         slug: contentDirectory,
         type: contentType,
       };
-    })
-    .sort((a, b) => {
-      return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
-    });
+    }),
+  );
+
+  contents.sort(
+    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+  );
+
   return contents;
 };

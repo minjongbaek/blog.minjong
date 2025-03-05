@@ -1,9 +1,7 @@
 import { ContentSummary } from "@/types/content";
 import Link from "next/link";
 
-interface Props extends ContentSummary {}
-
-const ContentCard = (props: Props) => {
+const ContentCard = (props: ContentSummary) => {
   const { slug, title, description, type } = props;
 
   return (

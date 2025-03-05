@@ -41,15 +41,17 @@ const ContentDetailPage = async ({
   );
 };
 
-export const generateStaticParams = () => {
+export const generateStaticParams = async () => {
   const contentTypes: ContentType[] = ["article", "note"];
 
-  return contentTypes
-    .flatMap((type) => getAllContentMetadata(type))
-    .map(({ type, slug }) => ({
-      type,
-      slug,
-    }));
+  const allContentMetadata = (
+    await Promise.all(contentTypes.map((type) => getAllContentMetadata(type)))
+  ).flat();
+
+  return allContentMetadata.map(({ type, slug }) => ({
+    type,
+    slug,
+  }));
 };
 
 export const dynamicParams = false;
