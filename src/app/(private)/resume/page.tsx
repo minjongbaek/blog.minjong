@@ -4,16 +4,22 @@ const Resume = async () => {
   const careerContents = await getResumeContents("career");
 
   return (
-    <div className="flex flex-col gap-6">
-      <div>
+    <div className="space-y">
+      <div className="mb-4 space-y-4 border-b-2 border-slate-700 pb-4">
         <h1>백민종</h1>
         <span>프론트엔드 개발자</span>
-        <ul>
-          <li>minjongbaek@gmail.com</li>
-          <li>https://github.com/minjongbaek</li>
-        </ul>
-      </div>
-      <div>
+        <div className="flex flex-col text-sm *:text-slate-700">
+          <div>
+            <span className="inline-block w-16">이메일</span>
+            <a href="mailto:https://github.com/minjongbaek">
+              minjongbaek@gmail.com
+            </a>
+          </div>
+          <div>
+            <span className="inline-block w-16">GitHub</span>
+            <a href="https://github.com/minjongbaek">github.com/minjongbaek</a>
+          </div>
+        </div>
         <p>
           동료들과 협력하며 도움을 주고받는 것을 좋아하고, 팀의 생산성을 높여
           좋은 성과를 만들어내는 데에 늘 관심을 가지고 있습니다.
@@ -28,8 +34,7 @@ const Resume = async () => {
           프론트엔드 개발자로 커리어를 이어가고 있습니다.
         </p>
       </div>
-
-      <div>
+      <div className="mb-4 space-y-4 border-b-2 border-slate-700 pb-4">
         <h2>경력</h2>
         {careerContents.map(
           ({
@@ -43,7 +48,10 @@ const Resume = async () => {
               employmentEndDate,
             },
           }) => (
-            <div key={title}>
+            <div
+              key={title}
+              className="space-y-4 border-b pb-4 last:mb-0 last:border-none last:pb-0"
+            >
               <h3>{title}</h3>
               <div>
                 <div>
@@ -56,7 +64,7 @@ const Resume = async () => {
                   )}
                 </div>
               </div>
-              <b>{description}</b>
+              <p className="text-lg font-semibold">{description}</p>
               <CareerContent />
             </div>
           ),

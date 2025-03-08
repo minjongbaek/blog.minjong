@@ -1,8 +1,35 @@
 import { ContentMetadata, ContentSummary, ContentType } from "@/types/content";
+import { CareerMetadata, ResumeContentType } from "@/types/resume";
 import fs from "fs";
 import path from "path";
 
 const CONTENTS_DIRECTORY = path.join(process.cwd(), "src/contents");
+
+export const getResumeContents = async (
+  resumeContentType: ResumeContentType,
+) => {
+  const contentTypeDirectory = path.join(
+    CONTENTS_DIRECTORY,
+    "resume",
+    resumeContentType,
+  );
+
+  const fileNames = fs.readdirSync(contentTypeDirectory);
+
+  const contents = await Promise.all(
+    fileNames.map(async (fileName) => {
+      const careerContent = await import(
+        `../contents/resume/${resumeContentType}/${fileName}`
+      );
+
+      return {
+        CareerContent: careerContent.default,
+        metadata: careerContent.metadata as CareerMetadata,
+      };
+    }),
+  );
+  return contents;
+};
 
 export const getAllContentMetadata = async (contentType: ContentType) => {
   const contentTypeDirectory = path.join(CONTENTS_DIRECTORY, contentType);

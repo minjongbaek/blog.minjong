@@ -151,4 +151,42 @@
       }
     }
   }
+
+  .resume {
+    h1 {
+      @apply text-3xl text-inherit;
+    }
+
+    h2 {
+      @apply text-2xl text-inherit;
+    }
+
+    h3 {
+      @apply text-xl font-semibold text-inherit;
+    }
+
+    a {
+      @apply underline cursor-pointer text-blue-500 print:no-underline;
+
+      &::before {
+        @apply content-none;
+      }
+    }
+
+    ul {
+      @apply ml-4 list-disc;
+    }
+
+    ol {
+      @apply ml-4 list-decimal;
+    }
+
+    li {
+      @apply break-keep leading-7;
+
+      ul {
+        @apply mt-2;
+      }
+    }
+  }
 }

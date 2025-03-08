@@ -19,7 +19,7 @@ const HomePage = async ({
 
   return (
     <div className="space-y-6">
-      <h1 className="text-lg font-semibold">
+      <h1 className="font-semibold">
         {pageTitle} {`(${contentsMetadata.length})`}
       </h1>
       {years.map((year) => (
