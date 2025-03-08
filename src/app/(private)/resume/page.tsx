@@ -2,24 +2,33 @@ import { getResumeContents } from "@/utils/content";
 
 const Resume = async () => {
   const careerContents = await getResumeContents("career");
+  const projectContents = await getResumeContents("project");
 
   return (
     <div className="space-y">
       <div className="mb-4 space-y-4 border-b-2 border-slate-700 pb-4">
-        <h1>백민종</h1>
-        <span>프론트엔드 개발자</span>
-        <div className="flex flex-col text-sm *:text-slate-700">
-          <div>
-            <span className="inline-block w-16">이메일</span>
-            <a href="mailto:https://github.com/minjongbaek">
-              minjongbaek@gmail.com
-            </a>
-          </div>
-          <div>
-            <span className="inline-block w-16">GitHub</span>
-            <a href="https://github.com/minjongbaek">github.com/minjongbaek</a>
+        <div className="space-y-4">
+          <h1>백민종</h1>
+          <div className="flex flex-col text-sm *:text-slate-700">
+            <div>
+              <span className="inline-block w-20">이메일</span>
+              <a href="mailto:https://github.com/minjongbaek">
+                minjongbaek@gmail.com
+              </a>
+            </div>
+            <div>
+              <span className="inline-block w-20">블로그</span>
+              <a href="https://blog.minjong.dev">blog.minjong.dev</a>
+            </div>
+            <div>
+              <span className="inline-block w-20">GitHub</span>
+              <a href="https://github.com/minjongbaek">
+                github.com/minjongbaek
+              </a>
+            </div>
           </div>
         </div>
+
         <p>
           동료들과 협력하며 도움을 주고받는 것을 좋아하고, 팀의 생산성을 높여
           좋은 성과를 만들어내는 데에 늘 관심을 가지고 있습니다.
@@ -38,14 +47,14 @@ const Resume = async () => {
         <h2>경력</h2>
         {careerContents.map(
           ({
-            CareerContent,
+            Content,
             metadata: {
               title,
               position,
               team,
               description,
-              employmentStartDate,
-              employmentEndDate,
+              startDate,
+              endDate,
             },
           }) => (
             <div
@@ -57,18 +66,64 @@ const Resume = async () => {
                 <div>
                   {position} | {team}
                 </div>
-                <div>
-                  {getEmploymentDuration(
-                    employmentStartDate,
-                    employmentEndDate,
-                  )}
-                </div>
+                <div>{getDuration(startDate, endDate)}</div>
               </div>
-              <p className="text-lg font-semibold">{description}</p>
-              <CareerContent />
+              <p className="font-semibold">{description}</p>
+              <Content />
             </div>
           ),
         )}
+      </div>
+      <div className="mb-4 space-y-4 border-b-2 border-slate-700 pb-4">
+        <h2>프로젝트</h2>
+        {projectContents.map(
+          ({
+            Content,
+            metadata: { title, team, description, startDate, endDate },
+          }) => (
+            <div
+              key={title}
+              className="space-y-4 border-b pb-4 last:mb-0 last:border-none last:pb-0"
+            >
+              <h3>{title}</h3>
+              <div>
+                <div>{team}</div>
+                <div>
+                  {startDate} ~ {endDate ?? "진행중"}
+                </div>
+              </div>
+              <p className="font-semibold">{description}</p>
+              <Content />
+            </div>
+          ),
+        )}
+      </div>
+      <div className="mb-4 space-y-4 border-b-2 border-slate-700 pb-4">
+        <h2>교육</h2>
+        <div className="space-y-4 border-b pb-4 last:mb-0 last:border-none last:pb-0">
+          <h3>동양미래대학교</h3>
+          <div>
+            <div>대학교(학사) | 정보통신공학과 (전공심화)</div>
+            <div>2019.03 ~ 2020.02 | 졸업</div>
+          </div>
+        </div>
+        <div className="space-y-4 border-b pb-4 last:mb-0 last:border-none last:pb-0">
+          <h3>동양미래대학교</h3>
+          <div>
+            <div>대학교(전문학사) | 정보통신공학과</div>
+            <div>2014.03 ~ 2019.02 | 졸업</div>
+          </div>
+        </div>
+      </div>
+      <div className="mb-4 space-y-4">
+        <h2>자격증</h2>
+        <div className="space-y-4 border-b pb-4 last:mb-0 last:border-none last:pb-0">
+          <h3>정보처리기사</h3>
+          <div>
+            <div>한국산업인력공단</div>
+            <div>2019.11</div>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -76,7 +131,7 @@ const Resume = async () => {
 
 export default Resume;
 
-const getEmploymentDuration = (startDate: string, endDate?: string) => {
+const getDuration = (startDate: string, endDate?: string) => {
   const start = new Date(startDate);
   const end = endDate ? new Date(endDate) : new Date();
 

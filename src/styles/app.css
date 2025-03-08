@@ -188,5 +188,9 @@
         @apply mt-2;
       }
     }
+
+    blockquote {
+      @apply border-l-4 border-slate-700 pl-4 italic ;
+    }
   }
 }

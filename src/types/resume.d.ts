@@ -1,11 +1,11 @@
 export type ResumeContentType = "career" | "project";
 
-export type CareerMetadata = {
+export type ResumeContentMetadata = {
   title: string;
   title: string;
-  description: string;
-  position: string;
+  description?: string;
+  position?: string;
   team: string;
-  employmentStartDate: string;
-  employmentEndDate?: string;
+  startDate: string;
+  endDate?: string;
 };

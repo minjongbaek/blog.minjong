@@ -1,5 +1,5 @@
 import { ContentMetadata, ContentSummary, ContentType } from "@/types/content";
-import { CareerMetadata, ResumeContentType } from "@/types/resume";
+import { ResumeContentMetadata, ResumeContentType } from "@/types/resume";
 import fs from "fs";
 import path from "path";
 
@@ -18,16 +18,23 @@ export const getResumeContents = async (
 
   const contents = await Promise.all(
     fileNames.map(async (fileName) => {
-      const careerContent = await import(
+      const content = await import(
         `../contents/resume/${resumeContentType}/${fileName}`
       );
 
       return {
-        CareerContent: careerContent.default,
-        metadata: careerContent.metadata as CareerMetadata,
+        Content: content.default,
+        metadata: content.metadata as ResumeContentMetadata,
       };
     }),
   );
+
+  contents.sort(
+    (a, b) =>
+      new Date(b.metadata.startDate).getTime() -
+      new Date(a.metadata.startDate).getTime(),
+  );
+
   return contents;
 };
 
