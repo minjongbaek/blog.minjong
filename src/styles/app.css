@@ -166,7 +166,7 @@
     }
 
     a {
-      @apply underline cursor-pointer text-blue-500 print:no-underline;
+      @apply cursor-pointer text-blue-500 underline print:no-underline;
 
       &::before {
         @apply content-none;
@@ -189,8 +189,12 @@
       }
     }
 
+    li:not(:last-child) {
+      @apply mb-2;
+    }
+
     blockquote {
-      @apply border-l-4 border-slate-700 pl-4 italic ;
+      @apply border-l-4 border-slate-700 pl-4 italic;
     }
   }
 }

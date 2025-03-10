@@ -1,12 +1,13 @@
 import { getResumeContents } from "@/utils/content";
 
 const Resume = async () => {
+  const { default: Skills } = await import("@/contents/resume/skills.mdx");
   const careerContents = await getResumeContents("career");
   const projectContents = await getResumeContents("project");
 
   return (
     <div className="space-y">
-      <div className="mb-4 space-y-4 border-b-2 border-slate-700 pb-4">
+      <div className="mb-6 space-y-4 border-b-2 border-slate-500 pb-6">
         <div className="space-y-4">
           <h1>백민종</h1>
           <div className="flex flex-col text-sm *:text-slate-700">
@@ -28,22 +29,15 @@ const Resume = async () => {
             </div>
           </div>
         </div>
-
-        <p>
-          동료들과 협력하며 도움을 주고받는 것을 좋아하고, 팀의 생산성을 높여
-          좋은 성과를 만들어내는 데에 늘 관심을 가지고 있습니다.
+        <p className="border-b pb-4">
+          프론트엔드 개발자로서 사용자 경험(UX) 최적화와 성능 개선을 목표로 하고
+          있습니다. 유지보수하기 쉬운 코드를 작성하는 것에 관심이 많으며, 새로운
+          기술을 적극적으로 학습하고 동료들과 협업하며 최적의 해결책을 찾아가는
+          과정을 중요하게 생각합니다.
         </p>
-        <p>
-          특히 요즘에는 동료들과 유쾌하게 잡담하며 웃는 순간에 활력을 얻고, 일에
-          몰입하며 의미 있는 결과를 만들어가는 과정에서 큰 만족을 느낍니다.
-        </p>
-        <p>
-          백엔드 개발자로 커리어를 시작했지만, 복잡한 것을 단순하고 직관적으로
-          만들어 사용자 경험을 향상시키는 프론트엔드 기술에 매력을 느껴 현재는
-          프론트엔드 개발자로 커리어를 이어가고 있습니다.
-        </p>
+        <Skills />
       </div>
-      <div className="mb-4 space-y-4 border-b-2 border-slate-700 pb-4">
+      <div className="mb-6 space-y-4 border-b-2 border-slate-500 pb-6">
         <h2>경력</h2>
         {careerContents.map(
           ({
@@ -74,7 +68,7 @@ const Resume = async () => {
           ),
         )}
       </div>
-      <div className="mb-4 space-y-4 border-b-2 border-slate-700 pb-4">
+      <div className="mb-6 space-y-4 border-b-2 border-slate-500 pb-6">
         <h2>프로젝트</h2>
         {projectContents.map(
           ({
@@ -98,7 +92,7 @@ const Resume = async () => {
           ),
         )}
       </div>
-      <div className="mb-4 space-y-4 border-b-2 border-slate-700 pb-4">
+      <div className="mb-6 space-y-4 border-b-2 border-slate-500 pb-6">
         <h2>교육</h2>
         <div className="space-y-4 border-b pb-4 last:mb-0 last:border-none last:pb-0">
           <h3>동양미래대학교</h3>
@@ -115,7 +109,7 @@ const Resume = async () => {
           </div>
         </div>
       </div>
-      <div className="mb-4 space-y-4">
+      <div className="space-y-4">
         <h2>자격증</h2>
         <div className="space-y-4 border-b pb-4 last:mb-0 last:border-none last:pb-0">
           <h3>정보처리기사</h3>
