@@ -53,7 +53,7 @@ const Resume = async () => {
           }) => (
             <div
               key={title}
-              className="space-y-4 border-b pb-4 last:mb-0 last:border-none last:pb-0"
+              className="space-y-2 border-b pb-4 last:mb-0 last:border-none last:pb-0"
             >
               <h3>{title}</h3>
               <div>
@@ -77,7 +77,7 @@ const Resume = async () => {
           }) => (
             <div
               key={title}
-              className="space-y-4 border-b pb-4 last:mb-0 last:border-none last:pb-0"
+              className="space-y-2 border-b pb-4 last:mb-0 last:border-none last:pb-0"
             >
               <h3>{title}</h3>
               <div>
@@ -94,14 +94,14 @@ const Resume = async () => {
       </div>
       <div className="mb-6 space-y-4 border-b-2 border-slate-500 pb-6">
         <h2>교육</h2>
-        <div className="space-y-4 border-b pb-4 last:mb-0 last:border-none last:pb-0">
+        <div className="space-y-2 border-b pb-4 last:mb-0 last:border-none last:pb-0">
           <h3>동양미래대학교</h3>
           <div>
             <div>대학교(학사) | 정보통신공학과 (전공심화)</div>
             <div>2019.03 ~ 2020.02 | 졸업</div>
           </div>
         </div>
-        <div className="space-y-4 border-b pb-4 last:mb-0 last:border-none last:pb-0">
+        <div className="space-y-2 border-b pb-4 last:mb-0 last:border-none last:pb-0">
           <h3>동양미래대학교</h3>
           <div>
             <div>대학교(전문학사) | 정보통신공학과</div>
@@ -111,7 +111,7 @@ const Resume = async () => {
       </div>
       <div className="space-y-4">
         <h2>자격증</h2>
-        <div className="space-y-4 border-b pb-4 last:mb-0 last:border-none last:pb-0">
+        <div className="space-y-2 border-b pb-4 last:mb-0 last:border-none last:pb-0">
           <h3>정보처리기사</h3>
           <div>
             <div>한국산업인력공단</div>
