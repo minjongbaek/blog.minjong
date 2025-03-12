@@ -1,10 +1,1 @@
-# Blog.minjong
-
-공유하고 싶은 기술이나 경험을 기록하고 있습니다.
-
-## Stack
-
-TypeScript
-Next.js
-React
-Tailwind
+개발하면서 겪은 경험을 간단한 메모부터 자세한 글까지 다양한 형태로 기록하고 있습니다.
