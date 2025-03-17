@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const SITE_TITLE = "Blog.minjong";
 const SITE_DESCRIPTION = "민종의 기록을 위한 블로그입니다.";
-const OPEN_GRAPH_IMAGE = "/open-graph-image.png";
+const OPEN_GRAPH_IMAGE = "/opengraph-image.png";
 const SITE_URL =
   process.env.NODE_ENV === "production"
     ? "https://blog.minjong.dev"
