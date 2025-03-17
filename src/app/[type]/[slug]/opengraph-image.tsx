@@ -10,11 +10,13 @@ export const size = {
 
 export const contentType = "image/png";
 
+// vercel 에서 public 디렉토리의 파일을 읽지 못하는 문제가 있음.
+// https://github.com/vercel/next.js/issues/52711#issuecomment-2307082970
 const BACKGROUND_IMAGE_PATH = join(
   process.cwd(),
   process.env.NODE_ENV === "production"
-    ? "empty-opengraph-image.png"
-    : "public/images/empty-opengraph-image.png",
+    ? "/var/task/public/images/empty-opengraph-image.png"
+    : "/public/images/empty-opengraph-image.png",
 );
 
 const OpengraphImage = async ({
