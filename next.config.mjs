@@ -30,11 +30,17 @@ const remarkPublicImage = () => {
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ["mdx", "ts", "tsx"],
+  experimental: {
+    outputFileTracingIncludes: {
+      "/**/opengraph-image": ["public/images/opengraph-image.png"],
+      "/**/twitter-image": ["public/images/twitter-image.png"],
+    },
+  },
 
   webpack: (config) => {
     // Grab the existing rule that handles SVG imports
     const fileLoaderRule = config.module.rules.find((rule) =>
-      rule.test?.test?.(".svg")
+      rule.test?.test?.(".svg"),
     );
 
     config.module.rules.push(
@@ -50,7 +56,7 @@ const nextConfig = {
         issuer: fileLoaderRule.issuer,
         resourceQuery: { not: [...fileLoaderRule.resourceQuery.not, /url/] }, // exclude if *.svg?url
         use: ["@svgr/webpack"],
-      }
+      },
     );
 
     // Modify the file loader rule to ignore *.svg, since we have it handled now.

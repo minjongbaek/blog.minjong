@@ -14,9 +14,7 @@ export const contentType = "image/png";
 // https://github.com/vercel/next.js/issues/52711#issuecomment-2307082970
 const BACKGROUND_IMAGE_PATH = join(
   process.cwd(),
-  process.env.NODE_ENV === "production"
-    ? "/var/task/public/images/empty-opengraph-image.png"
-    : "/public/images/empty-opengraph-image.png",
+  "/public/images/empty-opengraph-image.png",
 );
 
 const OpengraphImage = async ({
