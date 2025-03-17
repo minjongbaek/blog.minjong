@@ -1,7 +1,7 @@
 import { ContentType } from "@/types/content";
 import { ImageResponse } from "next/og";
 import { readFile } from "node:fs/promises";
-import { join } from "node:path";
+import { resolve } from "node:path";
 
 export const size = {
   width: 1200,
@@ -10,10 +10,9 @@ export const size = {
 
 export const contentType = "image/png";
 
-const BACKGROUND_IMAGE_PATH = join(
-  process.cwd(),
-  "src",
-  "assets",
+const BACKGROUND_IMAGE_PATH = resolve(
+  "./public",
+  "images",
   "empty-opengraph-image.png",
 );
 
