@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const SITE_TITLE = "Blog.minjong";
 const SITE_DESCRIPTION = "민종의 기록을 위한 블로그입니다.";
-const OPEN_GRAPH_IMAGE = "/open-graph-image.png";
+const OPENGRAPH_IMAGE = "/opengraph-image.png";
 const SITE_URL =
   process.env.NODE_ENV === "production"
     ? "https://blog.minjong.dev"
@@ -18,11 +18,11 @@ export const metadata: Metadata = {
   title: SITE_TITLE,
   description: SITE_DESCRIPTION,
   openGraph: {
-    images: [OPEN_GRAPH_IMAGE],
+    images: [OPENGRAPH_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
-    images: [OPEN_GRAPH_IMAGE],
+    images: [OPENGRAPH_IMAGE],
   },
 };
 
