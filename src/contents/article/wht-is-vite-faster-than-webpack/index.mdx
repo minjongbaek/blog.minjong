@@ -1,0 +1,198 @@
+export const metadata = {
+  title: "왜 Vite는 Webpack 보다 빠를까?",
+  description: "ESM의 등장배경에 대해 알아보자.",
+  createdAt: "2025-04-05",
+  tags: ["Vite", "WebPack", "ESM"],
+};
+
+최근`CRA(Create React App)`가 지원 종료됨에 따라, 회사에서 `CRA`로 만들어진 프로젝트를 `Vite` + `React Router`로 마이그레이션 했다.
+
+마이그레이션을 하고 나니 `HMR(Hot Module Replacement)` 반응 속도와 빌드 시간이 개선된 것을 체감할 수 있었다. 그렇다면, **왜 `Vite`는 `Webpack` 보다 빠른걸까?**
+
+## Webpack과 CommonJS의 관계
+
+Webpack을 알기 전 `CommonJS`를 알아야 한다.
+
+**초기의 자바스크립트는 오직 브라우저에서만 작동하는 언어**였기에, HTML의 `<script />` 태그를 이용해 코드를 작성하거나, 자바스크립트 파일을 순차적으로 불러오는 방식이 일반적이었다. 이런 방식은 **크기가 커질 수록 유지보수가 어렵고, 전역 변수의 오염과 충돌 같은 치명적인 단점**이 있었다.
+
+```js
+// app.js
+var name = "minjong";
+```
+
+```html
+<script src="app.js"></script>
+<script>
+  name = "jongmin";
+</script>
+<script>
+  console.log(name); //jongmin
+</script>
+```
+
+이미 Java, Python 등의 언어는 `import` 와 같은 구문으로 명확하게 모듈을 분리하고 있었기 때문에, 커뮤니티에선 `require`, `exports`, `module` 과 같은 인터페이스를 제안하면서 자바스크립트 모듈 시스템을 표준화하려고 했고, `Node.js`가 이를 채택하면서 표준 모듈 시스템으로 자리잡게 되었다.
+
+**`Node.js`와 `CommonJS`의 등장으로 모듈화된 자바스크립트 코드를 쉽게 만들 수 있게 되었고, 이를 공유하고 배포하기 위해 `NPM(Node Package Manager)`도 함께 생겨났다.**
+
+단순 유틸 함수부터 서버 프레임워크까지 다양한 모듈이 등장했지만, **자바스크립트 표준이 아니기 때문에 브라우저 엔진은 `require`, `module.exports`과 같은 구문을 해석하지 못하는 문제**가 있었다.
+
+이 문제를 해결하기 위해 **`CommonJS`로 작성된 모듈을 하나의 파일로 번들링하기 위한 번들러가 등장**했다. 그리고, 자바스크립트 뿐 아니라 CSS, 이미지, 폰트와 같은 정적 파일도 모듈처럼 번들링하는 `Webpack`의 등장으로 프론트엔드 생태계가 폭발적으로 성장하게 된다.
+
+## Webpack의 CommonJS 처리 과정
+
+그렇다면 `Webpack`은 어떻게 `CommonJS` 코드를 브라우저가 실행 가능한 방식으로 번들링 할까?
+
+```js
+// minjong.js
+module.exports = {
+  hello: () => "Hello! My name is minjong!",
+};
+
+// app.js
+const hello = require("./minjong");
+console.log(minjong.hello());
+```
+
+`Webpack`은 추상 구문 트리를 만들고 코드를 분석한다. `require()`가 있는 위치와 `module.exports`가 있는 객체 등을 파싱하고 의존성 그래프를 생성한다.
+
+```yaml
+# minjong.js
+Program
+└── ExpressionStatement
+    └── AssignmentExpression (=)
+        ├── Left: MemberExpression
+        │   ├── Object: Identifier (module)
+        │   └── Property: Identifier (exports)
+        └── Right: ObjectExpression
+            └── Property
+                ├── Key: Identifier (hello)
+                └── Value: ArrowFunctionExpression
+                    ├── Params: []
+                    └── Body: Literal ("Hello! My name is minjong!")
+# app.js
+Program
+├── VariableDeclaration (const)
+│   └── VariableDeclarator
+│       ├── id: Identifier (minjong)
+│       └── init: CallExpression
+│           ├── Callee: Identifier (require)
+│           └── Arguments:
+│               └── Literal ("./minjong")
+└── ExpressionStatement
+    └── CallExpression
+        ├── Callee: MemberExpression
+        │   ├── Object: Identifier (minjong)
+        │   └── Property: Identifier (hello)
+        └── Arguments: []
+
+```
+
+그리고, 각 모듈을 함수로 감싸고 모듈 ID로 관리하는 일종의 모듈 캐시 시스템을 만든다.
+
+모든 모듈은 `모듈 ID: 함수` 형태로 modules 객체 안에 들어가고, `Webpack`이 만든 커스텀 require 함수인 `__webpack_require__` 함수로 `module.exports`를 사용할 수 있게 제공한다.
+
+`installedModules` 변수는 모듈 캐시 저장소로 활용되어 `require()`로 같은 모듈을 여러 번 호출하더라도, 한 번만 실행되도록 보장한다.
+
+```js
+(function (modules) {
+  // 모듈 캐시 저장소
+  var installedModules = {};
+
+  function __webpack_require__(moduleId) {
+    // 이미 로드된 모듈이라면 캐시를 반환
+    if (installedModules[moduleId]) {
+      return installedModules[moduleId].exports;
+    }
+
+    // 새 모듈 객체 생성
+    var module = (installedModules[moduleId] = {
+      exports: {},
+    });
+
+    // 모듈 실행
+    modules[moduleId](module, module.exports, __webpack_require__);
+
+    // 모듈 내보내기
+    return module.exports;
+  }
+
+  // 진입점 실행
+  return __webpack_require__("./src/app.js");
+})({
+  "./src/app.js": function (module, exports, __webpack_require__) {
+    const minjong = __webpack_require__("./src/minjong.js");
+    console.log(minjong.hello(2, 3));
+  },
+  "./src/minjong.js": function (module, exports) {
+    module.exports = {
+      hello: () => "Hello! My name is minjong!",
+    };
+  },
+});
+```
+
+## CommonJS의 한계와 ES Modules의 등장
+
+`CommonJS`와 `Webpack`의 등장으로 웹 프론트엔드 생태계는 폭발적인 성장을 할 수 있었다. 그러나, `CommonJS`의 런타임에 모듈을 동기적으로 불러오는 방식 때문에 트리 셰이킹과 같은 최적화 작업에 한계가 있었다. 예를들어 `lodash` 에서 일부 함수만 사용하는 경우 `Webpack`은 어떤 함수를 사용할지 알지 못하기 때문에 `lodash` 전체를 번들에 포함시켜버렸다.
+
+문제를 해결하기 위해 커뮤니티에선 `AMD(Asynchronous Module Definition)`나, `UMD(Universal Module Definition)` 같은 새로운 대안을 제시하기도 했다. 이런 해결책들은 문법이 복잡해서 개발자 경험이 나쁘거나, 브러우저에 친화적이지 않은 문제가 있었다.
+
+앞서 말한 **`CommonJS`의 단점과 표준 모듈시스템의 부재로 인해 생기는 문제들을 해결하기 위해 `ES6`에서 `ESM(ES Modules)`가 등장**한다.
+
+```js
+import { hello } from "./minjong.js";
+console.log(hello());
+```
+
+그렇다면 `ESM`은 어떻게 `CommonJS`의 단점을 해결했을까?
+
+### import, export
+
+**`ES6`에서 `ESM`과 함께 추가된 `import`, `export` 문법으로 파일을 파싱하기 전에 분석할 수 있게 되었다.**
+
+정적 분석이 가능해진 덕에 트리 셰이킹, 코드 스플리팅 같은 애플리케이션 최적화 작업에 더욱 유리해졌고, 더 나아가 IDE에서 자동 완성 기능과 타입 추론 기능이 더욱 강화될 수 있었다.
+
+### 비동기 로딩 지원
+
+**`ESM`은 비동기적으로 모듈을 로딩하기 때문에 HTML 파싱을 방해하지 않게 되어 더욱 빠른 렌더링을 지원할 수 있게 됐다.**
+
+또한, `import` 구문을 통해 Promise 기반의 동적 로딩이 가능해져서 필요한 시점에만 모듈을 로딩할 수 있게 되었다.
+
+```js
+button.addEventListener("click", async () => {
+  const module = await import("./modal.js");
+  module.openModal();
+});
+```
+
+## Webpack의 한계와 Vite의 등장
+
+`Webpack`도 `ESM`을 지원한다. 그렇지만 `Webpack`은 `CommonJS` 시대에 탄생했기 때문에 `ESM`을 사용하기에 최적화된 구조는 아니었다.
+
+**`Webpack`은 `ESM` 코드도 번들링을 했고, Webpack Dev Server는 변경사항을 감지하면 변경사항을 포함하는 모든 모듈을 다시 번들링하는 방식이었기 때문에 애플리케이션이 무거워질수록 개발자 경험이 좋지 못했다.**
+
+그래서, **브라우저가 `ESM`을 직접 해석할 수 있으니까 개발 중에는 번들링을 하지 말자는 철학을 바탕으로 `Vite`가 등장**하게 됐다.
+
+`Vite`는 개발 중엔 번들링을 아예 하지 않고, `CommonJS`나 `UMD`등 외부 의존성을 감지하면 최초 서버 시작 시 `esbuild`를 이용해 `ESM`으로 변환하는 방식을 택했다.
+
+### esbuild?
+
+`esbuild`는 자바스크립트와 타입스크립트 코드를 매우 빠르게 트랜스파일링하고 번들링하는 빌드 도구다. `Vite`와 독립적인 프로젝트지만, `Node.js`와 `CommonJS`가 그랬듯, `Vite`가 `esbuild`를 적극적으로 도입하게 되면서 함께 유명해졌다.
+
+**`esbuild`는 `Go` 언어로 작성됐다.** 인터프리터인 자바스크립트 기반으로 작성된 다른 도구들보다 **기계 수준에서 빠르게 실행**되고, 자바스크립트로 작성되어 **싱글 스레드로 처리됐던 작업을 멀티 스레드로 처리**할 수 있다. [공식 홈페이지의 벤치마크](https://esbuild.github.io/)를 보면 큰 성능 차이를 확인할 수 있다.
+
+## Next.js는 왜 Webpack을 사용할까?
+
+> `Next.js`로 개발할 때 `Webpack` 관련 설정을 헀던 것 같은데, `Next.js`는 `Vite`를 사용하지 않는걸까?
+
+문득 궁금증이 생겼다. 글을 작성하는 지금 시점에서 프론트엔드 개발에 많이 사용되는 프레임워크인데 왜 훨씬 빠른 `Vite`를 사용하지 않고 `Webpack`을 사용하고 있을까?
+
+찾아보니, `Next.js`는 자체적으로 설계한 `Webpack` 기반의 번들러 시스템을 사용하고 있다고 한다. `Vite`는 브라우저 중심의 빠른 개발환경에 집중했기 때문에, `SSR(Server Side Rendering)`을 위한 `Node.js` 기반 서버 실행에 구조적인 어려움이 있기 때문이라고 한다.
+
+참고로, Vercel에선 `Webpack`을 대체할 차세대 번들러로 `Turbopack`을 준비하고 있다.
+
+# 결론
+
+`CRA` 프로젝트를 `Vite`로 마이그레이션했을 때 `HMR` 속도가 빨라진 건 개발 서버에서 번들링을 하지 않는 `ESM` 기반 설계 덕분이었고, 빌드 속도는 `Go`로 작성된 `esbuild` 덕분이었다.
+
+마이그레이션 경험은 단순 레거시 코드 개선을 넘어, `ESM` 기반의 개발환경의 장점을 몸으로 직접 체감할 수 있어서 좋은 경험이었다고 생각한다.
