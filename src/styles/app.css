@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply overflow-y-scroll bg-white text-slate-700 dark:bg-stone-800 dark:text-gray-100;
+    @apply overflow-y-scroll bg-white font-normal text-slate-700 dark:bg-[#212121] dark:font-thin dark:text-[#ECECEC];
   }
 
   p {
@@ -22,7 +22,7 @@
   }
 
   a {
-    @apply relative box-border inline;
+    @apply relative box-border inline font-medium dark:font-normal;
 
     &::before {
       @apply absolute -bottom-0.5 -left-1.5 -right-1.5 -top-0.5 -z-10 rounded transition-all hover:bg-gray-100 dark:hover:bg-stone-700;
@@ -31,11 +31,15 @@
   }
 
   h1 {
-    @apply text-xl font-semibold;
+    @apply text-2xl;
   }
 
   h2 {
-    @apply text-lg font-semibold;
+    @apply text-xl;
+  }
+
+  h3 {
+    @apply text-lg;
   }
 
   ::-webkit-scrollbar {
@@ -68,12 +72,18 @@
 
     h1,
     h2,
-    h3 {
-      @apply before:mr-2 before:box-content before:rounded-md before:bg-black before:pl-1.5 dark:before:bg-white;
+    h3,
+    h4 {
+      @apply flex items-center;
+
+      &::after {
+        @apply ml-2 block grow border-b border-black/50 dark:border-white;
+        content: "";
+      }
     }
 
     strong {
-      @apply font-bold;
+      @apply font-bold dark:font-semibold;
     }
 
     ul {
@@ -127,7 +137,7 @@
     }
 
     code:not(pre code) {
-      @apply mx-0.5 inline-block whitespace-normal break-all rounded-md bg-gray-100 px-1 py-0.5 text-sm font-semibold text-black dark:bg-stone-700 dark:text-white;
+      @apply mx-0.5 inline-block whitespace-normal break-all rounded-md bg-gray-100 px-1 py-0.5 text-sm font-medium text-black dark:bg-stone-700 dark:font-normal dark:text-white;
       &::after,
       &::before {
         @apply content-none;
