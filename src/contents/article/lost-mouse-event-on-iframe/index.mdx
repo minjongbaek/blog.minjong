@@ -11,13 +11,13 @@ export const metadata = {
 
 ![resize-move-iframe](resize-move-iframe.gif)
 
-# **pointer-events**
+## pointer-events
 
 CSS 속성인 `pointer-events`를 사용하면 요소의 마우스 이벤트를 제어할 수 있다. 만약 값으로 `none`을 사용하는 경우 click, hover 와 같은 모든 마우스 관련 이벤트들이 동작하지 않는다.
 
 이벤트가 캡쳐/버블링 되는 특성을 이용해 겹쳐져 보이지 않는 요소의 클릭 이벤트도 처리할 수 있다.
 
-## **드래그 중일 때만 pointer-events 속성을 변경하기**
+### 드래그 중일 때만 pointer-events 속성을 변경하기
 
 `pointer-events` 값을 `none` 으로 사용하는 경우 위에서 언급한 대로 모든 마우스 관련 이벤트가 동작하지 않는다. 그래서 `iframe` 내부 콘텐츠를 클릭하지 못하는 또 다른 문제가 발생했다.
 
@@ -37,7 +37,7 @@ const handleMouseUp = (event: MouseEvent) => {
 
 ![resize](resize.gif)
 
-## **참고**
+### 참고
 
 - [MDN - pointer-events](https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events)
 - [stack overflow - Detect mousemove when over an iframe?](https://stackoverflow.com/questions/5645485/detect-mousemove-when-over-an-iframe)

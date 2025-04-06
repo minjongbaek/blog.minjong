@@ -5,15 +5,13 @@ export const metadata = {
   tags: ["Node.js", "SSL", "Error"],
 };
 
-# Node 환경 변수 설정
+`NODE_TLS_REJECT_UNAUTHORIZED` 환경변수를 `0`으로 설정해서 인증서 검증을 비활성화 할 수 있다.
 
 ```bash
 NODE_TLS_REJECT_UNAUTHORIZED=0
 ```
 
-# CERT_SIGNATURE_FAILURE
-
-`NODE_TLS_REJECT_UNAUTHORIZED` 환경변수를 `0`으로 설정해서 인증서 검증을 비활성화 할 수 있다.
+## CERT_SIGNATURE_FAILURE
 
 회사 내부망에서 Node.js 애플리케이션으로 https 요청을 보낼 때 `CERT_SIGNATURE_FAILURE` 에러가 발생할 수 있다.
 

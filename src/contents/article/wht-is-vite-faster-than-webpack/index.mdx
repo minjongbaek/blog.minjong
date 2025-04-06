@@ -121,7 +121,7 @@ Program
 })({
   "./src/app.js": function (module, exports, __webpack_require__) {
     const minjong = __webpack_require__("./src/minjong.js");
-    console.log(minjong.hello(2, 3));
+    console.log(minjong.hello());
   },
   "./src/minjong.js": function (module, exports) {
     module.exports = {
@@ -191,7 +191,7 @@ button.addEventListener("click", async () => {
 
 참고로, Vercel에선 `Webpack`을 대체할 차세대 번들러로 `Turbopack`을 준비하고 있다.
 
-# 결론
+## 결론
 
 `CRA` 프로젝트를 `Vite`로 마이그레이션했을 때 `HMR` 속도가 빨라진 건 개발 서버에서 번들링을 하지 않는 `ESM` 기반 설계 덕분이었고, 빌드 속도는 `Go`로 작성된 `esbuild` 덕분이었다.
 

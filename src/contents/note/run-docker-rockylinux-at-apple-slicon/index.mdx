@@ -6,8 +6,6 @@ export const metadata = {
   tags: ["Docker"],
 };
 
-# **rockylinux 컨테이너 생성 및 실행**
-
 ```bash
 docker run \
 --platform linux/amd64 \
@@ -23,7 +21,7 @@ rockylinux/rockylinux /sbin/init
   - 서비스나 데몬 등 일반 리눅스 시스템과 유사한 프로세스 경험을 위함
 - `p`: 포트 포워딩 [HOST]:[CONTAINER]
 
-# **rockylinux 세션 접속**
+## **rockylinux 세션 접속**
 
 ```bash
 docker exec -it [container_id_or_name] /bin/bash

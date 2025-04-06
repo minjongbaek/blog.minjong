@@ -9,7 +9,7 @@ Vercel, Netlify, AWS CloudFront 등의 CDN을 사용하는 경우 별도의 처�
 
 레거시 프로젝트에 에셋을 gzip으로 전달하도록 했더니 페이로드가 총 4.3MB -> 1.16MB 로 약 73%로 줄어든 것을 확인할 수 있었다.
 
-# Nginx에서 gzip 압축 적용
+## Nginx에서 gzip 압축 적용
 
 nginx.config 파일에 다음과 같이 gzip 설정을 추가할 수 있다.
 
@@ -22,7 +22,7 @@ http {
 }
 ```
 
-# Webpack, Vite에서 gzip 압축 적용
+## Webpack, Vite에서 gzip 압축 적용
 
 [CompressionWebpackPlugin](https://webpack.js.org/plugins/compression-webpack-plugin/), [VitePluginCompression](https://github.com/nonzzz/vite-plugin-compression) 등의 플러그인을 사용하여 빌드시 에셋 파일들을 gzip으로 압축할 수 있다.
 

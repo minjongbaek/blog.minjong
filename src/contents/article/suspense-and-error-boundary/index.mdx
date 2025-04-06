@@ -7,7 +7,7 @@ export const metadata = {
 
 최근에 Suspense를 도입해서 [다독다독](https://github.com/prgrms-web-devcourse/Team-Gaerval-Dadok-FE) 프로젝트를 리팩터링했다. 그 기록을 남기려고 한다.
 
-# **Suspense**
+## Suspense
 
 **Suspense는 렌더링 시간을 예측할 수 없는 상황에 더 나은 사용자 경험을 제공하기 위해 추가된 기능이다.** Suspense를 사용하면 데이터를 불러오는 동안에도 UI를 렌더링 하여 사용자에게 적절한 피드백을 줄 수 있다.
 
@@ -68,7 +68,7 @@ const MyProfile = () => {
 
 Suspense를 사용하면 관심사를 분시리켜 단일 책임의 원칙도 따를 수 있을 것이라 판단했다.
 
-## **Container & Presenter**
+### Container & Presenter
 
 맨 처음에는 쿼리를 쪼개서 각각의 컴포넌트로 옮기면 되는 거 아닌가? 싶었는데 다른 사용자 프로필에서는 똑같이 보여주는데 수행하는 쿼리가 달라 재사용이 어렵다는 문제가 있었고 (`/users/me`, `/users/[userId]`) 쿼리에 대한 의존성이 너무 높아지는 게 싫었다.
 
@@ -138,7 +138,7 @@ const UserProfileInfoContainer = ({
 };
 ```
 
-## **Suspense를 이용한 로딩 처리 분리**
+### Suspense를 이용한 로딩 처리 분리
 
 다음은 Promise가 처리되는 동안 보여줄 fallback 컴포넌트를 작성했다.
 
@@ -183,7 +183,7 @@ const ProfileInfo = ({ userId, children }: ProfileInfoProps) => {
 };
 ```
 
-## **ErrorBoundary를 이용한 에러 처리 분리**
+### ErrorBoundary를 이용한 에러 처리 분리
 
 ErrorBoundary를 이용하면 만약 데이터를 불러오지 못하는 경우에 에러처리를 선언적으로 처리할 수 있다.
 
@@ -225,7 +225,7 @@ const ProfileInfo = ({ userId, children }: ProfileInfoProps) => {
 };
 ```
 
-# **마무리**
+## 마무리
 
 Suspense와 ErrorBoundary를 이용해 컴포넌트의 역할을 명확하게 분리하고 결합도를 낮출 수 있었다.
 
