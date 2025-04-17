@@ -29,8 +29,8 @@ const ContentDetailPage = async ({
   );
 
   return (
-    <div className="mb-10 mt-6 flex flex-col items-center gap-8">
-      <h1 className="break-keep text-center">{metadata.title}</h1>
+    <div className="mt-6 mb-10 flex flex-col items-center gap-8">
+      <h1 className="text-center break-keep">{metadata.title}</h1>
       <div className="text-gray-500 dark:text-gray-300">
         {new Date(metadata.createdAt).toLocaleDateString("ko-KR")}
       </div>
