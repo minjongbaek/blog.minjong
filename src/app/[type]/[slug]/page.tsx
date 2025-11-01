@@ -8,8 +8,11 @@ export const generateMetadata = async ({
   params: Promise<{ type: ContentType; slug: string }>;
 }): Promise<Metadata> => {
   const { type, slug } = await params;
+  const decodedSlug = decodeURIComponent(slug);
 
-  const { metadata } = await import(`@/contents/${type}/${slug}/index.mdx`);
+  const { metadata } = await import(
+    `@/contents/${type}/${decodedSlug}/index.mdx`
+  );
 
   return {
     title: `${metadata.title} | Blog.minjong`,
@@ -23,9 +26,10 @@ const ContentDetailPage = async ({
   params: Promise<{ type: ContentType; slug: string }>;
 }) => {
   const { type, slug } = await params;
+  const decodedSlug = decodeURIComponent(slug);
 
   const { default: Post, metadata } = await import(
-    `@/contents/${type}/${slug}/index.mdx`
+    `@/contents/${type}/${decodedSlug}/index.mdx`
   );
 
   return (
