@@ -1,0 +1,97 @@
+export const metadata = {
+  title: "Next.js App Router에서 서버 컴포넌트의 Request는 언제 새로 생성될까?",
+  description:
+    "로그인 요청이 성공했는데, 서버 컴포넌트의 cookies() 값이 왜 그대로지?",
+  createdAt: "2025-11-01",
+  tags: ["Next.js"],
+};
+
+최근에 POST 요청을 통해 브라우저에 저장된 쿠키 값을 서버 컴포넌트에서 사용하려고 했는데, 서버 컴포넌트에서 저장된 쿠키를 가져오지 못하는 이슈가 발생했다.
+
+자세히 보니 **헤더 정보도 새로 생성되지 않는 것**을 확인할 수 있었다. 그런데 신기하게도 **페이지를 새로고침하면 변경된 쿠키와 헤더를 정상적으로 가져올 수 있었다.** 같은 브라우저 요청인데 왜 새로고침을 해야만 갱신되는 걸까?
+
+## 서버 컴포넌트의 Request는 ‘스냅샷’이다
+
+App Router 환경의 서버 컴포넌트(Server Component)는 요청을 실시간으로 추적하지 않는다. 서버 렌더링이 시작되는 시점의 Request를 복제해 **스냅샷(snapshot)** 형태로 유지한다.
+
+이때 우리가 `cookies()`나 `headers()`로 읽는 정보는 **“요청이 들어왔을 당시”의 고정된 상태**이며, 렌더링이 완료될 때까지 절대 바뀌지 않는다.
+
+클라이언트에서 아래 코드가 실행됐다고 가정해보자.
+
+```tsx
+"use client";
+
+import { useRouter } from "next/navigation";
+
+const LoginButton = () => {
+  const router = useRouter();
+
+  const handleLogin = async () => {
+    // 서버에서 Set-Cookie 응답
+    const response = await fetch("/api/login", { method: "POST" });
+
+    if (response.ok) {
+      router.push("/my");
+    }
+  };
+
+  return <button onClick={handleLogin}>Login</button>;
+};
+
+export default LoginButton;
+```
+
+이 코드는 서버에서 Set-Cookie 응답을 받고, 페이지를 전환한다. 이때 서버 컴포넌트의 `cookies()`는 요청이 들어왔을 당시의 쿠키 값을 반환한다.
+
+```tsx
+import { cookies } from "next/headers";
+
+const MyPage = () => {
+  const cookieStore = cookies();
+  const accessToken = cookieStore.get("accessToken");
+
+  console.log(accessToken); // undefined
+
+  return <div>My Page</div>;
+};
+
+export default MyPage;
+
+export const dynamic = "force-dynamic";
+```
+
+## 왜 스냅샷처럼 작동하는가
+
+서버 컴포넌트가 읽는 `Request`(`cookies()`, `headers()` 등)는 렌더가 시작되는 순간 한 번만 복제된다. 이는 React Server Components의 설계 철학 때문인데, 동일한 입력에 대해 항상 동일한 출력을 보장해야 하기 때문이다.
+
+렌더 도중 쿠키나 헤더가 바뀌면 결과가 달라질 수 있으므로, Next.js는 요청 당시의 값을 **스냅샷 형태로 고정**한다.
+
+Next.js는 또 이 스냅샷을 기반으로 **데이터 캐시**를 구성한다. 만약 요청 값이 중간에 바뀐다면 캐시 키가 불안정해지고, 어떤 데이터를 다시 가져와야 할지 알 수 없게 된다. 따라서 렌더가 시작되면 Request는 불변 상태가 되고, 모든 데이터 의존성은 이 스냅샷을 기준으로 추적된다.
+
+이 구조는 서버 렌더링이 시작된 뒤에는 항상 같은 상태를 유지하지만, 반대로 **새 요청이 발생하지 않는 한 스냅샷이 갱신되지 않는다**는 의미이기도 하다.
+
+App Router의 클라이언트 전환(`router.push`, `router.replace`)은 브라우저의 전체 새로고침 없이 **라우터 캐시(RSC 페이로드)** 를 재사용한다. 즉, 새로운 HTTP 요청이 발생하지 않기 때문에 서버 컴포넌트는 이전 렌더링 때 만들어졌던 Request 스냅샷을 그대로 사용하게 된다.
+
+따라서, `/api/login` 요청으로 쿠키가 갱신돼도 `router.push("/my")`만 실행하면 서버에 새 요청이 전달되지 않는다.
+
+## 새 스냅샷이 생성되는 시점
+
+서버 컴포넌트의 Request는 **새로운 HTTP 요청이 발생할 때만** 새로 만들어진다. 이 시점에 Next.js는 새로운 `Request` 객체를 생성하고, 그 안에 최신 `headers`와 `cookies`를 복제해 서버 렌더링에 전달한다. 즉, **스냅샷의 생성 기준은 "서버가 실제로 요청을 받았느냐"**다.
+
+클라이언트 전환(`router.push`, `router.replace`)은 기본적으로 **브라우저 내 라우터 캐시(RSC 페이로드)** 를 재사용하기 때문에, 서버로 새 요청을 보내지 않는다. 따라서 서버 컴포넌트는 이전 렌더에서 만들어졌던 스냅샷을 그대로 사용하게 된다. 반대로 `router.refresh()`나 서버의 `redirect()`처럼 **네트워크를 동반하는 새로운 RSC 요청**이 발생하면, 그 순간 서버는 새로운 Request를 만들고, 최신 쿠키/헤더를 반영한 상태로 다시 렌더링을 수행한다.
+
+결국, 서버가 요청을 받을 준비가 되어 있다 하더라도, 클라이언트가 요청을 보내지 않으면 React Server Component는 이전에 생성된 스냅샷을 그대로 사용한다.
+
+## force-dynamic이 새 요청을 보장하지 않는 이유
+
+> `dynamic = 'force-dynamic'`을 설정하면 “이제 매번 서버에서 새로 렌더링하니까 쿠키나 헤더도 항상 최신이겠지?”
+
+생각대로 작동하지 않았다. [공식문서](https://nextjs.org/docs/app/guides/caching)에 따르면, `force-dynamic`은 **서버 캐시(Full Route Cache)** 를 비활성화하는 옵션일 뿐, **클라이언트 라우터 캐시(Router Cache)** 에는 아무런 영향을 주지 않기 때문이다.
+
+즉, 서버는 매 요청마다 새로운 RSC 트리를 렌더링할 준비가 되어 있지만, **클라이언트가 새 요청을 보내지 않으면** 그 과정 자체가 일어나지 않는다.
+
+## 결론
+
+하려던 작업이 쿠키 유무를 통한 단순 접근 제어였기 때문에 **항상 최신 Request를 받는 middleware**에서 처리하도록 수정하긴 했지만, 이번 경험을 통해 **서버 컴포넌트의 Request는 실시간이 아니라 '요청 시점의 스냅샷'** 이라는 것을 알 수 있었다.
+
+새 요청이 발생하지 않으면 서버는 여전히 이전 상태를 보고 있으며, `router.push()` 같은 클라이언트 전환만으로는 그 스냅샷이 갱신되지 않는다.
