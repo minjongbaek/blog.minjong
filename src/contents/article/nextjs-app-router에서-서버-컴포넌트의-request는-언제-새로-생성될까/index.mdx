@@ -1,14 +1,14 @@
 export const metadata = {
   title: "Next.js App Router에서 서버 컴포넌트의 Request는 언제 새로 생성될까?",
   description:
-    "로그인 요청이 성공했는데, 서버 컴포넌트의 cookies() 값이 왜 그대로지?",
+    "토큰을 갱신했는데, 왜 서버 컴포넌트의 cookies() 값이 왜 그대로지?",
   createdAt: "2025-11-01",
   tags: ["Next.js"],
 };
 
-최근에 POST 요청을 통해 브라우저에 저장된 쿠키 값을 서버 컴포넌트에서 사용하려고 했는데, 서버 컴포넌트에서 저장된 쿠키를 가져오지 못하는 이슈가 발생했다.
+최근에 POST 요청을 통해 Set-Cookie 된 값을 서버 컴포넌트에서 사용하려고 했는데, 서버 컴포넌트에서 저장된 쿠키를 가져오지 못하는 이슈가 발생했다.
 
-자세히 보니 **헤더 정보도 새로 생성되지 않는 것**을 확인할 수 있었다. 그런데 신기하게도 **페이지를 새로고침하면 변경된 쿠키와 헤더를 정상적으로 가져올 수 있었다.** 같은 브라우저 요청인데 왜 새로고침을 해야만 갱신되는 걸까?
+첫 번째 요청에서 받아온 쿠키는 의도대로 사용할 수 있었지만, 다시 요청을 보내 값을 갱신하거나 지우려고 하는 경우에는 제대로 반영되지 않았다. 그런데 신기하게도 **페이지를 새로고침하면 변경된 쿠키와 헤더를 정상적으로 가져올 수 있었다.** 같은 브라우저 요청인데 왜 새로고침을 해야만 갱신되는 걸까?
 
 ## 서버 컴포넌트의 Request는 ‘스냅샷’이다
 
@@ -16,7 +16,7 @@ App Router 환경의 서버 컴포넌트(Server Component)는 요청을 실시�
 
 이때 우리가 `cookies()`나 `headers()`로 읽는 정보는 **“요청이 들어왔을 당시”의 고정된 상태**이며, 렌더링이 완료될 때까지 절대 바뀌지 않는다.
 
-클라이언트에서 아래 코드가 실행됐다고 가정해보자.
+클라이언트에서 아래 코드가 실행됐다고 가정해보자. 이 코드는 서버에서 Set-Cookie 응답을 받고, 페이지를 전환한다.
 
 ```tsx
 "use client";
@@ -27,9 +27,10 @@ const LoginButton = () => {
   const router = useRouter();
 
   const handleLogin = async () => {
-    // 서버에서 Set-Cookie 응답
+    // 서버에서 accessToken Set-Cookie 응답
     const response = await fetch("/api/login", { method: "POST" });
 
+    // 요청이 성공했다면 페이지 이동
     if (response.ok) {
       router.push("/my");
     }
@@ -41,16 +42,16 @@ const LoginButton = () => {
 export default LoginButton;
 ```
 
-이 코드는 서버에서 Set-Cookie 응답을 받고, 페이지를 전환한다. 이때 서버 컴포넌트의 `cookies()`는 요청이 들어왔을 당시의 쿠키 값을 반환한다.
+이때 서버 컴포넌트의 `cookies()`는 요청이 들어왔을 당시의 쿠키 값을 반환한다.
 
 ```tsx
 import { cookies } from "next/headers";
 
 const MyPage = () => {
-  const cookieStore = cookies();
+  const cookieStore = cookies(); // 요청이 들어왔을 때의 쿠키 값.
   const accessToken = cookieStore.get("accessToken");
 
-  console.log(accessToken); // undefined
+  console.log(accessToken); // undefined 혹은 이전에 저장된 값
 
   return <div>My Page</div>;
 };
@@ -63,6 +64,27 @@ export const dynamic = "force-dynamic";
 ## 왜 스냅샷처럼 작동하는가
 
 서버 컴포넌트가 읽는 `Request`(`cookies()`, `headers()` 등)는 렌더가 시작되는 순간 한 번만 복제된다. 이는 React Server Components의 설계 철학 때문인데, 동일한 입력에 대해 항상 동일한 출력을 보장해야 하기 때문이다.
+
+```tsx
+// Next.js 내부 개념 구조
+// 1. 요청마다 생성되는 저장소 (Request Store)
+const requestAsyncStorage = new AsyncLocalStorage<RequestStore>();
+
+export function cookies() {
+  // 2. 현재 실행 중인 비동기 컨텍스트에서 '스냅샷(Store)'을 가져옴
+  const store = requestAsyncStorage.getStore();
+
+  if (!store) {
+    throw new Error(
+      "cookies()는 오직 서버 환경(Server Component, Action 등)에서만 사용할 수 있습니다.",
+    );
+  }
+
+  // 3. 렌더링 시점의 'Readonly' 스냅샷 기반 인터페이스 반환
+  // Next.js 15부터는 이 과정이 비동기로 래핑됨 (동적 렌더링 감지 및 최적화 목적)
+  return store.cookies;
+}
+```
 
 렌더 도중 쿠키나 헤더가 바뀌면 결과가 달라질 수 있으므로, Next.js는 요청 당시의 값을 **스냅샷 형태로 고정**한다.
 
@@ -92,6 +114,6 @@ App Router의 클라이언트 전환(`router.push`, `router.replace`)은 브라�
 
 ## 결론
 
-하려던 작업이 쿠키 유무를 통한 단순 접근 제어였기 때문에 **항상 최신 Request를 받는 middleware**에서 처리하도록 수정하긴 했지만, 이번 경험을 통해 **서버 컴포넌트의 Request는 실시간이 아니라 '요청 시점의 스냅샷'** 이라는 것을 알 수 있었다.
+새 요청이 발생하지 않으면 서버는 여전히 이전 상태를 보고 있으며, `router.push()` 같은 클라이언트 전환만으로는 그 스냅샷이 갱신되지 않는다. 이번 경험을 통해 **서버 컴포넌트의 Request는 실시간이 아니라 '요청 시점의 스냅샷'** 이라는 것을 알 수 있었다.
 
-새 요청이 발생하지 않으면 서버는 여전히 이전 상태를 보고 있으며, `router.push()` 같은 클라이언트 전환만으로는 그 스냅샷이 갱신되지 않는다.
+(하려던 작업이 쿠키 유무를 통한 단순한 접근 제어였기 때문에 **항상 최신 Request를 받는 middleware**에서 처리했다. 역시 기술을 목적에 맞게 사용하는 것도 중요한 포인트인 것 같다. 😂)
