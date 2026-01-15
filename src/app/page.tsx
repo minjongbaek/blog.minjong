@@ -1,25 +1,56 @@
+import { getAllContentMetadata } from "@/utils/content";
+import Link from "next/link";
+
 const HomePage = async () => {
+  const [articles, notes] = await Promise.all([
+    getAllContentMetadata("article"),
+    getAllContentMetadata("note"),
+  ]);
+
+  const recentArticles = articles.slice(0, 3);
+  const recentNotes = notes.slice(0, 3);
+
   return (
-    <div className="flex flex-col gap-6">
-      <h1>백민종</h1>
-      <p>
-        풀스택 개발자로 커리어를 시작했지만, 복잡한 것을 단순하고 직관적으로
-        만들어 사용자 경험을 향상시키는 프론트엔드 기술에 매력을 느껴 현재는
-        프론트엔드 개발자로 커리어를 이어가고 있습니다.
-      </p>
-      <p>
-        동료들과 협력하며 도움을 주고받는 것을 좋아합니다. 함께 문제를 해결하고
-        팀의 생산성을 높여 좋은 성과를 만들어내는 데에 늘 관심이 많습니다.
-      </p>
-      <p>
-        복잡한 레거시 코드를 정리하고 더 명확하고 이해하기 쉬운 구조로 개선하는
-        것도 좋아합니다. 프로젝트가 지속 가능하도록 만드는 이 과정은 늘 쉽지
-        않지만, 얽힌 실타래를 풀어내는 듯한 몰입감을 줍니다.
-      </p>
+    <div className="flex flex-col gap-12">
       <p>
         개발하면서 겪은 경험들을 간단한 메모부터 자세한 글까지 다양한 형태로
         이곳에 기록하고 있습니다.
       </p>
+
+      <section className="flex flex-col gap-4">
+        <h2 className="text-lg font-semibold">최근 글</h2>
+        <ul className="flex flex-col gap-4">
+          {recentArticles.map(({ slug, title, description }) => (
+            <li key={slug} className="space-y-1">
+              <Link href={`/article/${slug}`} className="break-keep">
+                {title}
+              </Link>
+              {description && (
+                <p className="text-sm text-gray-500 dark:text-gray-300">
+                  {description}
+                </p>
+              )}
+            </li>
+          ))}
+        </ul>
+      </section>
+      <section className="flex flex-col gap-4">
+        <h2 className="text-lg font-semibold">최근 메모</h2>
+        <ul className="flex flex-col gap-4">
+          {recentNotes.map(({ slug, title, description }) => (
+            <li key={slug} className="space-y-1">
+              <Link href={`/note/${slug}`} className="break-keep">
+                {title}
+              </Link>
+              {description && (
+                <p className="text-sm text-gray-500 dark:text-gray-300">
+                  {description}
+                </p>
+              )}
+            </li>
+          ))}
+        </ul>
+      </section>
     </div>
   );
 };
