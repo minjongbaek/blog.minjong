@@ -4,7 +4,7 @@ import path from "path";
 const CONTENTS_DIRECTORY = path.join(process.cwd(), "src/contents");
 const PUBLIC_CONTENT_IMAGES_DIRECTORY = path.join(
   process.cwd(),
-  "public/images/content"
+  "public/images/content",
 );
 
 const copyImages = () => {
@@ -34,13 +34,13 @@ const copyImages = () => {
       const sourceDirectory = path.join(
         CONTENTS_DIRECTORY,
         contentType,
-        contentDirectory
+        contentDirectory,
       );
 
       const targetDirectory = path.join(
         PUBLIC_CONTENT_IMAGES_DIRECTORY,
         contentType,
-        contentDirectory
+        contentDirectory,
       );
 
       const imageFiles = fs
