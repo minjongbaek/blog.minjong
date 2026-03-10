@@ -1,9 +1,11 @@
 import type { MDXComponents } from "mdx/types";
 import Image from "next/image";
+import MdxLink from "@/components/MdxLink";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     ...components,
+    a: MdxLink,
     img: (props) => (
       <Image
         {...props}
