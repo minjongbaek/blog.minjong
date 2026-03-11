@@ -1,6 +1,20 @@
 import "@/styles/app.css";
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import Link from "next/link";
+
+const pretendard = localFont({
+  src: "../assets/fonts/PretendardVariable.woff2",
+  display: "swap",
+  weight: "45 920",
+  variable: "--font-pretendard",
+});
+
+const jetbrainsMono = localFont({
+  src: "../assets/fonts/JetBrainsMono-Regular.woff2",
+  display: "swap",
+  variable: "--font-jetbrains-mono",
+});
 
 const SITE_TITLE = "Blog.minjong";
 const SITE_DESCRIPTION = "민종의 기록을 위한 블로그입니다.";
@@ -32,8 +46,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
-      <body>
+    <html
+      lang="ko"
+      className={`${pretendard.variable} ${jetbrainsMono.variable}`}
+    >
+      <body className={pretendard.className}>
         <div className="container mx-auto flex min-h-screen max-w-2xl flex-col px-4 pt-8">
           <header className="mb-8">
             <div className="flex items-baseline justify-between">

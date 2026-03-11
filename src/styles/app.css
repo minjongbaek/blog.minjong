@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
 @theme {
+  --font-sans: var(--font-pretendard), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, monospace;
   --background-image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
   --background-image-gradient-conic: conic-gradient(
     from 180deg at 50% 50%,
@@ -46,7 +48,7 @@
   }
 
   strong {
-    @apply font-bold dark:font-semibold;
+    @apply font-semibold;
   }
 
   ul {
