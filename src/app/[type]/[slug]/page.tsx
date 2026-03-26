@@ -1,3 +1,4 @@
+import ScrollProgressBar from "@/components/ScrollProgressBar";
 import { ContentType } from "@/types/content";
 import { getAllContentMetadata } from "@/utils/content";
 import { Metadata } from "next";
@@ -33,15 +34,18 @@ const ContentDetailPage = async ({
   );
 
   return (
-    <div className="mt-6 mb-10 flex flex-col items-center gap-8">
-      <h1 className="text-center break-keep">{metadata.title}</h1>
-      <div className="text-gray-500 dark:text-gray-300">
-        {new Date(metadata.createdAt).toLocaleDateString("ko-KR")}
+    <>
+      <ScrollProgressBar />
+      <div className="mt-6 mb-10 flex flex-col items-center gap-8">
+        <h1 className="text-center break-keep">{metadata.title}</h1>
+        <div className="text-gray-500 dark:text-gray-300">
+          {new Date(metadata.createdAt).toLocaleDateString("ko-KR")}
+        </div>
+        <div className="markdown-content">
+          <Post />
+        </div>
       </div>
-      <div className="markdown-content">
-        <Post />
-      </div>
-    </div>
+    </>
   );
 };
 
