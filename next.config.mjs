@@ -1,5 +1,7 @@
 import createMDX from "@next/mdx";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeShiki from "@shikijs/rehype";
+import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
 
 const remarkPublicImage = () => {
@@ -36,6 +38,13 @@ const withMDX = createMDX({
   options: {
     remarkPlugins: [remarkGfm, remarkPublicImage],
     rehypePlugins: [
+      rehypeSlug,
+      [
+        rehypeAutolinkHeadings,
+        {
+          behavior: "wrap",
+        },
+      ],
       [
         rehypeShiki,
         {

@@ -2,7 +2,8 @@
 
 @theme {
   --font-sans: var(--font-pretendard), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, monospace;
+  --font-mono:
+    var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, monospace;
   --background-image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
   --background-image-gradient-conic: conic-gradient(
     from 180deg at 50% 50%,
@@ -44,6 +45,10 @@
     &::after {
       @apply ml-2 block grow border-b border-black/50 dark:border-white;
       content: "";
+    }
+
+    a {
+      @apply no-underline;
     }
   }
 
@@ -130,6 +135,10 @@
 @layer base {
   body {
     @apply overflow-y-scroll bg-white font-normal text-slate-700 dark:bg-[#212121] dark:font-thin dark:text-[#ECECEC];
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 
   p {
