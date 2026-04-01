@@ -28,7 +28,7 @@ const HomePage = async ({
           <ul className="flex flex-col gap-6">
             {contentsByYear[year].map(({ slug, title, description }) => (
               <li key={slug} className="w-full space-y-2">
-                <Link href={`/${type}/${slug}`} className="break-keep">
+                <Link href={`/${type}/${encodeURIComponent(slug)}`} className="break-keep">
                   {title}
                 </Link>
                 <div className="mt-0.5 text-sm leading-4 text-gray-500 dark:text-gray-300">

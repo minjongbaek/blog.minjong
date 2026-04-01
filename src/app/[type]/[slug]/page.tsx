@@ -58,10 +58,8 @@ export const generateStaticParams = async () => {
 
   return allContentMetadata.map(({ type, slug }) => ({
     type,
-    slug,
+    slug: encodeURIComponent(slug),
   }));
 };
-
-export const dynamicParams = false;
 
 export default ContentDetailPage;
