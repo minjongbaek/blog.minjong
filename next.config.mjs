@@ -7,7 +7,8 @@ import remarkGfm from "remark-gfm";
 const remarkPublicImage = () => {
   const updateImageUrl = (node, directory) => {
     if (node.type === "image") {
-      node.url = `/images/content/${directory}/${node.url}`;
+      const url = node.url.replace(/\.png$/, ".webp");
+      node.url = `/images/content/${directory}/${url}`;
     }
   };
 
@@ -31,6 +32,10 @@ const remarkPublicImage = () => {
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: "export",
+  images: {
+    unoptimized: true,
+  },
   pageExtensions: ["mdx", "ts", "tsx"],
 };
 
