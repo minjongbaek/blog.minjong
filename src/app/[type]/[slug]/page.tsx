@@ -9,10 +9,9 @@ export const generateMetadata = async ({
   params: Promise<{ type: ContentType; slug: string }>;
 }): Promise<Metadata> => {
   const { type, slug } = await params;
-  const decodedSlug = decodeURIComponent(slug);
 
   const { metadata } = await import(
-    `@/contents/${type}/${decodedSlug}/index.mdx`
+    `@/contents/${type}/${slug}/index.mdx`
   );
 
   return {
@@ -27,10 +26,9 @@ const ContentDetailPage = async ({
   params: Promise<{ type: ContentType; slug: string }>;
 }) => {
   const { type, slug } = await params;
-  const decodedSlug = decodeURIComponent(slug);
 
   const { default: Post, metadata } = await import(
-    `@/contents/${type}/${decodedSlug}/index.mdx`
+    `@/contents/${type}/${slug}/index.mdx`
   );
 
   return (
@@ -50,15 +48,11 @@ const ContentDetailPage = async ({
 };
 
 export const generateStaticParams = async () => {
-  const contentTypes: ContentType[] = ["article", "note"];
-
-  const allContentMetadata = (
-    await Promise.all(contentTypes.map((type) => getAllContentMetadata(type)))
-  ).flat();
+  const allContentMetadata = await getAllContentMetadata("note");
 
   return allContentMetadata.map(({ type, slug }) => ({
     type,
-    slug: encodeURIComponent(slug),
+    slug,
   }));
 };
 
