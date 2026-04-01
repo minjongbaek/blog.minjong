@@ -2,12 +2,7 @@ import { getAllContentMetadata } from "@/utils/content";
 import Link from "next/link";
 
 const HomePage = async () => {
-  const [articles, notes] = await Promise.all([
-    getAllContentMetadata("article"),
-    getAllContentMetadata("note"),
-  ]);
-
-  const recentArticles = articles.slice(0, 3);
+  const notes = await getAllContentMetadata("note");
   const recentNotes = notes.slice(0, 3);
 
   return (
@@ -17,23 +12,6 @@ const HomePage = async () => {
         이곳에 기록하고 있습니다.
       </p>
 
-      <section className="flex flex-col gap-4">
-        <h2 className="text-lg font-semibold">최근 글</h2>
-        <ul className="flex flex-col gap-4">
-          {recentArticles.map(({ slug, title, description }) => (
-            <li key={slug} className="space-y-1">
-              <Link href={`/article/${slug}`} className="break-keep">
-                {title}
-              </Link>
-              {description && (
-                <p className="text-sm text-gray-500 dark:text-gray-300">
-                  {description}
-                </p>
-              )}
-            </li>
-          ))}
-        </ul>
-      </section>
       <section className="flex flex-col gap-4">
         <h2 className="text-lg font-semibold">최근 메모</h2>
         <ul className="flex flex-col gap-4">
