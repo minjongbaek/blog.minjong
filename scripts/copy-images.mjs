@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import sharp from "sharp";
 
 const CONTENTS_DIRECTORY = path.join(process.cwd(), "src/contents");
 const PUBLIC_CONTENT_IMAGES_DIRECTORY = path.join(
@@ -7,7 +8,10 @@ const PUBLIC_CONTENT_IMAGES_DIRECTORY = path.join(
   "public/images/content",
 );
 
-const copyImages = () => {
+const MAX_WIDTH = 1344;
+const WEBP_QUALITY = 80;
+
+const optimizeImages = async () => {
   const nodes = fs.readdirSync(CONTENTS_DIRECTORY, { withFileTypes: true });
   const contentTypes = nodes
     .filter((node) => node.isDirectory())
@@ -21,6 +25,8 @@ const copyImages = () => {
   }
 
   fs.mkdirSync(PUBLIC_CONTENT_IMAGES_DIRECTORY, { recursive: true });
+
+  const tasks = [];
 
   contentTypes.forEach((contentType) => {
     const contentDirectories = fs
@@ -45,24 +51,48 @@ const copyImages = () => {
 
       const imageFiles = fs
         .readdirSync(sourceDirectory)
-        .filter((fileName) => /.(png|gif)$/.test(fileName));
+        .filter((fileName) => /\.(png|gif)$/.test(fileName));
 
       imageFiles.forEach((imageFile) => {
         const sourcePath = path.join(sourceDirectory, imageFile);
-        const targetPath = path.join(targetDirectory, imageFile);
 
         if (!fs.existsSync(targetDirectory)) {
           fs.mkdirSync(targetDirectory, { recursive: true });
         }
 
-        fs.copyFile(sourcePath, targetPath, (err) => {
-          if (err) {
-            console.error(err);
-          }
-        });
+        const isGif = imageFile.endsWith(".gif");
+
+        if (isGif) {
+          tasks.push(
+            fs.promises.copyFile(
+              sourcePath,
+              path.join(targetDirectory, imageFile),
+            ),
+          );
+        } else {
+          const webpFileName = imageFile.replace(/\.png$/, ".webp");
+          const targetPath = path.join(targetDirectory, webpFileName);
+
+          tasks.push(
+            sharp(sourcePath)
+              .resize({ width: MAX_WIDTH, withoutEnlargement: true })
+              .webp({ quality: WEBP_QUALITY })
+              .toFile(targetPath),
+          );
+        }
       });
     });
   });
+
+  const results = await Promise.allSettled(tasks);
+  const failed = results.filter((r) => r.status === "rejected");
+
+  if (failed.length > 0) {
+    failed.forEach((r) => console.error(r.reason));
+    process.exit(1);
+  }
+
+  console.log(`Optimized ${results.length} images.`);
 };
 
-copyImages();
+optimizeImages();

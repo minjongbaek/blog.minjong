@@ -1,17 +1,17 @@
-import type { MDXComponents } from "mdx/types";
-import Image from "next/image";
 import MdxLink from "@/components/MdxLink";
+import type { MDXComponents } from "mdx/types";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     ...components,
     a: MdxLink,
     img: (props) => (
-      <Image
+      // eslint-disable-next-line @next/next/no-img-element
+      <img
         {...props}
         alt={props.alt}
-        width={640}
-        height={400}
+        loading="lazy"
+        decoding="async"
         style={{ width: "100%", height: "auto" }}
       />
     ),
