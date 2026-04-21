@@ -37,3 +37,6 @@ next-env.d.ts
 
 
 public/images/content
+
+# auto-generated content map
+src/contents/content-map.ts

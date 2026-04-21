@@ -1,7 +1,19 @@
 import ScrollProgressBar from "@/components/ScrollProgressBar";
+import { contentMap } from "@/contents/content-map";
 import { ContentType } from "@/types/content";
 import { getAllContentMetadata } from "@/utils/content";
 import { Metadata } from "next";
+
+const loadContent = (type: ContentType, slug: string) => {
+  const decodedSlug = decodeURIComponent(slug);
+  const loader = contentMap[type]?.[decodedSlug];
+
+  if (!loader) {
+    throw new Error(`Content not found: ${type}/${decodedSlug}`);
+  }
+
+  return loader();
+};
 
 export const generateMetadata = async ({
   params,
@@ -9,11 +21,8 @@ export const generateMetadata = async ({
   params: Promise<{ type: ContentType; slug: string }>;
 }): Promise<Metadata> => {
   const { type, slug } = await params;
-  const decodedSlug = decodeURIComponent(slug);
 
-  const { metadata } = await import(
-    `@/contents/${type}/${decodedSlug}/index.mdx`
-  );
+  const { metadata } = await loadContent(type, slug);
 
   return {
     title: `${metadata.title} | Blog.minjong`,
@@ -27,11 +36,8 @@ const ContentDetailPage = async ({
   params: Promise<{ type: ContentType; slug: string }>;
 }) => {
   const { type, slug } = await params;
-  const decodedSlug = decodeURIComponent(slug);
 
-  const { default: Post, metadata } = await import(
-    `@/contents/${type}/${decodedSlug}/index.mdx`
-  );
+  const { default: Post, metadata } = await loadContent(type, slug);
 
   return (
     <>
@@ -58,7 +64,7 @@ export const generateStaticParams = async () => {
 
   return allContentMetadata.map(({ type, slug }) => ({
     type,
-    slug: encodeURIComponent(slug),
+    slug,
   }));
 };
 

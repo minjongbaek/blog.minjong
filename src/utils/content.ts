@@ -1,26 +1,16 @@
+import { contentMap } from "@/contents/content-map";
 import { ContentMetadata, ContentSummary, ContentType } from "@/types/content";
-import fs from "fs";
-import path from "path";
-
-const CONTENTS_DIRECTORY = path.join(process.cwd(), "src/contents");
 
 export const getAllContentMetadata = async (contentType: ContentType) => {
-  const contentTypeDirectory = path.join(CONTENTS_DIRECTORY, contentType);
-
-  const contentDirectories = fs
-    .readdirSync(contentTypeDirectory, { withFileTypes: true })
-    .filter((node) => node.isDirectory())
-    .map((node) => node.name);
+  const entries = contentMap[contentType] ?? {};
 
   const contents: ContentSummary[] = await Promise.all(
-    contentDirectories.map(async (contentDirectory) => {
-      const metadata = (
-        await import(`../contents/${contentType}/${contentDirectory}/index.mdx`)
-      ).metadata as ContentMetadata;
+    Object.entries(entries).map(async ([slug, loader]) => {
+      const metadata = (await loader()).metadata as ContentMetadata;
 
       return {
         ...metadata,
-        slug: contentDirectory,
+        slug,
         type: contentType,
       };
     }),

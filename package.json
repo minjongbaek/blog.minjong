@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "predev": "node ./scripts/copy-images.mjs",
+    "predev": "node ./scripts/copy-images.mjs && node ./scripts/generate-content-map.mjs",
     "dev": "next dev --webpack",
-    "prebuild": "node ./scripts/copy-images.mjs",
+    "prebuild": "node ./scripts/copy-images.mjs && node ./scripts/generate-content-map.mjs",
     "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint ."
