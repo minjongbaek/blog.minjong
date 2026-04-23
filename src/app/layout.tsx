@@ -3,13 +3,6 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import Link from "next/link";
 
-const pretendard = localFont({
-  src: "../assets/fonts/PretendardVariable.woff2",
-  display: "swap",
-  weight: "45 920",
-  variable: "--font-pretendard",
-});
-
 const jetbrainsMono = localFont({
   src: "../assets/fonts/JetBrainsMono-Regular.woff2",
   display: "swap",
@@ -46,11 +39,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="ko"
-      className={`${pretendard.variable} ${jetbrainsMono.variable}`}
-    >
-      <body className={pretendard.className}>
+    <html lang="ko" className={jetbrainsMono.variable}>
+      <head>
+        <link
+          rel="preload"
+          href="/fonts/PretendardVariable-latin.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/fonts/PretendardVariable-korean.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+      </head>
+      <body>
         <div className="container mx-auto flex min-h-screen max-w-2xl flex-col px-4 pt-8">
           <header className="mb-8">
             <div className="flex items-baseline justify-between">

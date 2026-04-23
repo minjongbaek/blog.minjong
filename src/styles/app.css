@@ -1,6 +1,24 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Pretendard Variable';
+  src: url('/fonts/PretendardVariable-latin.woff2') format('woff2');
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pretendard Variable';
+  src: url('/fonts/PretendardVariable-korean.woff2') format('woff2');
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+3130-318F, U+AC00-D7A3;
+}
+
 @theme {
+  --font-pretendard: 'Pretendard Variable';
   --font-sans: var(--font-pretendard), ui-sans-serif, system-ui, sans-serif;
   --font-mono:
     var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, monospace;
@@ -134,7 +152,7 @@
 
 @layer base {
   body {
-    @apply overflow-y-scroll bg-white font-normal text-slate-700 dark:bg-[#212121] dark:font-thin dark:text-[#ECECEC];
+    @apply overflow-y-scroll bg-white font-sans font-normal text-slate-700 dark:bg-[#212121] dark:font-thin dark:text-[#ECECEC];
   }
 
   html {
