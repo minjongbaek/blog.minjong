@@ -9,7 +9,7 @@ export const metadata = {
 
 마우스 이벤트 핸들러를 `document` 객체에 등록하고 마우스가 이동하면 좌표를 구해서 컴포넌트를 리사이징 하는데, 아래 그림처럼 마우스가 `iframe` 내부에 위치하면 마우스 이벤트가 사라지는 문제가 있었다.
 
-![resize-move-iframe](resize-move-iframe.gif)
+![마우스가 iframe 위로 들어가면 리사이징 이벤트가 사라지는 문제](resize-move-iframe.gif)
 
 ## pointer-events
 
@@ -35,7 +35,7 @@ const handleMouseUp = (event: MouseEvent) => {
 };
 ```
 
-![resize](resize.gif)
+![pointer-events 속성을 변경해 정상 동작하는 리사이징](resize.gif)
 
 ### 참고
 

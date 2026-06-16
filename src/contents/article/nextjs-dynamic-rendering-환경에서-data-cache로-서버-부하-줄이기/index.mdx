@@ -250,7 +250,7 @@ Before는 `cache: 'no-store'`라서 두 번째 요청도 80ms다. After는 Data 
 
 > 로컬 테스트라서 네트워크 지연, CDN 캐시 등 프로덕션 변수는 반영되지 않았다. 또한 Data Cache는 파일시스템(`.next/cache/fetch-cache/`)에 저장되므로, 프로덕션에서 Pod이 여러 개이면 인스턴스마다 독립적으로 캐시가 생성된다. 즉 인스턴스 수만큼 초기 캐시 미스가 발생할 수 있다. 이 문제는 `next.config.js`의 [`incrementalCacheHandlerPath`](https://nextjs.org/docs/app/api-reference/next-config-js/incrementalCacheHandlerPath) 옵션으로 Redis 같은 공유 캐시 스토어를 연결하면 해결할 수 있다.
 
-## 결론
+## 마무리
 
 "어차피 Dynamic Rendering이니까 캐시가 안 되겠지"라고 생각하기 쉬운데, 그건 Full Route Cache에 해당하는 얘기고 개별 fetch의 Data Cache는 별개 레이어로 독립적으로 동작한다.
 

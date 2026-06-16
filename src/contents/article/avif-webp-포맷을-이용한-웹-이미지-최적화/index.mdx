@@ -7,7 +7,7 @@ export const metadata = {
 
 최근 [디그디그딥 프로젝트](https://github.com/prgrms-fe-devcourse/FEDC3_DigDigDeep_Yuri)의 Lighthouse Performance를 100점으로 개선했다. 이 블로그는 많은 기능을 포함하고 있지 않으니 당연히 100점이 나올거라 예상했지만 95점이 나왔다.
 
-![first-lighthouse](first-lighthouse.png)
+![개선 전 Lighthouse Performance 95점](first-lighthouse.png)
 
 점수를 깎는 가장 큰 원인은 로고 이미지 때문이었는데, 로고를 가져오는데 약 900KB 네트워크 비용이 발생했다. 다양한 네트워크 환경을 고려한다면 확실히 적은 비용은 아니었다.
 
@@ -53,7 +53,7 @@ HTML의 [picture](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/pict
 
 그래서 이미지의 크기를 조정하고 avif, webp 포맷으로 변환했는데 **이미지 페이로드가 909KB -> 21.4KB 로 90%가 넘게 감소했다!**
 
-![payload.png](payload.png)
+![이미지 페이로드가 909KB에서 21.4KB로 감소한 결과](payload.png)
 
 ## aspect-ratio CSS 속성으로 Cumulative Layout Shift 해결하기
 
@@ -80,4 +80,4 @@ img {
 
 코드를 잘 작성하는 것도 중요하지만, 작성한 코드가 더욱 원활한 환경에서 작동할 수 있도록 환경을 구성하는 것도 중요한 것 같다.
 
-![result](result.png)
+![Lighthouse Performance 100점 달성 결과](result.png)

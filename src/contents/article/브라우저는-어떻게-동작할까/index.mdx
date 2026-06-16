@@ -33,9 +33,9 @@ export const metadata = {
 
 결합하는 과정에 **렌더링에 필요하지 않은 일부 노드는 생략** 된다. `<script>` , `<meta>` 와 같은 태그나, `display: none` 속성을 갖는 노드가 이에 해당한다.
 
-💡 `visibility: hidden` 는 요소를 보이지 않게 만들지만 레이아웃에 공간을 차지한다.
+`visibility: hidden` 는 요소를 보이지 않게 만들지만 레이아웃에 공간을 차지한다.
 
-![render-tree](render-tree.png)
+![렌더 트리 생성 과정](render-tree.png)
 
 ### 레이아웃
 
@@ -59,7 +59,7 @@ export const metadata = {
 
 이것은 `<script>` 의 위치에 따라 블로킹이 발생하여 `DOM` 의 생성이 지연될 수 있다는 것을 의미한다. `<body>` 아래 `<script>` 를 작성하는 이유도 이와 같다.
 
-## 정리
+## 마무리
 
 - 서버로 부터 응답받은 HTML, CSS 은 브라우저의 렌더링 엔진을 통해 `DOM` 과 `CSSOM` 트리로 변환된다.
 - 생성된 `DOM` , `CSSOM` 트리는 `렌더 트리` 로 결합된다.
