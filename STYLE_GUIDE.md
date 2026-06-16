@@ -129,3 +129,11 @@ note는 `description`을 두지 않는다.
 - **코드블록 언어 태그를 실제 언어로 정확히 단다.** 과거 `jsx`/`tsx`/`typescript`가 혼용됐다 — 파일이 TS면 `typescript`/`tsx`로.
 - **`#`(h1)을 본문 헤딩으로 쓰지 않는다.** 일부 초기 글에서 마무리를 `#`로 단 예외가 있었다.
 - **이미지 alt를 파일명 그대로 두지 않는다.** 항상 설명형 캡션으로.
+
+---
+
+## 5. 이미지
+
+- 이미지는 글과 같은 폴더(`src/contents/{type}/{slug}/`)에 두고, 본문에서 `![설명형 캡션](파일명.png)` 상대경로로 참조한다. (alt 캡션은 2번 article 구성 규칙을 따른다.)
+- **PNG 또는 GIF만 사용한다.** 빌드 시 `scripts/copy-images.mjs`가 PNG를 WebP로 변환하고 GIF는 그대로 복사하며, `next.config.mjs`의 remark 플러그인이 `![](foo.png)`를 `/images/content/{type}/{slug}/foo.webp`로 재작성한다. **jpg·svg·avif 등 다른 포맷은 처리되지 않아 이미지가 깨진다.**
+- 외부 이미지 URL은 본문 마크다운 이미지(`![](https://...)`)로 쓰지 않는다. 경로가 `/images/content/...`로 재작성되어 깨진다.
