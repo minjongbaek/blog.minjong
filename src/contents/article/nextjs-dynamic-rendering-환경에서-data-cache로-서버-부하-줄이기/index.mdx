@@ -110,7 +110,7 @@ const patched = async (input, init) => {
 
 실제 저장과 조회는 [`incremental-cache/index.ts`](https://github.com/vercel/next.js/blob/v14.2.29/packages/next/src/server/lib/incremental-cache/index.ts)에서 처리한다.
 
-캐시 키는 URL 기반이므로, 테넌트 조회 API의 경우 URL path에 `tenantId`가 포함되어 테넌트마다 별도의 캐시 엔트리가 생성된다. 계정 서비스 특성상 테넌트는 개별 브랜드가 아닌 계정 사업을 주체하는 사업자 단위여서 수가 비교적 적고, 회원 수가 폭증하더라도 대부분의 요청이 동일한 캐시 엔트리를 히트하게 된다. 만약 테넌트가 수천 개 규모라면 캐시 히트율이 낮아져 효과가 희석될 수 있다.
+캐시 키는 URL 기반이므로, 테넌트 조회 API의 경우 URL path에 `tenantId`가 포함되어 테넌트마다 별도의 캐시 엔트리가 생성된다. 계정 서비스 특성상 테넌트는 개별 브랜드가 아닌 계정 사업을 주최하는 사업자 단위여서 수가 비교적 적고, 회원 수가 폭증하더라도 대부분의 요청이 동일한 캐시 엔트리를 히트하게 된다. 만약 테넌트가 수천 개 규모라면 캐시 히트율이 낮아져 효과가 희석될 수 있다.
 
 ### Dynamic Rendering과 Data Cache는 독립적이다
 

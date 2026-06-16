@@ -133,11 +133,11 @@ Program
 
 ## CommonJS의 한계와 ES Modules의 등장
 
-`CommonJS`와 webpack의 등장으로 웹 프론트엔드 생태계는 폭발적인 성장을 할 수 있었다. 그러나, `CommonJS`의 런타임에 모듈을 동기적으로 불러오는 방식 때문에 트리 셰이킹과 같은 최적화 작업에 한계가 있었다. 예를들어 lodash 에서 일부 함수만 사용하는 경우 webpack은 어떤 함수를 사용할지 알지 못하기 때문에 lodash 전체를 번들에 포함시켜버렸다.
+`CommonJS`와 webpack의 등장으로 웹 프론트엔드 생태계는 폭발적인 성장을 할 수 있었다. 그러나, `CommonJS`의 런타임에 모듈을 동기적으로 불러오는 방식 때문에 트리 셰이킹과 같은 최적화 작업에 한계가 있었다. 예를 들어 lodash 에서 일부 함수만 사용하는 경우 webpack은 어떤 함수를 사용할지 알지 못하기 때문에 lodash 전체를 번들에 포함시켜버렸다.
 
-문제를 해결하기 위해 커뮤니티에선 `AMD(Asynchronous Module Definition)`나, `UMD(Universal Module Definition)` 같은 새로운 대안을 제시하기도 했다. 이런 해결책들은 문법이 복잡해서 개발자 경험이 나쁘거나, 브러우저에 친화적이지 않은 문제가 있었다.
+문제를 해결하기 위해 커뮤니티에선 `AMD(Asynchronous Module Definition)`나, `UMD(Universal Module Definition)` 같은 새로운 대안을 제시하기도 했다. 이런 해결책들은 문법이 복잡해서 개발자 경험이 나쁘거나, 브라우저에 친화적이지 않은 문제가 있었다.
 
-앞서 말한 **`CommonJS`의 단점과 표준 모듈시스템의 부재로 인해 생기는 문제들을 해결하기 위해 `ES6`에서 `ESM(ES Modules)`가 등장**한다.
+앞서 말한 **`CommonJS`의 단점과 표준 모듈 시스템의 부재로 인해 생기는 문제들을 해결하기 위해 `ES6`에서 `ESM(ES Modules)`가 등장**한다.
 
 ```js
 import { hello } from "./minjong.js";
