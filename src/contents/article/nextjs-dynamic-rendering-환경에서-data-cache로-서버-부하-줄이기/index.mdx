@@ -7,11 +7,11 @@ export const metadata = {
 
 DevOps로부터 통합 계정 서비스의 CPU 사용률이 계속 올라가고 쓰로틀링이 자주 발생한다는 메시지를 전달받았다.
 
-![CPU 사용률 증가 및 쓰로틀링 논의 스레드](thread.png)
+![CPU 사용률 증가 및 쓰로틀링 논의 스레드](cpu-throttling-thread.png)
 
 원인은 [bstage 투표 이벤트](https://bstageplus.com/poll/698ecd18c1bbe47a262c4f4b) 참여가 몰리면서 회원 수가 순식간에 600만명으로 폭증한 것으로, 초당 약 250건이 넘는 가입요청이 지속적으로 들어왔다. 피크 시간대에는 380 건 정도의 요청이 들어왔다. (베트남에서 롤이 이렇게 인기 있는 스포츠인줄 몰랐다...)
 
-![피크 시간대 요청 지표 — 최대 383 req/s](request_metric.png)
+![피크 시간대 요청 지표 — 최대 383 req/s](request-metric.png)
 
 ## 우리 코드에서 무슨 일이 일어나고 있었는지
 
@@ -110,7 +110,7 @@ const patched = async (input, init) => {
 
 실제 저장과 조회는 [`incremental-cache/index.ts`](https://github.com/vercel/next.js/blob/v14.2.29/packages/next/src/server/lib/incremental-cache/index.ts)에서 처리한다.
 
-캐시 키는 URL 기반이므로, 테넌트 조회 API의 경우 URL path에 `tenantId`가 포함되어 테넌트마다 별도의 캐시 엔트리가 생성된다. 계정 서비스 특성상 테넌트는 개별 브랜드가 아닌 계정 사업을 주체하는 사업자 단위여서 수가 비교적 적고, 회원 수가 폭증하더라도 대부분의 요청이 동일한 캐시 엔트리를 히트하게 된다. 만약 테넌트가 수천 개 규모라면 캐시 히트율이 낮아져 효과가 희석될 수 있다.
+캐시 키는 URL 기반이므로, 테넌트 조회 API의 경우 URL path에 `tenantId`가 포함되어 테넌트마다 별도의 캐시 엔트리가 생성된다. 계정 서비스 특성상 테넌트는 개별 브랜드가 아닌 계정 사업을 주최하는 사업자 단위여서 수가 비교적 적고, 회원 수가 폭증하더라도 대부분의 요청이 동일한 캐시 엔트리를 히트하게 된다. 만약 테넌트가 수천 개 규모라면 캐시 히트율이 낮아져 효과가 희석될 수 있다.
 
 ### Dynamic Rendering과 Data Cache는 독립적이다
 
@@ -250,7 +250,7 @@ Before는 `cache: 'no-store'`라서 두 번째 요청도 80ms다. After는 Data 
 
 > 로컬 테스트라서 네트워크 지연, CDN 캐시 등 프로덕션 변수는 반영되지 않았다. 또한 Data Cache는 파일시스템(`.next/cache/fetch-cache/`)에 저장되므로, 프로덕션에서 Pod이 여러 개이면 인스턴스마다 독립적으로 캐시가 생성된다. 즉 인스턴스 수만큼 초기 캐시 미스가 발생할 수 있다. 이 문제는 `next.config.js`의 [`incrementalCacheHandlerPath`](https://nextjs.org/docs/app/api-reference/next-config-js/incrementalCacheHandlerPath) 옵션으로 Redis 같은 공유 캐시 스토어를 연결하면 해결할 수 있다.
 
-## 결론
+## 마무리
 
 "어차피 Dynamic Rendering이니까 캐시가 안 되겠지"라고 생각하기 쉬운데, 그건 Full Route Cache에 해당하는 얘기고 개별 fetch의 Data Cache는 별개 레이어로 독립적으로 동작한다.
 

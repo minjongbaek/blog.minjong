@@ -26,16 +26,16 @@ Host github.com-company-account
 - `User`: SSH 연결에 사용할 사용자 이름
 - `IdentityFile`: 호스트에 연결할 때 사용할 SSH 키
 
-위에서 설정한 별칭으로 요청을 보내면 해당하는 SSH 키를 이용해 GitHub 과 연결을 시도한다.
+위에서 설정한 별칭으로 요청을 보내면 해당하는 SSH 키를 이용해 GitHub과 연결을 시도한다.
 
 ```bash
 git clone git@github.com-personal-account:user/repo.git
 
 ```
 
-## 디렉토리별 user.name & user.email 설정
+## 디렉터리별 user.name & user.email 설정
 
-디렉토리마다 git config 에 `user.name` 과 `user.email`을 수동으로 설정하는 것이 번거롭다면 다음과 같이 파일을 생성 및 편집해서 해결할 수 있다.
+디렉터리마다 git config 에 `user.name` 과 `user.email`을 수동으로 설정하는 것이 번거롭다면 다음과 같이 파일을 생성 및 편집해서 해결할 수 있다.
 
 ```bash
 # ~/.gitconfig
@@ -51,8 +51,8 @@ git clone git@github.com-personal-account:user/repo.git
 # ~/.gitconfig-personal
 
 [user]
-    name = persnoal
-    email = persnoal@email.com
+    name = personal
+    email = personal@email.com
 
 ```
 
